@@ -74,15 +74,15 @@ document.addEventListener("DOMContentLoaded", () => {
           const availableProducts = prodotti.filter(p => !(p.dataUscita > "2025-01-15" && p.inizioPrevendita < "2025-01-15"));*/
   
           const newProducts = prodotti.filter(p => p.categoria === NOVITA);
-          //const availableProducts = prodotti.filter(p => p.categoria != null && p.categoria !== PREVENDITA);
+          const bestSellers = prodotti.filter(p => p.categoria != null  && p.copieVendute>=15); //&& p.categoria != PREVENDITA
   
           // Verifica se ci sono effettivamente prodotti in new e bestseller
           console.log("Prodotti in novità:", newProducts);
-          //console.log("Prodotti bestseller:", bestProducts);
+          console.log("Prodotti bestseller:", bestSellers);
           
           // Visualizza i prodotti nei rispettivi contenitori
           displayProductCards(newProducts, "new-products");
-          //displayProductCards(newProducts, "best-sellers");
+          displayProductCards(bestSellers, "best-sellers");
         })
         .catch(error => {
           console.error("Errore:", error);
@@ -90,14 +90,15 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="alert alert-danger" role="alert">
               Si è verificato un errore nel recupero dei prodotti.
             </div>`;
-          /*document.getElementById("presale-container").innerHTML = `
+          document.getElementById("best-sellers").innerHTML = `
             <div class="alert alert-danger" role="alert">
               Si è verificato un errore nel recupero dei prodotti.
-            </div>`;*/
+            </div>`
         });
     }
   
     // Funzione per creare le cards per ogni prodotto
+    //function displayProductCards(prodotti, containerId, NOVITA/BESTSELLER)
     function displayProductCards(prodotti, containerId) {
       console.log(`Rendering cards for container: ${containerId}`, prodotti);
       const container = document.getElementById(containerId);
@@ -108,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.classList.add("card", "m-2", "col-xs-12", "col-md-5", "col-xl-3");
   
-        if(prodotto.categoria==NOVITA){
+        {
           card.innerHTML = `
           <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.imgUrl}" class="card-img-top" alt="${prodotto.nome}"></a>
           <div class="card-body d-flex flex-column ">
@@ -117,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <span class="card-text discount"><strong>€${prodotto.prezzo}</strong></span>
             </div>
           </div>
-        `;} //else if(prodotto.categoria==bestseller ecc)
+        `;} 
         // Aggiungi la card al contenitore
         container.appendChild(card);
       });

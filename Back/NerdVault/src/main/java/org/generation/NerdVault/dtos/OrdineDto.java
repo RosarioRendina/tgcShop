@@ -66,6 +66,25 @@ public class OrdineDto {
 
 	public OrdineDto() {
 	}
+	
+	public OrdineDto(LocalDate dataConsegna, OrdineStato statoOrdine) {
+		this.dataConsegna = dataConsegna;
+		this.statoOrdine = statoOrdine;
+	}
+
+	public OrdineDto(LocalDate dataConsegna, OrdineStato statoOrdine, String indirizzoSpedizione) {
+		this.dataConsegna = dataConsegna;
+		this.statoOrdine = statoOrdine;
+		this.indirizzoSpedizione = indirizzoSpedizione;
+	}
+
+	public OrdineDto(LocalDate dataOrdine, LocalDate dataConsegna, OrdineStato statoOrdine,
+			String indirizzoSpedizione) {
+		this.dataOrdine = dataOrdine;
+		this.dataConsegna = dataConsegna;
+		this.statoOrdine = statoOrdine;
+		this.indirizzoSpedizione = indirizzoSpedizione;
+	}
 
 	public OrdineDto(int ordineId, LocalDate dataOrdine, LocalDate dataConsegna, OrdineStato statoOrdine,
 			String indirizzoSpedizione) {

@@ -103,9 +103,24 @@ Una lista degli Endpoint dell'applicazione:
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
 | `GET`    | `/api/ordine`                            | Ritorna la lista di tutti gli ordini.    |
-| `POST`   | `/api/ordine`                            | Richiede JSON di Ordine nel body, inserisce il nuovo ordine all'interno del DB. |
-| `PUT`    | `/api/ordine/{id}`                       | Riciede JSON di Ordine nel body, modifica l'ordine con id specificato. |
+| `PUT`    | `/api/ordine/{id}`                       | Richiede JSON di OrdineDTO nel body, modifica l'ordine con id specificato. |
+| `POST`   | `/api/ordine/u/{UtenteId}`               | Richiede JSON di Ordine nel body, inserisce il nuovo ordine all'interno del DB per l'utente di id specificato. |
 | `GET`    | `/api/ordine/u/{UtenteId}`               | Ritorna la lista di tutti gli ordini per l'utente con l'id specificato. |
+
+## Ordine Dettaglio
+ODD = OrdineDettaglioDto
+- oggetto ordine, oggetto prodotto, int quantità
+- int ordineId, int prodottoId, int quantità
+- è possibile aggiungere il prezzo ad entrambi i JSON, altrimenti calcola in automatico
+- 
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `GET`    | `/api/details`                           | Ritorna la lista di tutti gli ordini-dettaglio (DTO).    |
+| `POST`   | `/api/details/`                          | Richiede ODD nel body, crea nuovo ordine_dettaglio   |
+| `GET`    | `/api/details/{ordine_id}`               | Ritorna la lista di tutti gli ordini-dettaglio legati all'id dell'ordine specificato (DTO).    |
+| `DELETE` | `/api/details/{ordine_id}`               | Cancella tutti gli ordine dettaglio correlati all'ordine di id specificato.    |
+| `PUT` | `/api/details/{ordine_id}`                  | Richiede ODD nel body, modifica l'ordine-dettaglio correlato all'ordine specificato.    |
+
 
 ## Login
 | Method   | URL                                      | Description                              |

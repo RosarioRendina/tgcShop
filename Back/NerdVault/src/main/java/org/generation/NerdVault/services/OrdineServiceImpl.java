@@ -54,17 +54,31 @@ public class OrdineServiceImpl implements OrdineService{
 		return dtos;
 	}
 	
-	public OrdineDto aggiungi(Ordine ordine) {
+	public OrdineDto aggiungi(OrdineDto dto) {
+		Ordine ordine = new Ordine();
+		ordine.setOrdineId(dto.getOrdineId());
+		ordine.setUtente(dto.getUtente());
+		ordine.setDataOrdine(dto.getDataOrdine());
+		ordine.setDataConsegna(dto.getDataConsegna());
+		ordine.setStatoOrdine(dto.getStatoOrdine());
+		ordine.setIndirizzoSpedizione(dto.getIndirizzoSpedizione());
 		ordineRepo.save(ordine);
 		return this.toOrdineDto(ordine);
 	}
 	
-	public OrdineDto aggiorna(Ordine daModificare, Ordine ordine) {
-		daModificare.setUtente(ordine.getUtente());
-		daModificare.setDataOrdine(ordine.getDataOrdine());
+	public OrdineDto aggiorna(Ordine daModificare, OrdineDto ordine) {
+		if (ordine.getUtente() != null) {
+			daModificare.setUtente(ordine.getUtente());
+		}
+		if (ordine.getDataOrdine() != null) {
+			daModificare.setDataOrdine(ordine.getDataOrdine());
+		}
 		daModificare.setDataConsegna(ordine.getDataConsegna());
 		daModificare.setStatoOrdine(ordine.getStatoOrdine());
-		daModificare.setIndirizzoSpedizione(ordine.getIndirizzoSpedizione());
+		if (ordine.getIndirizzoSpedizione() != null) {
+			daModificare.setIndirizzoSpedizione(ordine.getIndirizzoSpedizione());
+		}
+		
 		
 		ordineRepo.save(daModificare);
 		

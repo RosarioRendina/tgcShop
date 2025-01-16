@@ -150,7 +150,9 @@ body.modal {
 }
 
 .card {
-    background: #fff;
+    /*background: #fff; */
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
@@ -172,17 +174,18 @@ body.modal {
     max-height: 200px; /* Altezza massima per limitare l'immagine */
     object-fit: cover; /* Adatta l'immagine all'area disponibile */
     object-position: top;
+    padding-top: 10px;
 }
 
 .card h3 {
     font-size: 1.5rem;
-    color: #333;
+    color: #ffffff;
     margin: 15px 0;
 }
 
 .card p {
     font-size: 1rem;
-    color: #666;
+    color: #ffffff;
     padding: 0 15px;
     margin-bottom: 20px;
     flex-grow: 1; /* Riempie lo spazio rimanente tra l'intestazione e il pulsante */
@@ -221,8 +224,11 @@ body.modal {
     margin: auto!important;
 }
 
-#new-products{
+.elencoHome{
     justify-content: space-between;
+}
+.elencoHome img{
+
 }
 
 .section-title{

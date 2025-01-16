@@ -1,11 +1,9 @@
-/* 
--Immagine grande a fianco/galleria
--Desc sotto/ a lato
--Form d'acquisto a fianco (quantità, prezzo, add carrello) 
-*/
-/*body{
-    background-image: url("/assets/img/yugioh-wallpaper.jpg");
-}*/
+body{
+    background-color: rgb(0, 0, 0);
+    padding-top: 100px;
+    /*background-image: url("/Front/assets/img/background-tcg.jpeg"); */
+}
+
 .navbar{
     height: 70px;
     box-shadow: 0 0 5px 0 ;
@@ -63,65 +61,15 @@
     color: rgb(165,55,240);
 }
 
-.navigation {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    z-index: 2;
+#filtri{
+    color: white;
 }
 
-.navigation button {
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
+#filtri .form-check{
+    width: 20%;
 }
 
-.navigation button:hover {
-    background: rgba(255, 254, 254, 0.8);
-}
-
-#product-container{
-    /* background-color: white; */
+#product-table-container{
+    width: 80%;
     margin: auto;
-    margin-top: 5%;
-    border: 1px solid red;
-    color: white;
-}
-
-.product-img{
-    width: 80%;
-    height: 50%;
-    padding-top: 5%;
-    object-fit: contain;
-}
-
-.product-desc{
-    color: white;
-    width: 80%;
-    margin-top: 25px;
-}
-
-#product-title{
-    padding-top: 25px;
-}
-
-#product-price{
-    margin-top: 1rem;
-}
-
-#product-quantity{
-    margin-top: 1rem;
-}
-
-#product-available{
-    background-color: white;
-    color: blue;
 }

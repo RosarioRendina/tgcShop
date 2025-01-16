@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `prodotto` (
 CREATE TABLE IF NOT EXISTS `ordine` (
 	`ordine_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `utente_id` INT NOT NULL,
-    `data_ordine` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-    `data_consegna` DATETIME DEFAULT NULL,
+    `data_ordine` DATETIME NULL DEFAULT CURRENT_TIMESTAMP(),
+    `data_consegna` DATE DEFAULT NULL,
 	`stato_ordine` ENUM ('SPEDITO', 'CONSEGNATO', 'IN_LAVORAZIONE', 'CANCELLATO') DEFAULT 'IN_LAVORAZIONE',
     `indirizzo_spedizione` VARCHAR(75) NOT NULL,
     
@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `ordine` (
 );
 
 CREATE TABLE IF NOT EXISTS `ordine_dettaglio` (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`ordine_id` INT NOT NULL,
     `prodotto_id` INT NOT NULL,
     `quantita` INT NOT NULL,
@@ -117,30 +118,64 @@ INSERT INTO `ordine` (utente_id, data_ordine, data_consegna, stato_ordine, indir
 (1, '2025-01-10 08:45:00', NULL, 'IN_LAVORAZIONE', 'Via Genova 6, Genova'),
 (2, '2025-01-10 12:00:00', NULL, 'SPEDITO', 'Via Bologna 9, Bologna'),
 (1, '2025-01-11 15:30:00', NULL, 'SPEDITO', 'Via Trieste 4, Trieste'),
-(2, '2025-01-12 18:00:00', NULL, 'IN_LAVORAZIONE', 'Via Palermo 7, Palermo');
+(2, '2025-01-12 18:00:00', NULL, 'IN_LAVORAZIONE', 'Via Palermo 7, Palermo'),
+(1, '2025-01-17', NULL, 'SPEDITO', 'Via Roma 10, Milano'),
+(1, '2024-12-18', '2025-01-18', 'CONSEGNATO', 'Via Torino 20, Milano'),
+(1, '2025-01-19', NULL, 'IN_LAVORAZIONE', 'Corso Venezia 30, Milano'),
+(1, '2025-01-20', NULL, 'CANCELLATO', 'Viale Monza 40, Milano'),
+(1, '2025-01-19', NULL, 'SPEDITO', 'Piazza Duomo 50, Milano'),
+(1, '2024-12-20', '2025-01-20', 'CONSEGNATO', 'Via Dante 60, Milano'),
+(1, '2025-01-13', NULL, 'IN_LAVORAZIONE', 'Via Manzoni 70, Milano'),
+(1, '2025-01-14', NULL, 'CANCELLATO', 'Via Larga 80, Milano'),
+(1, '2025-01-15', NULL, 'SPEDITO', 'Via Carducci 90, Milano'),
+(1, '2024-12-16', '2025-01-16', 'CONSEGNATO', 'Via San Siro 100, Milano'),
+(1, '2025-01-17', NULL, 'IN_LAVORAZIONE', 'Via Vigevano 110, Milano'),
+(1, '2025-01-18', NULL, 'CANCELLATO', 'Via Brera 120, Milano'),
+(1, '2025-01-19', NULL, 'SPEDITO', 'Via Bovisa 130, Milano'),
+(1, '2024-12-30', '2024-12-30', 'CONSEGNATO', 'Via Magenta 140, Milano'),
+(1, '2025-01-01', NULL, 'IN_LAVORAZIONE', 'Via Lorenteggio 150, Milano'),
+(1, '2025-01-01', NULL, 'CANCELLATO', 'Via Solari 160, Milano'),
+(1, '2025-02-02', NULL, 'SPEDITO', 'Via Tortona 170, Milano'),
+(1, '2024-12-03', '2025-01-03', 'CONSEGNATO', 'Via Garibaldi 180, Milano'),
+(1, '2025-01-04', NULL, 'IN_LAVORAZIONE', 'Via Foppa 190, Milano'),
+(1, '2025-01-05', NULL, 'CANCELLATO', 'Via Brioschi 200, Milano'),
+(2, '2025-01-17', NULL, 'SPEDITO', 'Via Roma 10, Roma'),
+(2, '2024-12-18', '2025-01-18', 'CONSEGNATO', 'Via Torino 20, Roma'),
+(2, '2025-01-19', NULL, 'IN_LAVORAZIONE', 'Corso Venezia 30, Roma'),
+(2, '2025-01-20', NULL, 'CANCELLATO', 'Viale Monza 40, Roma'),
+(2, '2025-01-01', NULL, 'SPEDITO', 'Piazza Duomo 50, Roma'),
+(2, '2024-12-02', '2025-01-02', 'CONSEGNATO', 'Via Dante 60, Roma'),
+(2, '2025-01-13', NULL, 'IN_LAVORAZIONE', 'Via Manzoni 70, Roma'),
+(2, '2025-01-14', NULL, 'CANCELLATO', 'Via Larga 80, Roma'),
+(2, '2025-01-05', NULL, 'SPEDITO', 'Via Carducci 90, Roma'),
+(2, '2024-12-06', '2025-01-06', 'CONSEGNATO', 'Via San Siro 100, Roma'),
+(2, '2025-01-17', NULL, 'IN_LAVORAZIONE', 'Via Vigevano 110, Roma'),
+(2, '2025-01-08', NULL, 'CANCELLATO', 'Via Brera 120, Roma'),
+(2, '2025-01-19', NULL, 'SPEDITO', 'Via Bovisa 130, Roma'),
+(2, '2024-12-30', '2024-11-30', 'CONSEGNATO', 'Via Magenta 140, Roma'),
+(2, '2024-12-31', NULL, 'IN_LAVORAZIONE', 'Via Lorenteggio 150, Roma'),
+(2, '2025-01-01', NULL, 'CANCELLATO', 'Via Solari 160, Roma'),
+(2, '2025-01-02', NULL, 'SPEDITO', 'Via Tortona 170, Roma'),
+(2, '2024-12-06', '2024-02-06', 'CONSEGNATO', 'Via Garibaldi 180, Roma'),
+(2, '2025-01-04', NULL, 'IN_LAVORAZIONE', 'Via Foppa 190, Roma'),
+(2, '2025-01-05', NULL, 'CANCELLATO', 'Via Brioschi 200, Roma');
 
-INSERT INTO `ordine_dettaglio` (ordine_id, prodotto_id, quantita, prezzo) VALUES
-(1, 1, 2, 29.99),
-(1, 3, 1, 59.99),
-(2, 2, 1, 49.99),
-(2, 4, 3, 19.99),
-(3, 6, 1, 99.99),
-(3, 5, 2, 14.99),
-(4, 7, 4, 9.99),
-(5, 8, 1, 79.99),
-(5, 9, 2, 49.99),
-(6, 10, 3, 24.99),
-(7, 1, 1, 29.99),
-(7, 4, 2, 19.99),
-(8, 5, 5, 14.99),
-(8, 2, 1, 49.99),
-(9, 3, 1, 59.99),
-(9, 6, 1, 99.99),
-(10, 7, 2, 9.99),
-(10, 10, 1, 24.99);
+INSERT INTO `ordine_dettaglio` (`ordine_id`, `prodotto_id`, `quantita`, `prezzo`) VALUES
+(1, 5, 2, 15.99),(2, 3, 4, 12.75),(3, 12, 1, 19.90),(4, 8, 2, 11.25),(5, 18, 5, 4.99),(5, 6, 2, 8.75),(6, 20, 3, 6.99),(6, 1, 1, 45.00),
+(7, 33, 2, 30.00),(8, 30, 1, 5.99),(9, 35, 2, 13.99),(10, 13, 3, 6.75),(11, 28, 2, 25.00),(12, 36, 4, 8.90),(13, 2, 2, 14.60),(14, 17, 5, 5.49),
+(15, 16, 1, 20.00),(16, 27, 1, 29.90),(16, 38, 3, 15.75),(17, 29, 2, 9.90),(18, 39, 3, 11.75),(19, 31, 1, 28.40),(20, 41, 2, 21.99),(21, 42, 1, 16.99),
+(22, 43, 1, 11.40),(23, 15, 3, 5.25),(24, 8, 1, 14.10),(24, 5, 3, 20.99),(25, 7, 1, 10.50),(26, 12, 2, 8.50),(27, 18, 2, 19.90),(28, 9, 1, 14.50),
+(28, 7, 3, 11.30),(29, 21, 4, 9.99),(29, 32, 1, 16.80),(30, 4, 2, 5.50),(30, 27, 3, 12.99),(31, 14, 1, 29.30),(31, 34, 2, 8.75),(32, 16, 5, 4.99),
+(33, 20, 2, 13.50),(33, 36, 3, 7.99),(34, 6, 1, 10.20),(34, 19, 4, 9.50),(35, 23, 2, 14.60),(35, 29, 3, 6.99),(36, 10, 1, 20.00),(36, 41, 2, 8.99),
+(37, 22, 5, 9.75),(37, 15, 2, 17.00),(38, 30, 1, 6.49),(39, 13, 4, 9.99),(39, 2, 2, 7.50),(40, 8, 3, 11.10),(41, 35, 2, 14.99),(41, 26, 1, 22.80),
+(42, 40, 3, 7.99),(42, 44, 1, 16.99),(43, 31, 4, 19.50),(43, 43, 2, 12.60),(44, 33, 1, 27.99),(44, 17, 3, 8.10),(44, 24, 2, 9.99),(44, 9, 5, 10.50),
+(45, 21, 3, 15.80),(46, 35, 2, 22.50),(47, 30, 1, 10.90),(48, 31, 1, 19.90),(49, 8, 3, 7.25),(49, 17, 5, 9.99),(49, 26, 2, 14.40),(50, 44, 2, 9.50);
 
 SELECT * FROM prodotto;
 SELECT * FROM ordine;
 SELECT * FROM ordine_dettaglio;
+
+SELECT utente_id utente, COUNT(utente_id) ordini FROM ordine
+GROUP BY utente;
 
 -- Primi insert DB

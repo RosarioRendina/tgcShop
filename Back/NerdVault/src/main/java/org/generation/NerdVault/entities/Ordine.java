@@ -3,6 +3,7 @@ package org.generation.NerdVault.entities;
 import java.time.LocalDate;
 
 import org.generation.NerdVault.enums.OrdineStato;
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,7 +26,8 @@ public class Ordine {
 	@JoinColumn(name = "utente_id", nullable = false)
 	private Utente utente;
 	
-	@Column(nullable = false)
+	@CreationTimestamp
+	@Column(nullable = true)
 	private LocalDate dataOrdine;
 	
 	@Column(nullable = true)
