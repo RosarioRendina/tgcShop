@@ -112,13 +112,14 @@ ODD = OrdineDettaglioDto
 - oggetto ordine, oggetto prodotto, int quantità
 - int ordineId, int prodottoId, int quantità
 - è possibile aggiungere il prezzo ad entrambi i JSON, altrimenti calcola in automatico
+- 
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
-| `GET`    | `/api/details`                            | Ritorna la lista di tutti gli ordini-dettaglio (DTO).    |
-| `POST`   | `/api/details/`                            | Richiede ODD nel body, crea nuovo ordine_dettaglio   |
-| `GET`    | `/api/details/{ordine_id}`                            | Ritorna la lista di tutti gli ordini-dettaglio legati all'id dell'ordine specificato (DTO).    |
-| `DELETE` | `/api/details/{ordine_id}`                            | Cancella tutti gli ordine dettaglio correlati all'ordine di id specificato.    |
-| `PUT` | `/api/details/{ordine_id}`                            | Richiede ODD nel body, modifica l'ordine-dettaglio correlato all'ordine specificato.    |
+| `GET`    | `/api/details`                           | Ritorna la lista di tutti gli ordini-dettaglio (DTO).    |
+| `POST`   | `/api/details/`                          | Richiede ODD nel body, crea nuovo ordine_dettaglio   |
+| `GET`    | `/api/details/{ordine_id}`               | Ritorna la lista di tutti gli ordini-dettaglio legati all'id dell'ordine specificato (DTO).    |
+| `DELETE` | `/api/details/{ordine_id}`               | Cancella tutti gli ordine dettaglio correlati all'ordine di id specificato.    |
+| `PUT` | `/api/details/{ordine_id}`                  | Richiede ODD nel body, modifica l'ordine-dettaglio correlato all'ordine specificato.    |
 
 
 ## Login
