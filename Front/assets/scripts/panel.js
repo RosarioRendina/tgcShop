@@ -23,9 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     addProductForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        let inizioPrevendita = (document.getElementById('inizio_prevendita').value === "") ? null : document.getElementById('inizio_prevendita').value;
-        let dataUscita = (document.getElementById('data_uscita').value === "") ? null : document.getElementById('data_uscita').value;
-
         const newProduct = {
             nome: document.getElementById('nome').value,
             descrizione: document.getElementById('descrizione').value,
@@ -34,10 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
             rimanenza: parseInt(document.getElementById('rimanenza').value),
             abilitato: document.getElementById('abilitato').checked,
             visibile: document.getElementById('visibile').checked,
-            inizioPrevendita: inizioPrevendita,
-            dataUscita: dataUscita,
             scontoPrevendita: parseFloat(document.getElementById('sconto_prevendita').value)
         };
+
+        let inizioPrevendita = (document.getElementById('edit-inizio_prevendita').value === "") ? null : document.getElementById('edit-inizio_prevendita').value;
+        let dataUscita = (document.getElementById('edit-data_uscita').value === "") ? null : document.getElementById('edit-data_uscita').value;
 
         console.log(newProduct);
         
@@ -47,6 +45,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         formData.append("prodotto", JSON.stringify(newProduct));
         formData.append("image", immagine)
+        
+        if (inizioPrevendita) {
+            formData.append("prevendita", inizioPrevendita);
+        } else {
+            console.log("Nessuna data per inizio Prevendita");
+        }
+        if (dataUscita) {
+            formData.append("dataUscita", dataUscita)
+        } else {
+            console.log("Nessuna data selezionata per data Uscita");
+        }
+
 
         fetch('http://localhost:8080/api/prodotto/alt', {
             method: 'POST',
@@ -140,9 +150,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('edit-rimanenza').value = product.rimanenza;
         document.getElementById('edit-abilitato').checked = product.abilitato;
         document.getElementById('edit-visibile').checked = product.visibile;
-        document.getElementById('edit-inizio_prevendita').value = product.inizio_prevendita;
-        document.getElementById('edit-data_uscita').value = product.data_uscita;
-        document.getElementById('edit-sconto_prevendita').value = product.sconto_prevendita;
+        document.getElementById('edit-inizio_prevendita').value = product.inizioPrevendita;
+        document.getElementById('edit-data_uscita').value = product.dataUscita;
+        document.getElementById('edit-sconto_prevendita').value = product.scontoPrevendita;
 
         // Gestione del campo immagine
         const editImmagineInput = document.getElementById('edit-immagine');
@@ -236,14 +246,15 @@ document.addEventListener("DOMContentLoaded", () => {
             // immagine: document.getElementById('edit-immagine').type === 'file' ? document.getElementById('edit-immagine').files[0] : null,
             abilitato: document.getElementById('edit-abilitato').checked,
             visibile: document.getElementById('edit-visibile').checked,
-            inizio_prevendita: document.getElementById('edit-inizio_prevendita').value,
-            data_uscita: document.getElementById('edit-data_uscita').value,
-            sconto_prevendita: parseFloat(document.getElementById('edit-sconto_prevendita').value)
+            scontoPrevendita: parseFloat(document.getElementById('edit-sconto_prevendita').value)
         };
 
         const editImmagine = document.getElementById('edit-immagine').type === 'file' ? document.getElementById('edit-immagine').files[0] : null;
 
         console.log(editImmagine);
+
+        let inizioPrevendita = (document.getElementById('edit-inizio_prevendita').value === "") ? null : document.getElementById('edit-inizio_prevendita').value;
+        let dataUscita = (document.getElementById('edit-data_uscita').value === "") ? null : document.getElementById('edit-data_uscita').value;
 
 
         const formData = new FormData();
@@ -252,6 +263,17 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.append("image", editImmagine); // Aggiungi immagine solo se presente
         } else {
             console.log("Nessuna immagine selezionata");
+        }
+
+        if (inizioPrevendita) {
+            formData.append("prevendita", inizioPrevendita);
+        } else {
+            console.log("Nessuna data per inizio Prevendita");
+        }
+        if (dataUscita) {
+            formData.append("dataUscita", dataUscita)
+        } else {
+            console.log("Nessuna data selezionata per data Uscita");
         }
         
         console.log("FormData:", formData); // Controlla i dati nel formData

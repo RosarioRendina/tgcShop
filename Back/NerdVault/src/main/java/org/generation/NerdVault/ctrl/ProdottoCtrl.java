@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,51 +76,106 @@ public class ProdottoCtrl {
 	// Richiesta POST su URL alternativo per la gestione immagini
 	public ResponseEntity<?> addWithImage(
 			@RequestPart(name = "prodotto") String prodottoJson, // Oggetto Prodotto sotto forma di stringa
-			@RequestPart(name = "image", required = false) MultipartFile multipartFile // File Immagine - (dovrebbe) poter mancare
+			@RequestPart(name = "image", required = false) MultipartFile multipartFile, // File Immagine - (dovrebbe) poter mancare
+			@RequestPart(name = "prevendita", required = false) String prevendita,
+			@RequestPart(name = "dataUscita", required = false) String dataUscita
 			) throws JsonMappingException, JsonProcessingException {
 		
 		// DA IMPLEMENTARE CONTROLLO ADMIN
 		
 		// Trasformo la stringa in oggetto prodotto
 		ObjectMapper obMap = new ObjectMapper();
+		// Ritrasformo il json in Prodotto
 		Prodotto prodotto = obMap.readValue(prodottoJson, Prodotto.class);
 		
+		if (prevendita != null && prevendita != "") {
+			System.out.println(prevendita);
+			LocalDate inizioPrevendita = LocalDate.parse(prevendita);
+			prodotto.setInizioPrevendita(inizioPrevendita);
+			System.out.println("INIZIO PREVENDITA MODIFICATO");
+		}
+		
+		if (dataUscita != null && dataUscita != "") {
+			LocalDate uscita = LocalDate.parse(dataUscita);
+			prodotto.setDataUscita(uscita);
+			System.out.println("DATA USCITA MODIFICATA");
+		}
+		
 		try {
-			ProdottoDto dto = prodottoService.aggiungiConImg(prodotto, multipartFile);
-			return ResponseEntity.ok(dto);
+			System.out.println("INNER TRY");
+			
+			if (multipartFile != null) {
+				System.out.println("C'È LA FOTO");
+				ProdottoDto dto = prodottoService.aggiungiConImg(prodotto, multipartFile);
+				System.out.println("SALVATO");
+				
+				return ResponseEntity.ok(dto);
+			}
+			System.out.println("NON C'È LA FOTO");
+			return ResponseEntity.ok(prodottoService.aggiungi(prodotto));
 			
 		} catch (DataIntegrityViolationException e) {
 			return ResponseEntity.badRequest().body("Errore inserimento dati, controllare le proprietà dell'oggetto");
 			
-		}	catch (Exception e) {
+		} catch (Exception e) {
 			return ResponseEntity.internalServerError().body(new ProdottoDto());
 		}
 	}
 	
 	@PutMapping("/alt")
-	// Richiesta PUT su URL alternativo per la gestione immagini
-	public ResponseEntity<?> updateWithImage(
-			@RequestPart(name = "prodotto") String prodottoJson, // Oggetto Prodotto sotto forma di stringa
-			@RequestPart(name = "image", required = false) MultipartFile multipartFile // File Immagine - (dovrebbe) poter mancare
-			) throws JsonMappingException, JsonProcessingException {
-		
-		// DA IMPLEMENTARE CONTROLLO ADMIN
-		
-		// Trasformo la stringa in oggetto prodotto
-		ObjectMapper obMap = new ObjectMapper();
-		Prodotto prodotto = obMap.readValue(prodottoJson, Prodotto.class);
+	public ResponseEntity<?> modificaProdotto(
+	        @RequestPart(name = "prodotto", required = false) String prodottoJson, // Oggetto Prodotto sotto forma di stringa
+	        @RequestPart(name = "image", required = false) MultipartFile multipartFile, // File immagine opzionale
+	        @RequestPart(name = "prevendita", required = false) String prevendita, // Data prevendita opzionale
+	        @RequestPart(name = "dataUscita", required = false) String dataUscita // Data uscita opzionale
+	) throws JsonMappingException, JsonProcessingException {
 
-		try {
-			ProdottoDto dto = prodottoService.aggiungiConImg(prodotto, multipartFile);
-			return ResponseEntity.ok(dto);
-			
-		} catch (DataIntegrityViolationException e) {
-			return ResponseEntity.badRequest().body("Errore inserimento dati, controllare le proprietà dell'oggetto");
-			
-		}	catch (Exception e) {
-			return ResponseEntity.internalServerError().body(new ProdottoDto());
-		}
+	    // DA IMPLEMENTARE CONTROLLO ADMIN
+
+	    // Oggetto mapper per deserializzare il JSON (se fornito)
+	    ObjectMapper obMap = new ObjectMapper();
+
+	    // Aggiorna il prodotto esistente con i nuovi dati (se forniti)
+	    Prodotto prodottoAggiornato = obMap.readValue(prodottoJson, Prodotto.class);
+
+	    // Trova il prodotto esistente
+	    Prodotto prodottoEsistente = prodottoService.cercaPerId(prodottoAggiornato.getProdottoId());
+	    if (prodottoEsistente == null) {
+	        return ResponseEntity.badRequest().body("Prodotto con ID " + prodottoAggiornato.getProdottoId() + " non trovato");
+	    }
+
+	    if (prevendita != null && !prevendita.isEmpty()) {
+	        LocalDate inizioPrevendita = LocalDate.parse(prevendita);
+	        prodottoAggiornato.setInizioPrevendita(inizioPrevendita);
+	        System.out.println("INIZIO PREVENDITA MODIFICATO");
+	    }
+
+	    if (dataUscita != null && !dataUscita.isEmpty()) {
+	        LocalDate uscita = LocalDate.parse(dataUscita);
+	        prodottoAggiornato.setDataUscita(uscita);
+	        System.out.println("DATA USCITA MODIFICATA");
+	    }
+
+	    try {
+	        // Aggiorna il prodotto con o senza immagine
+	        if (multipartFile != null) {
+	            System.out.println("C'È UNA NUOVA FOTO");
+	            ProdottoDto dto = prodottoService.aggiornaConImg(prodottoEsistente, prodottoAggiornato, multipartFile);
+	            return ResponseEntity.ok(dto);
+	        }
+
+	        // Salvataggio senza immagine
+	        ProdottoDto dto = prodottoService.aggiorna(prodottoEsistente, prodottoAggiornato);
+	        return ResponseEntity.ok(dto);
+
+	    } catch (DataIntegrityViolationException e) {
+	        return ResponseEntity.badRequest().body("Errore durante la modifica dei dati, controllare le proprietà dell'oggetto");
+
+	    } catch (Exception e) {
+	        return ResponseEntity.internalServerError().body("Errore interno durante la modifica del prodotto");
+	    }
 	}
+
 	
 	@GetMapping("/{id}")
 	// Questa annotazione mappa una richiesta GET con un parametro dinamico nell'URL, rappresentato da {id}. In questo caso, l'ID dell'prodotto viene estratto dal percorso dell'URL e passato al metodo tramite @PathVariable.

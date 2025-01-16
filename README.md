@@ -94,7 +94,8 @@ Una lista degli Endpoint dell'applicazione:
 | `GET`    | `/api/prodotto`                          | Ritorna la lista di tutti i prodotti. (DTO) |
 | `PUT`    | `/api/prodotto`                          | Richiede JSON di Prodotto nel body (compreso di prodottoId). |
 | `POST`   | `/api/prodotto`                          | Richiede JSON di Prodotto nel body, inserisce il nuovo prodotto all'interno del DB. |
-| `POST`   | `/api/prodotto/alt`                      | Richiede `FormData()` a cui fare l'append di `("prodotto", JSON.stringify(PRODOTTO))` e di `("image", FILEIMMAGINE)` |
+| `POST`   | `/api/prodotto/alt`                      | Richiede `FormData()` necessari formData.append di `("prodotto", JSON.stringify(PRODOTTO))`, `("image", FILEIMMAGINE)`, `("prevendita", inizioPrevendita)`,`formData.append("dataUscita", dataUscita)` |
+| `PUT`    | `/api/prodotto/alt`                      | Richiede `FormData()` necessari formData.append di `("prodotto", JSON.stringify(PRODOTTO))`, `("image", FILEIMMAGINE)`, `("prevendita", inizioPrevendita)`,`formData.append("dataUscita", dataUscita)` |
 | `GET`    | `/api/prodotto/{id}`                     | Ritorna il prodotto desiderato specificandone l'id. (DTO) |
 | `DELETE` | `/api/prodotto/{id}`                     | Cancella dal DB il prodotto di id specificato. |
 | `GET`    | `/api/prodotto/categoria/{c}`            | Ritorna la lista di tutti i prodotti appartenenti alla categoria specificata. (DTO) |
@@ -112,7 +113,7 @@ ODD = OrdineDettaglioDto
 - oggetto ordine, oggetto prodotto, int quantità
 - int ordineId, int prodottoId, int quantità
 - è possibile aggiungere il prezzo ad entrambi i JSON, altrimenti calcola in automatico
-- 
+
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
 | `GET`    | `/api/details`                           | Ritorna la lista di tutti gli ordini-dettaglio (DTO).    |

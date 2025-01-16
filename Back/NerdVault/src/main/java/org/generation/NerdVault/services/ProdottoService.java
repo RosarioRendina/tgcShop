@@ -25,6 +25,8 @@ public interface ProdottoService {
 	
 	void cancellaProdotto(int id);
 
+	ProdottoDto aggiornaConImg(Prodotto esistente, Prodotto aggiornato, MultipartFile img);
+
 	
 	
 }

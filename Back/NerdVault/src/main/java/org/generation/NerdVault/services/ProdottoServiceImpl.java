@@ -73,13 +73,6 @@ public class ProdottoServiceImpl implements ProdottoService {
 	@Override
 	public ProdottoDto aggiungiConImg(Prodotto prodotto, MultipartFile multipartFile) {
 		
-		// Controllo se è stata caricata un'immagine
-		if(multipartFile == null || multipartFile.isEmpty()) {
-			// Senza immagine, salvo comunque il veicolo
-			Prodotto prod = prodottoRepo.save(prodotto);
-			return this.toProdottoDto(prod);
-		}
-		
 		// Se esiste l'immagine da salvare 
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename().strip().replace(" ","-"));
 		
@@ -115,6 +108,40 @@ public class ProdottoServiceImpl implements ProdottoService {
 	@Override
 	public void cancellaProdotto(int id) {
 		prodottoRepo.deleteById(id);
+	}
+	
+	@Override
+	public ProdottoDto aggiornaConImg(Prodotto esistente, Prodotto aggiornato, MultipartFile img) {
+		// Se esiste l'immagine da salvare 
+		String fileName = StringUtils.cleanPath(img.getOriginalFilename().strip().replace(" ","-"));
+				
+		// Setto nome file prima di salvare il prodotto
+		aggiornato.setImmagine(fileName);
+		ProdottoDto dtoAggiornato = this.aggiorna(esistente, aggiornato);
+		
+		// Genero percorso dove salvare l'immagine
+		String uploadDir = CustomProperties.IMG_FOLDER_PATH;
+		
+		try {
+			// Converte percorso stringa in un path
+			Path uploadPath = Paths.get(uploadDir);
+			
+			if(!Files.exists(uploadPath)) {
+				// Crea cartella dove salvare l'immagine se non esiste
+				Files.createDirectories(uploadPath);
+			}
+			try (InputStream inputStream = img.getInputStream()) {
+				Path filePath = uploadPath.resolve(fileName);
+				// Sovrascrive file se già presente con stesso nome
+				Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException ioe) {
+				throw new IOException("Could not save img file: " + fileName, ioe);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return dtoAggiornato;
 	}
 
 	@Override

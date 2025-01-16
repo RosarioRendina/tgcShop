@@ -47,7 +47,7 @@ public class Prodotto {
 	@Column(nullable = false)
 	private boolean visibile;
 	
-	@Column(length = 75, nullable = true)
+	@Column(length = 150, nullable = true)
 	private String immagine;
 	
 	@Column(nullable = true)
