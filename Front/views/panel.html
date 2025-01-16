@@ -70,7 +70,7 @@ c. Logout -->
                         </div>
                         <div class="mb-3">
                             <label for="descrizione" class="form-label">Descrizione</label>
-                            <textarea class="form-control" id="descrizione" required></textarea>
+                            <textarea class="form-control" id="descrizione"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="categoria" class="form-label">Categoria</label>
@@ -179,9 +179,13 @@ c. Logout -->
                             <label for="edit-rimanenza" class="form-label">Rimanenza</label>
                             <input type="number" class="form-control" id="edit-rimanenza" required>
                         </div>
+                        <!-- Campo per l'immagine -->
                         <div class="mb-3">
                             <label for="edit-immagine" class="form-label">Immagine</label>
-                            <input type="text" class="form-control" id="edit-immagine">
+                            <div id="edit-immagine-container">
+                                <input type="file" class="form-control" id="edit-immagine" accept="image/jpg, image/png, image/jpeg, image/webp">
+                                <img id="edit-immagine-preview" src="" alt="Anteprima immagine" style="max-width: 200px; display: block;">
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="edit-inizio_prevendita" class="form-label">Inizio Prevendita</label>
@@ -211,8 +215,16 @@ c. Logout -->
         </div>
     </div>
 
+    <!-- Paginazione -->
+    <div id="pagination-container" class="d-flex justify-content-center mt-3">
+        <button id="prev-page" class="btn btn-secondary">Precedente</button>
+        <div id="page-numbers" class="mx-3"></div>
+        <button id="next-page" class="btn btn-secondary">Successivo</button>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/scripts/panel.js"></script>
 </body>
 
 </html>
+
