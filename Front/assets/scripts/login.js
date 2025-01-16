@@ -1,120 +1,120 @@
-//   document.addEventListener('DOMContentLoaded', () => {
-//     const authButtonContainer = document.getElementById('authButtonContainer');
-//     const usernameInput = document.getElementById('inputEMail');
-//     const passwordInput = document.getElementById('inputPassword');
-//     const loginButton = document.getElementById('loginButton');
-//     const loginModal = document.getElementById('loginModal');
 
-//     // Funzione per aggiornare il bottone di login/logout
-//     const updateAuthButton = async () => {
-//         try {
-//             const response = await fetch('/auth/checkSession', {
-//                 method: 'GET',
-//                 credentials: 'same-origin', // Include i cookie di sessione
-//             });
+// (() => {
+//     'use strict';
 
-//             if (response.ok) {
-//                 const loggedInUser = await response.json();
-//                 console.log('Utente loggato:', loggedInUser);
+//     const forms = document.querySelectorAll('.needs-validation');
 
-//                 // Salva i dati dell'utente nel localStorage
-//                 localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
-
-//                 // Aggiorna il bottone con Logout
-//                 authButtonContainer.innerHTML = `
-//                     <button id="logoutButton" class="btn btn-danger">Logout</button>
-//                 `;
-//                 addLogoutListener();
-//             } else {
-//                 // Rimuovi l'utente dal localStorage e mostra il bottone di Login
-//                 localStorage.removeItem('currentUser');
-//                 authButtonContainer.innerHTML = `
-//                     <button id="loginButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-//                 `;
+//     Array.from(forms).forEach(modulo => {
+//         modulo.addEventListener('submit', evento => {
+//             if (!modulo.checkValidity()) {
+//                 evento.preventDefault();
+//                 evento.stopPropagation();
 //             }
-//         } catch (error) {
-//             console.error('Errore nel controllo della sessione:', error);
+//             modulo.classList.add('was-validated');
+//         }, false);
+//     });
+// })();
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const contenitoreBottoneAuth = document.getElementById('authButtonContainer');
+//     const campoEmail = document.getElementById('inputEMail');
+//     const campoPassword = document.getElementById('inputPassword');
+//     const bottoneLogin = document.getElementById('loginButton');
+//     const bottoneModaleLogin = document.getElementById('modalLoginButton'); 
+//     const modaleLogin = document.getElementById('loginModal'); 
+
+//     const aggiornaBottoneAuth = () => {
+//         const utenteCorrente = JSON.parse(localStorage.getItem('utenteCorrente'));
+
+//         if (!contenitoreBottoneAuth) return;
+
+//         if (utenteCorrente) {
+//             contenitoreBottoneAuth.innerHTML = `
+//                 <button id="logoutButton" class="btn btn-danger">Logout</button>
+//             `;
+//             aggiungiListenerLogout();
+
+//             if (bottoneModaleLogin) bottoneModaleLogin.style.display = 'none';
+
+//             if (modaleLogin) {
+//                 const istanzaModale = bootstrap.Modal.getInstance(modaleLogin);
+//                 if (istanzaModale) istanzaModale.hide();
+//             }
+//         } else {
+//             contenitoreBottoneAuth.innerHTML = `
+//                 <button id="loginButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+//             `;
+//             if (bottoneModaleLogin) bottoneModaleLogin.style.display = 'block';
 //         }
 //     };
 
-//     // Funzione per aggiungere il listener al bottone di logout
-//     const addLogoutListener = () => {
-//         const logoutButton = document.getElementById('logoutButton');
-//         if (logoutButton) {
-//             logoutButton.addEventListener('click', async () => {
-//                 try {
-//                     const response = await fetch('/auth/logout', {
-//                         method: 'POST',
-//                         credentials: 'same-origin', // Include i cookie di sessione
-//                     });
+//     const aggiungiListenerLogout = () => {
+//         const bottoneLogout = document.getElementById('logoutButton');
+//         if (bottoneLogout) {
+//             bottoneLogout.addEventListener('click', () => {
+//                 localStorage.removeItem('utenteCorrente');
+//                 aggiornaBottoneAuth();
+//                 window.location.href = 'index.html';
+//             });
+//         }
+//     };
 
-//                     if (response.ok) {
-//                         console.log('Logout eseguito con successo.');
-//                         localStorage.removeItem('currentUser'); // Rimuovi l'utente dal localStorage
-//                         updateAuthButton(); // Aggiorna lo stato del bottone
-//                         window.location.href = 'index.html'; // Reindirizza alla homepage
+//     bottoneLogin?.addEventListener('click', async (evento) => {
+//         evento.preventDefault();
+
+//         const email = campoEmail.value;
+//         const password = campoPassword.value;
+
+//         const utenteCorrente = JSON.parse(localStorage.getItem('utenteCorrente'));
+//         if (utenteCorrente) {
+//             alert('Sei già loggato! Per effettuare il logout, clicca su "Logout".');
+//             return; 
+//         }
+
+//         if (email && password) {
+//             const utente = { email, password };
+
+//             try {
+//                 const risposta = await fetch('http://127.0.0.1:8080/auth/login', {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json'
+//                     },
+//                     body: JSON.stringify(utente),
+//                 });
+
+//                 if (risposta.ok) {
+//                     const utenteLoggato = await risposta.json();
+
+//                     localStorage.setItem('utenteCorrente', JSON.stringify(utenteLoggato));
+
+//                     const ruolo = utenteLoggato.ruolo;
+//                     if (ruolo === 'ADMIN' || ruolo === 'UTENTE') {
+//                         aggiornaBottoneAuth();
+
+//                         const istanzaModale = bootstrap.Modal.getInstance(modaleLogin);
+//                         istanzaModale.hide();
+//                     } else {
+//                         alert('Ruolo non riconosciuto. Contatta l\'amministratore di sistema.');
 //                     }
-//                 } catch (error) {
-//                     console.error('Errore durante il logout:', error);
+//                 } else {
+//                     alert('Credenziali non valide!');
 //                 }
-//             });
-//         }
-//     };
-
-//     // Funzione di gestione del login
-//     loginButton?.addEventListener('click', async (e) => {
-//         e.preventDefault();
-
-//         const email = usernameInput.value;
-//         const password = passwordInput.value;
-
-//         if (!email || !password) {
-//             alert('Inserisci sia email che password.');
-//             return;
-//         }
-
-//         try {
-//             const response = await fetch('/auth/login', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify({ email, password }),
-//                 credentials: 'same-origin', // Per inviare i cookie di sessione
-//             });
-
-//             if (response.ok) {
-//                 const loggedInUser = await response.json();
-//                 console.log('Login riuscito:', loggedInUser);
-
-//                 // Salva i dati dell'utente nel localStorage
-//                 localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
-
-//                 // Aggiorna il bottone di login/logout
-//                 updateAuthButton();
-
-//                 // Chiudi il modal di login
-//                 const modalInstance = bootstrap.Modal.getInstance(loginModal);
-//                 if (modalInstance) modalInstance.hide();
-//             } else {
-//                 alert('Credenziali non valide!');
+//             } catch (errore) {
+//                 console.error('Errore nella richiesta di login:', errore);
+//                 alert('Si è verificato un errore durante il login. Riprova più tardi.');
 //             }
-//         } catch (error) {
-//             console.error('Errore nella richiesta di login:', error);
-//             alert('Si è verificato un errore. Riprova più tardi.');
+//         } else {
+//             alert('Per favore, inserisci sia l\'email che la password.');
 //         }
 //     });
 
-//     // Inizializza lo stato della sessione al caricamento della pagina
-//     const init = () => {
-//         const currentUser = localStorage.getItem('currentUser');
-//         if (currentUser) {
-//             console.log('Utente presente in localStorage:', JSON.parse(currentUser));
-//         }
-//         updateAuthButton();
+//     const inizializza = () => {
+//         localStorage.removeItem('utenteCorrente'); 
+//         aggiornaBottoneAuth();
 //     };
 
-//     init();
+//     inizializza();
 // });
 (() => {
     'use strict';
@@ -137,99 +137,122 @@ document.addEventListener('DOMContentLoaded', () => {
     const campoEmail = document.getElementById('inputEMail');
     const campoPassword = document.getElementById('inputPassword');
     const bottoneLogin = document.getElementById('loginButton');
-    const bottoneModaleLogin = document.getElementById('modalLoginButton'); 
-    const modaleLogin = document.getElementById('loginModal'); 
+    const bottoneModaleLogin = document.getElementById('modalLoginButton');
+    const modaleLogin = document.getElementById('loginModal');
 
-    const aggiornaBottoneAuth = () => {
-        const utenteCorrente = JSON.parse(localStorage.getItem('utenteCorrente'));
+    // Funzione per aggiornare il bottone di login/logout
+    const aggiornaBottoneAuth = async () => {
+        try {
+            // Verifica se l'utente è loggato tramite sessione
+            const response = await fetch('/auth/checkSession', { method: 'GET', credentials: 'same-origin' });
 
-        if (!contenitoreBottoneAuth) return;
+            if (response.ok) {
+                const utenteLoggato = await response.json();
+                contenitoreBottoneAuth.innerHTML = `
+                    <button id="logoutButton" class="btn btn-danger">Logout</button>
+                `;
+                aggiungiListenerLogout();
 
-        if (utenteCorrente) {
-            contenitoreBottoneAuth.innerHTML = `
-                <button id="logoutButton" class="btn btn-danger">Logout</button>
-            `;
-            aggiungiListenerLogout();
+                // Nascondi il bottone di login se l'utente è loggato
+                if (bottoneModaleLogin) bottoneModaleLogin.style.display = 'none';
 
-            if (bottoneModaleLogin) bottoneModaleLogin.style.display = 'none';
-
-            if (modaleLogin) {
-                const istanzaModale = bootstrap.Modal.getInstance(modaleLogin);
-                if (istanzaModale) istanzaModale.hide();
+                // Chiudi il modale di login se aperto
+                if (modaleLogin) {
+                    const istanzaModale = bootstrap.Modal.getInstance(modaleLogin);
+                    if (istanzaModale) istanzaModale.hide();
+                }
+            } else {
+                contenitoreBottoneAuth.innerHTML = `
+                    <button id="loginButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                `;
+                if (bottoneModaleLogin) bottoneModaleLogin.style.display = 'block';
             }
-        } else {
-            contenitoreBottoneAuth.innerHTML = `
-                <button id="loginButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-            `;
-            if (bottoneModaleLogin) bottoneModaleLogin.style.display = 'block';
+        } catch (err) {
+            console.error('Errore durante il controllo della sessione:', err);
         }
     };
 
+    // Funzione per aggiungere il listener al bottone di logout
     const aggiungiListenerLogout = () => {
         const bottoneLogout = document.getElementById('logoutButton');
         if (bottoneLogout) {
-            bottoneLogout.addEventListener('click', () => {
-                localStorage.removeItem('utenteCorrente');
-                aggiornaBottoneAuth();
-                window.location.href = 'index.html';
+            bottoneLogout.addEventListener('click', async () => {
+                try {
+                    const response = await fetch('/auth/logout', { method: 'POST', credentials: 'same-origin' });
+                    if (response.ok) {
+                        aggiornaBottoneAuth();
+                        window.location.href = 'index.html';
+                    } else {
+                        alert('Errore nel logout');
+                    }
+                } catch (err) {
+                    console.error('Errore nel logout:', err);
+                    alert('Si è verificato un errore durante il logout.');
+                }
             });
         }
     };
 
-    bottoneLogin?.addEventListener('click', async (evento) => {
+    // Funzione per gestire il login dell'utente
+    bottoneLogin.addEventListener('click', async (evento) => {
         evento.preventDefault();
 
         const email = campoEmail.value;
         const password = campoPassword.value;
 
-        const utenteCorrente = JSON.parse(localStorage.getItem('utenteCorrente'));
-        if (utenteCorrente) {
-            alert('Sei già loggato! Per effettuare il logout, clicca su "Logout".');
-            return; 
-        }
+        try {
+            // Verifica se l'utente è già loggato tramite il server (sessione HTTP)
+            const response = await fetch('/auth/checkSession', { method: 'GET', credentials: 'same-origin' });
 
-        if (email && password) {
-            const utente = { email, password };
+            if (response.ok) {
+                alert('Sei già loggato! Per effettuare il logout, clicca su "Logout".');
+                return;
+            }
 
-            try {
-                const risposta = await fetch('http://127.0.0.1:8080/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(utente),
-                });
+            if (email && password) {
+                const utente = { email, password };
 
-                if (risposta.ok) {
-                    const utenteLoggato = await risposta.json();
+                try {
+                    const risposta = await fetch('/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(utente),
+                        credentials: 'same-origin' // Mantenere la sessione HTTPS
+                    });
 
-                    localStorage.setItem('utenteCorrente', JSON.stringify(utenteLoggato));
-
-                    const ruolo = utenteLoggato.ruolo;
-                    if (ruolo === 'ADMIN' || ruolo === 'UTENTE') {
+                    if (risposta.ok) {
+                        const utenteLoggato = await risposta.json();
                         aggiornaBottoneAuth();
 
-                        const istanzaModale = bootstrap.Modal.getInstance(modaleLogin);
-                        istanzaModale.hide();
+                        const ruolo = utenteLoggato.ruolo;
+                        if (ruolo === 'ADMIN' || ruolo === 'UTENTE') {
+                            const istanzaModale = bootstrap.Modal.getInstance(modaleLogin);
+                            if (istanzaModale) istanzaModale.hide();
+                        } else {
+                            alert('Ruolo non riconosciuto. Contatta l\'amministratore di sistema.');
+                        }
                     } else {
-                        alert('Ruolo non riconosciuto. Contatta l\'amministratore di sistema.');
+                        alert('Credenziali non valide!');
                     }
-                } else {
-                    alert('Credenziali non valide!');
+                } catch (errore) {
+                    console.error('Errore nella richiesta di login:', errore);
+                    alert('Si è verificato un errore durante il login. Riprova più tardi.');
                 }
-            } catch (errore) {
-                console.error('Errore nella richiesta di login:', errore);
-                alert('Si è verificato un errore durante il login. Riprova più tardi.');
+            } else {
+                alert('Per favore, inserisci sia l\'email che la password.');
             }
-        } else {
-            alert('Per favore, inserisci sia l\'email che la password.');
+        } catch (err) {
+            console.error('Errore durante il controllo della sessione:', err);
         }
     });
 
+    // Funzione per inizializzare la pagina
     const inizializza = () => {
-        localStorage.removeItem('utenteCorrente'); 
-        aggiornaBottoneAuth();
+        aggiornaBottoneAuth();  // Verifica se l'utente è loggato all'avvio della pagina
     };
 
-    inizializza();
+    inizializza();  // Chiamata iniziale per aggiornare il bottone all'avvio della pagina
 });
+
