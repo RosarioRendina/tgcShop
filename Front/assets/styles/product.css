@@ -3,9 +3,53 @@
 -Desc sotto/ a lato
 -Form d'acquisto a fianco (quantità, prezzo, add carrello) 
 */
-/*body{
-    background-image: url("/assets/img/yugioh-wallpaper.jpg");
-}*/
+body{
+    /*background-image: url("/assets/img/yugioh-wallpaper.jpg");*/
+    background-color: white;
+    overflow-x: hidden;
+}
+
+/* ! PROVA SLIDERS */
+
+.image-left,
+.image-right {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50vw; /* Metà della larghezza dello schermo */
+    background-size: cover; /* Adatta le immagini */
+    background-position: center;
+    z-index: -1;
+}
+
+    .image-left {
+      left: -50vw; /* Parte fuori dallo schermo */
+      background-image: url('/assets/img/yugioh-wallpaper-sx.jpeg'); /* Immagine a sinistra */
+      animation: slide-in-left 2s forwards ease-in-out;
+    }
+
+    .image-right {
+      right: -50vw; /* Parte fuori dallo schermo */
+      background-image: url('/assets/img/yugioh-wallpaper-dx.jpg'); /* Immagine a destra */
+      animation: slide-in-right 2s forwards ease-in-out;
+    }
+
+    /* Animazioni */
+    @keyframes slide-in-left {
+      to {
+        left: 0; /* Si ferma al centro */
+      }
+    }
+
+    @keyframes slide-in-right {
+      to {
+        right: 0; /* Si ferma al centro */
+      }
+    }
+
+/* ! PROVA SLIDERS */
+
+
 .navbar{
     height: 70px;
     box-shadow: 0 0 5px 0 ;
@@ -51,16 +95,21 @@
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background: rgb(165,55,240);
+    background: rgba(166, 55, 240, 0);
     color: #fff;
     text-decoration: none;
-    border-radius: 5px;
     transition: background 0.3s ease;
+    text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   
+        0px 0px 10px rgba(165,55,240, 0.7),  
+        0px 0px 15px rgba(165,55,240, 0.6),  
+        0px 0px 20px rgba(165,55,240, 0.5); 
 }
 
 .btn:hover {
-    background: white;
-    color: rgb(165,55,240);
+    color: rgb(255, 255, 255,0.75);
+    font-size: x-large;
+    transition: ease-in 0.3s;
 }
 
 .navigation {
