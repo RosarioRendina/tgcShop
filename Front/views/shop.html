@@ -79,7 +79,10 @@ dell’evento come parametro url -->
                 <h1>All products</h1>
                 <h2>Filters</h2>
                 <label for="price-range" class="form-label" style="margin-top: 1rem;"> Price</label>
-                <input type="range" class="form-range" id="price-range">
+                <input type="range" class="form-range" id="price-range" min="0" max="1000" step="5">
+                <div class="d-flex justify-content-center">
+                  <p id="price-value" style="color: black;"></p>
+                </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="Check1">
                     <label class="form-check-label" for="Check1">Games</label>

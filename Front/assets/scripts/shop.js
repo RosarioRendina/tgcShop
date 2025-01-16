@@ -140,3 +140,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Chiamata alla funzione per caricare i prodotti
   getProducts(); // Richiama i prodotti al caricamento della pagina
 });
+
+// PROVE FILTRO PREZZO -- OK FUNZIONA SERVE LA CHIAMATA API 
+const priceRange = document.getElementById("price-range");
+const priceValue = document.getElementById("price-value");
+priceValue.innerText = priceRange.valueAsNumber; 
+priceRange.addEventListener('input', () => { 
+    priceValue.innerText = priceRange.valueAsNumber; 
+}) 
+
+// displayProductCards(prodotto.prezzo<=priceValue)
+// PROVE FILTRO PREZZO */
+

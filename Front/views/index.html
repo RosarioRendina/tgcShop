@@ -24,8 +24,8 @@
                         <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pannello.html">Pannello</a>
-                    </li>
+                      <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">$$$</button>
+                  </li>
                 </ul>
             </div>
         </div>
@@ -64,6 +64,32 @@
         </div>
       </div>
      <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
+
+      <!-- MODALE CARRELLO -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id=""></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
+          </div>
+          <div class="modal-body">
+              <div class="mb-3" id="cartImg">
+                IMMAGINE
+              </div>
+              <div class="mb-3" id="cartInfo">
+               QUANTITA/ PREZZO/ DESCRIZIONE 
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
+                </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+   <!-- FINE MODALE CARRELLO --> 
+
 
     <!-- SLIDER HERO -->
     <div class="hero-slider">
@@ -106,7 +132,7 @@
     <h2 class="mb-3 mt-5 section-title">New Products</h2>
     <!-- NEW PRODUCTS GRID -->
     <div class="col-xs-12 col-sm-10 flex-column align-items-center container-prodotti" id="">
-      <div id="new-products" class="row">
+      <div id="new-products" class="row elencoHome">
       </div>
     </div>
     <!-- FINE NEW PRODUCTS GRID -->
@@ -117,7 +143,7 @@
     <h2 class="mb-3 mt-5 section-title">Best Sellers</h2>
     <!-- BEST SELLERS GRID -->
     <div class="col-xs-12 col-sm-10 flex-column align-items-center container-prodotti" id="">
-      <div id="best-sellers" class="row">
+      <div id="best-sellers" class="row elencoHome">
       </div>
     </div>
     <!-- FINE BEST SELLERS GRID -->

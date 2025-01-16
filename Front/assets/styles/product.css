@@ -3,7 +3,9 @@
 -Desc sotto/ a lato
 -Form d'acquisto a fianco (quantità, prezzo, add carrello) 
 */
-
+/*body{
+    background-image: url("/assets/img/yugioh-wallpaper.jpg");
+}*/
 .navbar{
     height: 70px;
     box-shadow: 0 0 5px 0 ;
