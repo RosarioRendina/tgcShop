@@ -1,187 +1,235 @@
-// const loginBtn= document.querySelectorAll('.submit')
+//   document.addEventListener('DOMContentLoaded', () => {
+//     const authButtonContainer = document.getElementById('authButtonContainer');
+//     const usernameInput = document.getElementById('inputEMail');
+//     const passwordInput = document.getElementById('inputPassword');
+//     const loginButton = document.getElementById('loginButton');
+//     const loginModal = document.getElementById('loginModal');
 
+//     // Funzione per aggiornare il bottone di login/logout
+//     const updateAuthButton = async () => {
+//         try {
+//             const response = await fetch('/auth/checkSession', {
+//                 method: 'GET',
+//                 credentials: 'same-origin', // Include i cookie di sessione
+//             });
 
-// const logoutBtn = document.querySelector('#logoutBtn');
-// const loginForm = document.querySelector('.form-login');
+//             if (response.ok) {
+//                 const loggedInUser = await response.json();
+//                 console.log('Utente loggato:', loggedInUser);
 
+//                 // Salva i dati dell'utente nel localStorage
+//                 localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
 
-// const navBrand = document.querySelector('.navbar-brand');
-// const userIcon = document.querySelector('.user-icon');
-// const navHome = document.querySelector('.nav-link');
-
-// let path = window.location.pathname.split('/');
-
-// let indexPath = path;
-// indexPath[indexPath.length-1] = 'index.html';
-// indexPath = indexPath.join('/');
-
-// navBrand.href = indexPath;
-// navHome.href = indexPath;
-
-// loginBtn.addEventListener('click', e => {
-//     e.preventDefault();
-
-//     const user = {
-//         email: loginForm.email.value,
-//         password: loginForm.password.value
+//                 // Aggiorna il bottone con Logout
+//                 authButtonContainer.innerHTML = `
+//                     <button id="logoutButton" class="btn btn-danger">Logout</button>
+//                 `;
+//                 addLogoutListener();
+//             } else {
+//                 // Rimuovi l'utente dal localStorage e mostra il bottone di Login
+//                 localStorage.removeItem('currentUser');
+//                 authButtonContainer.innerHTML = `
+//                     <button id="loginButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+//                 `;
+//             }
+//         } catch (error) {
+//             console.error('Errore nel controllo della sessione:', error);
+//         }
 //     };
 
-//     login(user);
-// });
+//     // Funzione per aggiungere il listener al bottone di logout
+//     const addLogoutListener = () => {
+//         const logoutButton = document.getElementById('logoutButton');
+//         if (logoutButton) {
+//             logoutButton.addEventListener('click', async () => {
+//                 try {
+//                     const response = await fetch('/auth/logout', {
+//                         method: 'POST',
+//                         credentials: 'same-origin', // Include i cookie di sessione
+//                     });
 
+//                     if (response.ok) {
+//                         console.log('Logout eseguito con successo.');
+//                         localStorage.removeItem('currentUser'); // Rimuovi l'utente dal localStorage
+//                         updateAuthButton(); // Aggiorna lo stato del bottone
+//                         window.location.href = 'index.html'; // Reindirizza alla homepage
+//                     }
+//                 } catch (error) {
+//                     console.error('Errore durante il logout:', error);
+//                 }
+//             });
+//         }
+//     };
 
-// async function login(user) {
+//     // Funzione di gestione del login
+//     loginButton?.addEventListener('click', async (e) => {
+//         e.preventDefault();
 
-//     const response = await fetch('http://127.0.0.1:8080/auth/login', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(user)
+//         const email = usernameInput.value;
+//         const password = passwordInput.value;
+
+//         if (!email || !password) {
+//             alert('Inserisci sia email che password.');
+//             return;
+//         }
+
+//         try {
+//             const response = await fetch('/auth/login', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//                 body: JSON.stringify({ email, password }),
+//                 credentials: 'same-origin', // Per inviare i cookie di sessione
+//             });
+
+//             if (response.ok) {
+//                 const loggedInUser = await response.json();
+//                 console.log('Login riuscito:', loggedInUser);
+
+//                 // Salva i dati dell'utente nel localStorage
+//                 localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
+
+//                 // Aggiorna il bottone di login/logout
+//                 updateAuthButton();
+
+//                 // Chiudi il modal di login
+//                 const modalInstance = bootstrap.Modal.getInstance(loginModal);
+//                 if (modalInstance) modalInstance.hide();
+//             } else {
+//                 alert('Credenziali non valide!');
+//             }
+//         } catch (error) {
+//             console.error('Errore nella richiesta di login:', error);
+//             alert('Si è verificato un errore. Riprova più tardi.');
+//         }
 //     });
 
-//     if (response.ok) {
-        
-//         let utenteLogged = await response.json();
-
-//         let utente = {
-//             utenteId: utenteLogged.utente_id,
-//             ruolo: utenteLogged.ruolo,
-//             nome: utenteLogged.nome
+//     // Inizializza lo stato della sessione al caricamento della pagina
+//     const init = () => {
+//         const currentUser = localStorage.getItem('currentUser');
+//         if (currentUser) {
+//             console.log('Utente presente in localStorage:', JSON.parse(currentUser));
 //         }
+//         updateAuthButton();
+//     };
 
-//         localStorage.setItem('currentUser', JSON.stringify(utente))
-
-//         let redirect = sessionStorage.getItem('redirect');
-
-//         if (redirect !== null) {
-//             path[path.length - 1] = redirect;
-//             sessionStorage.clear();
-//         } else {
-//             path[path.length - 1] = 'utente.html';
-//         }
-//         window.location.pathname = path.join('/');
-//     } else {
-//         alert('Invalid credentials!');
-//     }
-// }
-
-// // if utente email in localStorage -> form email value = localStorage(utenteEmail)
-
-// async function accessProtected() {
-//     const response = await fetch('http://127.0.0.1:8080/auth/protected');
-//     const text = await response.text();
-//     alert(text);
-// }
-
-// async function logout() {
-//     await fetch('/test/logout', { method: 'POST' });
-
-//     localStorage.clear();
-
-//     path[path.length - 1] = 'login.html';
-//     window.location.pathname = path.join('/');
-// }
-
-
-// async function checkLoggato() {
-    
-//     let utenteLoggato = localStorage.getItem('currentUser');
-
-//     if (utenteLoggato !== null) {
-//         path[path.length - 1] = 'utente.html';
-//         window.location.pathname = path.join('/');
-//     } else {
-//         return false;
-//     }
-    
-// }
-
-// checkLoggato();
-
+//     init();
+// });
 (() => {
-    'use strict'
-  
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
-  
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-      form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
+    'use strict';
+
+    const forms = document.querySelectorAll('.needs-validation');
+
+    Array.from(forms).forEach(modulo => {
+        modulo.addEventListener('submit', evento => {
+            if (!modulo.checkValidity()) {
+                evento.preventDefault();
+                evento.stopPropagation();
+            }
+            modulo.classList.add('was-validated');
+        }, false);
+    });
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+    const contenitoreBottoneAuth = document.getElementById('authButtonContainer');
+    const campoEmail = document.getElementById('inputEMail');
+    const campoPassword = document.getElementById('inputPassword');
+    const bottoneLogin = document.getElementById('loginButton');
+    const bottoneModaleLogin = document.getElementById('modalLoginButton'); 
+    const modaleLogin = document.getElementById('loginModal'); 
+
+    const aggiornaBottoneAuth = () => {
+        const utenteCorrente = JSON.parse(localStorage.getItem('utenteCorrente'));
+
+        if (!contenitoreBottoneAuth) return;
+
+        if (utenteCorrente) {
+            contenitoreBottoneAuth.innerHTML = `
+                <button id="logoutButton" class="btn btn-danger">Logout</button>
+            `;
+            aggiungiListenerLogout();
+
+            if (bottoneModaleLogin) bottoneModaleLogin.style.display = 'none';
+
+            if (modaleLogin) {
+                const istanzaModale = bootstrap.Modal.getInstance(modaleLogin);
+                if (istanzaModale) istanzaModale.hide();
+            }
+        } else {
+            contenitoreBottoneAuth.innerHTML = `
+                <button id="loginButton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+            `;
+            if (bottoneModaleLogin) bottoneModaleLogin.style.display = 'block';
         }
-  
-        form.classList.add('was-validated')
-      }, false)
-    })
-  })()
-  // FINE SCRIPT DEL MODALE LOGIN - VA AGGIUNTA FUNZIONALITA' CRUD
-  
-  // checklist degli elementi del modal
-  console.log(document.querySelector('.needs-validation'));
-  console.log(document.getElementById('inputEMail'));
-  console.log(document.getElementById('inputPassword'));
-  console.log(document.getElementById('loginButton')); 
-  const listeners = getEventListeners(form);
-  console.log(listeners);
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const loginButton = document.getElementById('loginButton'); 
-    const usernameInput = document.getElementById('inputEMail');
-    const passwordInput = document.getElementById('inputPassword');
-    
-    loginButton.addEventListener('click', async (e) => {
-        e.preventDefault(); 
-        console.log('Login button clicked, but page did not refresh');
-  
-        const username = usernameInput.value;
-        const password = passwordInput.value;
-  
-        if (username && password) {
-            const user = {
-                email: username,
-                password: password
-            };
-  
+    };
+
+    const aggiungiListenerLogout = () => {
+        const bottoneLogout = document.getElementById('logoutButton');
+        if (bottoneLogout) {
+            bottoneLogout.addEventListener('click', () => {
+                localStorage.removeItem('utenteCorrente');
+                aggiornaBottoneAuth();
+                window.location.href = 'index.html';
+            });
+        }
+    };
+
+    bottoneLogin?.addEventListener('click', async (evento) => {
+        evento.preventDefault();
+
+        const email = campoEmail.value;
+        const password = campoPassword.value;
+
+        const utenteCorrente = JSON.parse(localStorage.getItem('utenteCorrente'));
+        if (utenteCorrente) {
+            alert('Sei già loggato! Per effettuare il logout, clicca su "Logout".');
+            return; 
+        }
+
+        if (email && password) {
+            const utente = { email, password };
+
             try {
-                const response = await fetch('http://127.0.0.1:8080/auth/login', {
+                const risposta = await fetch('http://127.0.0.1:8080/auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(user),
+                    body: JSON.stringify(utente),
                 });
-  
-                
-                if (response.ok) {
-                  const loggedInUser = await response.json();
-                  console.log("tipo di utente:"+loggedInUser.ruolo);
-                  
-                  
-                    localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
-  
-                    // RUOLO
-                    const role = loggedInUser.ruolo;
-                    if (role === 'ADMIN') {
-                        //window.location.href = 'panel.html'; 
-                        console.log(loggedInUser);
-                        //window.location.href = 'boh.html';
-                    } else if (role === 'UTENTE') {
-                        //window.location.href = 'index.html'; 
-                        console.log(loggedInUser);
-                        
+
+                if (risposta.ok) {
+                    const utenteLoggato = await risposta.json();
+
+                    localStorage.setItem('utenteCorrente', JSON.stringify(utenteLoggato));
+
+                    const ruolo = utenteLoggato.ruolo;
+                    if (ruolo === 'ADMIN' || ruolo === 'UTENTE') {
+                        aggiornaBottoneAuth();
+
+                        const istanzaModale = bootstrap.Modal.getInstance(modaleLogin);
+                        istanzaModale.hide();
                     } else {
                         alert('Ruolo non riconosciuto. Contatta l\'amministratore di sistema.');
                     }
                 } else {
                     alert('Credenziali non valide!');
-                } 
-            } catch (error) {
-                console.error('Errore nella richiesta di login:', error);
+                }
+            } catch (errore) {
+                console.error('Errore nella richiesta di login:', errore);
                 alert('Si è verificato un errore durante il login. Riprova più tardi.');
             }
         } else {
-            alert('Per favore, inserisci sia lo username che la password.');
+            alert('Per favore, inserisci sia l\'email che la password.');
         }
     });
-  });
+
+    const inizializza = () => {
+        localStorage.removeItem('utenteCorrente'); 
+        aggiornaBottoneAuth();
+    };
+
+    inizializza();
+});
