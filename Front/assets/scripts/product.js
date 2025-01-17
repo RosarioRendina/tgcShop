@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const productAvailable = document.getElementById("product-available");
 
             productTitle.textContent = product.nome;
-            productPrice.textContent = `Prezzo: €${product.prezzo.toFixed(2)}`;
+            productPrice.textContent = `€${product.prezzo.toFixed(2)}`;
             productImg.src = product.imgUrl;
             productDesc.innerHTML = product.descrizione || "N/A";
 

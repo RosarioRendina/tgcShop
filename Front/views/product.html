@@ -78,18 +78,22 @@ impaginate -->
  <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
 
     <div class="container w-75 justify-content-center row" id="product-container"> 
-        <div class="col-xs-12 col-md-8 d-flex flex-column">
-            <img class="product-img" id="product-img" alt="sium" src="">
-            <div class="product-desc" id="product-description">
+        <div class="col-12 d-flex flex-column align-items-center">
+            <img class="product-img mb-5" id="product-img" alt="sium" src="">
+            <div class="d-flex flex-row row" id="product-info">
+              <div class="product-desc col-xs-12 col-md-8 mt-3" id="product-description">
                 <p></p>
+              </div>
+              <div class="col-xs-12 col-md-4 flex-column" >
+                <h1 id="product-title"> </h1>
+                <h3 id="product-price">  </h3>
+                <div class="d-flex ">
+                  <input type="number" class="form-control w-25" id="product-quantity" placeholder="0" min="1" step="1" required style="align-self: center;">    
+                <button type="button" id="btn-carrello" class="btn my-3"> Aggiungi al carrello </button>
+                </div>
+                <h3 id="product-available" class="d-none"> Il prodotto non è disponibile </h3>
+              </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <h1 id="product-title"> </h1>
-            <h3 id="product-price">  </h3>
-            <input type="number" class="form-control w-25" id="product-quantity" placeholder="0" min="1" step="1" required>    
-            <button type="button" id="btn-carrello" class="btn my-3"> Aggiungi al carrello </button>
-            <h3 id="product-available" class="d-none"> Il prodotto non è disponibile </h3>
         </div>
     </div>
 

@@ -20,6 +20,7 @@ body{
     background-size: cover; /* Adatta le immagini */
     background-position: center;
     z-index: -1;
+    margin-top: 50px;
 }
 
     .image-left {
@@ -98,7 +99,7 @@ body{
     background: rgba(166, 55, 240, 0);
     color: #fff;
     text-decoration: none;
-    transition: background 0.3s ease;
+    /*transition: background 0.3s ease; */
     text-shadow: 
         0px 0px 5px rgba(165,55,240, 0.8),   
         0px 0px 10px rgba(165,55,240, 0.7),  
@@ -108,7 +109,7 @@ body{
 
 .btn:hover {
     color: rgb(255, 255, 255,0.75);
-    font-size: x-large;
+    font-size: inherit; 
     transition: ease-in 0.3s;
 }
 
@@ -138,39 +139,49 @@ body{
 }
 
 #product-container{
-    /* background-color: white; */
     margin: auto;
-    margin-top: 5%;
-    border: 1px solid red;
+    margin-top: 5rem;
+    /*border: 1px solid red; */
     color: white;
 }
 
 .product-img{
-    width: 80%;
+    width: ;
     height: 50%;
     padding-top: 5%;
     object-fit: contain;
+    align-self: center;
 }
 
-.product-desc{
-    color: white;
-    width: 80%;
-    margin-top: 25px;
+#product-info{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 75%;
+    border-radius: 15px;
 }
 
 #product-title{
-    padding-top: 25px;
 }
 
 #product-price{
-    margin-top: 1rem;
 }
 
 #product-quantity{
-    margin-top: 1rem;
 }
 
 #product-available{
     background-color: white;
     color: blue;
 }
+
+@media (max-width: 860px) { 
+    .image-left,
+    .image-right{
+        display: none;
+    }
+    body{
+        background-image: url("/assets/img/yugioh-bg.jpg");
+    }
+    #product-info{
+        width: 100%;
+    }
+ }
