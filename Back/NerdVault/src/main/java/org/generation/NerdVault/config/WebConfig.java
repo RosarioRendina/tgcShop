@@ -1,4 +1,4 @@
-package org.generation.NerdVault.config;
+/* package org.generation.NerdVault.config;
 
 //import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,11 +12,12 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
 		 System.out.println("Configurazione CORS applicata!");
         
-        registry.addMapping("/**")
-                .allowedOrigins("http://127.0.0.1:5500")
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+        registry.addMapping("/**").allowedMethods("*");
+//                .allowedOrigins("http://127.0.0.1:5500")
+//                .allowedMethods("GET", "POST", "PUT", "DELETE")
+//                .allowedHeaders("*")
+//                .allowCredentials(true);
     }
 	
 }
+ */

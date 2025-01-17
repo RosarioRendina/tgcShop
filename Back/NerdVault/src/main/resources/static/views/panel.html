@@ -1,0 +1,230 @@
+<!-- Protetta da un controllo per l’autenticazione, accesso limitato ad utenti con ruolo di amministratore,
+deve mostrare i seguenti contenuti:
+1. Se l’utente non ha già effettuato le operazioni di login, deve essere visualizzato un form di login in
+cui inserire UserID e password, per poi essere reindirizzati, una volta autenticati, alla stessa pagina
+protetta dalla quale è scaturita la richiesta di login.
+2. Se l’utente è di tipo base “USER” deve essere reindirizzato a una pagina di errore (errore.html)
+contenente un messaggio che specifichi che l’utente non dispone di diritti sufficienti alla gestione
+del e-commerce e un link per il logout.
+3. Se l’utente è di tipo admin (“ADMIN”) deve essere visualizzato un pannello di amministrazione
+contenente le 3 seguenti funzionalità:
+a. Inserimento di un nuovo prodotto – link a inserisci.html
+b. Elenco dei prodotti amministrabili – link a view.html
+c. Logout -->
+
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pannello di Controllo - Amministrazione</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/styles/panel.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <img class="logo" src="/assets/img/logo.png" alt="">
+            <a class="navbar-brand" href="#" style="padding: 0!important;">Nerd Vault</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal"
+                            data-bs-whatever="@mdo">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pannello.html">Pannello</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Benvenuto nel pannello di controllo! Modifica o elimina un prodotto, oppure aggiungine uno.</h1>
+
+    <!-- Aggiungi il pulsante per aprire la modale -->
+    <button id="open-add-product-modal" class="btn btn-primary mt-3">Aggiungi Prodotto</button>
+
+    <!-- Modale per aggiungere un nuovo prodotto -->
+    <div id="new-product-modal" class="modal" tabindex="-1" aria-labelledby="new-product-modal-label">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="new-product-modal-label">Aggiungi Nuovo Prodotto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-product-form">
+                        <!-- Campi per l'inserimento del prodotto -->
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descrizione" class="form-label">Descrizione</label>
+                            <textarea class="form-control" id="descrizione"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoria" class="form-label">Categoria</label>
+                            <select class="form-control" id="categoria" required>
+                                <option value="NOVITA">NOVITA</option>
+                                <option value="PREVENDITA">PREVENDITA</option>
+                                <option value="GAMES">GAMES</option>
+                                <option value="MERCH">MERCH</option>
+                                <option value="ACCESSORI">ACCESSORI</option>
+                                <option value="SPECIALE">SPECIALE</option>
+                                <option value="ALTRO">ALTRO</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="prezzo" class="form-label">Prezzo</label>
+                            <input type="number" class="form-control" id="prezzo" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rimanenza" class="form-label">Rimanenza</label>
+                            <input type="number" class="form-control" id="rimanenza" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="abilitato" class="form-label">Abilitato</label>
+                            <input type="checkbox" id="abilitato">
+                        </div>
+                        <div class="mb-3">
+                            <label for="visibile" class="form-label">Visibile</label>
+                            <input type="checkbox" id="visibile">
+                        </div>
+                        <div class="mb-3">
+                            <label for="immagine" class="form-label">Immagine</label>
+                            <input type="file" class="form-control" id="immagine" accept="image/jpg, image/png, image/jpeg, image/webp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inizio_prevendita" class="form-label">Inizio Prevendita</label>
+                            <input type="date" class="form-control" id="inizio_prevendita">
+                        </div>
+                        <div class="mb-3">
+                            <label for="data_uscita" class="form-label">Data Uscita</label>
+                            <input type="date" class="form-control" id="data_uscita">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sconto_prevendita" class="form-label">Sconto Prevendita</label>
+                            <input type="number" class="form-control" id="sconto_prevendita">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submit-product-btn">Aggiungi Prodotto</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabella per visualizzare i prodotti -->
+    <div id="product-table-container">
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Immagine</th>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Prezzo</th>
+                    <th>Rimanenza</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody id="product-table-body"></tbody>
+        </table>
+    </div>
+
+    <!-- Modale per modificare un prodotto -->
+    <div id="edit-product-modal" class="modal" tabindex="-1" aria-labelledby="edit-product-modal-label">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit-product-modal-label">Modifica Prodotto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-product-form">
+                        <!-- I campi per la modifica saranno precompilati -->
+                        <div class="mb-3">
+                            <label for="edit-nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="edit-nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-descrizione" class="form-label">Descrizione</label>
+                            <textarea class="form-control" id="edit-descrizione" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-categoria" class="form-label">Categoria</label>
+                            <select class="form-control" id="edit-categoria" required>
+                                <option value="NOVITA">NOVITA</option>
+                                <option value="PREVENDITA">PREVENDITA</option>
+                                <option value="GAMES">GAMES</option>
+                                <option value="MERCH">MERCH</option>
+                                <option value="ACCESSORI">ACCESSORI</option>
+                                <option value="SPECIALE">SPECIALE</option>
+                                <option value="ALTRO">ALTRO</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-prezzo" class="form-label">Prezzo</label>
+                            <input type="number" class="form-control" id="edit-prezzo" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-rimanenza" class="form-label">Rimanenza</label>
+                            <input type="number" class="form-control" id="edit-rimanenza" required>
+                        </div>
+                        <!-- Campo per l'immagine -->
+                        <div class="mb-3">
+                            <label for="edit-immagine" class="form-label">Immagine</label>
+                            <div id="edit-immagine-container">
+                                <input type="file" class="form-control" id="edit-immagine" accept="image/jpg, image/png, image/jpeg, image/webp">
+                                <img id="edit-immagine-preview" src="" alt="Anteprima immagine" style="max-width: 200px; display: block;">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-inizio_prevendita" class="form-label">Inizio Prevendita</label>
+                            <input type="date" class="form-control" id="edit-inizio_prevendita">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-data_uscita" class="form-label">Data Uscita</label>
+                            <input type="date" class="form-control" id="edit-data_uscita">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-sconto_prevendita" class="form-label">Sconto Prevendita</label>
+                            <input type="number" class="form-control" id="edit-sconto_prevendita">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-abilitato" class="form-label">Abilitato</label>
+                            <input type="checkbox" id="edit-abilitato">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-visibile" class="form-label">Visibile</label>
+                            <input type="checkbox" id="edit-visibile">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="update-product-btn">Conferma modifiche</button>
+                        <button type="button" class="btn btn-secondary" id="reset-edit-product-btn">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Paginazione -->
+    <div id="pagination-container" class="d-flex justify-content-center mt-3">
+        <button id="prev-page" class="btn btn-secondary">Precedente</button>
+        <div id="page-numbers" class="mx-3"></div>
+        <button id="next-page" class="btn btn-secondary">Successivo</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/scripts/panel.js"></script>
+</body>
+
+</html>
+
