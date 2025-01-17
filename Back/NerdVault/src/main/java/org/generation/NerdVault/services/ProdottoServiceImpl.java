@@ -16,6 +16,8 @@ import org.generation.NerdVault.entities.Prodotto;
 import org.generation.NerdVault.enums.ProdottoCategoria;
 import org.generation.NerdVault.repositories.ProdottoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +36,30 @@ public class ProdottoServiceImpl implements ProdottoService {
 		prodotti.forEach(prodotto -> p.add(this.toProdottoDto(prodotto)));
 		
 		return p;
+	}
+	
+	@Override
+	public List<ProdottoDto> prendiTuttiPaging(Pageable pageable) {
+		Page<Prodotto> page = prodottoRepo.findAll(pageable);
+		List<Prodotto> prodotti = page.getContent();
+		
+		ArrayList<ProdottoDto> p = new ArrayList<ProdottoDto>();
+		prodotti.forEach(prodotto -> p.add(this.toProdottoDto(prodotto)));
+		return p;
+	}
+	
+	@Override
+	public List<ProdottoDto> prendiTuttiPagingCategoria(Pageable pageable, String categoriaFilter) {
+		if (categoriaFilter != null & !categoriaFilter.isEmpty()) {
+			ProdottoCategoria categoria = ProdottoCategoria.valueOf("PREVENDITA");
+			Page<Prodotto> page = prodottoRepo.findByCategoria(categoria, pageable);
+			List<Prodotto> result = page.getContent();
+			
+			ArrayList<ProdottoDto> prodottiFiltrati = new ArrayList<ProdottoDto>();
+			result.forEach(prodotto -> prodottiFiltrati.add(this.toProdottoDto(prodotto)));
+			return prodottiFiltrati;
+		}
+		return prendiTuttiPaging(pageable);
 	}
 
 	@Override
