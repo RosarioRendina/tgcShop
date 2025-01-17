@@ -11,32 +11,62 @@ impaginate -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/styles/home.css">
     <link rel="stylesheet" href="/assets/styles/product.css">
     <title>Product</title>
 </head>
 <body>
-
+<div class="image-left"></div>
+<div class="image-right"></div>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
-    <div class="container">
-        <img class="logo" src="/assets/img/logo.png" alt="">
-        <a class="navbar-brand" href="#" style="padding: 0!important;">Nerd Vault</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pannello.html">Pannello</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+  <div class="container">
+      <img class="logo" src="/assets/img/logo.png" alt="">
+      <a class="navbar-brand" href="#" style="padding: 0!important;">Nerd Vault</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                  <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
+              </li>
+              <li class="nav-item">
+                <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
+                  <i class="fa-solid fa-coins"></i>
+                  <span class="visually-hidden">Mostra carrello</span>
+                </button>
+            </li>
+          </ul>
+      </div>
+  </div>
 </nav>
+    <!-- MODALE CARRELLO -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id=""></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
+          </div>
+          <div class="modal-body">
+              <div class="mb-3" id="cartImg">
+                IMMAGINE
+              </div>
+              <div class="mb-3" id="cartInfo">
+               QUANTITA/ PREZZO/ DESCRIZIONE 
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
+                </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+   <!-- FINE MODALE CARRELLO --> 
+
 <!-- MODALE LOGIN +++ VA CON LA NAVBAR -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -73,18 +103,22 @@ impaginate -->
  <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
 
     <div class="container w-75 justify-content-center row" id="product-container"> 
-        <div class="col-xs-12 col-md-8 d-flex flex-column">
-            <img class="product-img" id="product-img" alt="sium" src="">
-            <div class="product-desc" id="product-description">
+        <div class="col-12 d-flex flex-column align-items-center">
+            <img class="product-img mb-5" id="product-img" alt="sium" src="">
+            <div class="d-flex flex-row row" id="product-info">
+              <div class="product-desc col-xs-12 col-md-8 mt-3" id="product-description">
                 <p></p>
+              </div>
+              <div class="col-xs-12 col-md-4 flex-column" >
+                <h1 id="product-title"> </h1>
+                <h3 id="product-price">  </h3>
+                <div class="d-flex ">
+                  <input type="number" class="form-control w-25" id="product-quantity" placeholder="0" min="1" step="1" required style="align-self: center;">    
+                <button type="button" id="btn-carrello" class="btn my-3"> Aggiungi al carrello </button>
+                </div>
+                <h3 id="product-available" class="d-none"> Il prodotto non è disponibile </h3>
+              </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <h1 id="product-title"> </h1>
-            <h3 id="product-price">  </h3>
-            <input type="number" class="form-control w-25" id="product-quantity" placeholder="0" min="1" step="1" required>    
-            <button type="button" id="btn-carrello" class="btn my-3"> Aggiungi al carrello </button>
-            <h3 id="product-available" class="d-none"> Il prodotto non è disponibile </h3>
         </div>
     </div>
 

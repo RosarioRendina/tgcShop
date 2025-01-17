@@ -150,5 +150,3 @@ priceRange.addEventListener('input', () => {
 }) 
 
 // displayProductCards(prodotto.prezzo<=priceValue)
-// PROVE FILTRO PREZZO */
-

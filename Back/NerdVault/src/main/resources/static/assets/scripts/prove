@@ -27,3 +27,25 @@ function filterAndDisplayAvailableProducts(prodotti) {
   // Mostra i prodotti filtrati
   displayProductCards(filteredProducts, "available-container");
 }
+
+
+.card {
+  /*background: #fff; */
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(255, 255, 255);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 350px; /* Larghezza massima della card */
+  height: 400px; /* Altezza fissa della card */
+  margin: 0 auto; /* Centra le card in colonne più larghe */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer; /* Mostra il cursore "mano" su tutta la card */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

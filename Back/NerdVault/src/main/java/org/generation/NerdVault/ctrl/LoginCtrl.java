@@ -11,18 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
-
-
 @RestController
 @RequestMapping("/auth")
-//@CrossOrigin(origins = "http://127.0.0.1:64163", allowedHeaders = "*", allowCredentials = "true")
-//@SessionAttributes("user") 
 public class LoginCtrl {
 
     @Autowired
@@ -32,6 +26,7 @@ public class LoginCtrl {
 
     @PostMapping("/login")
     public ResponseEntity<UtenteDto> login(@RequestBody LoginRequest loginRequest) {
+    	
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
 
@@ -52,7 +47,6 @@ public class LoginCtrl {
         }
     }
 
-
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpSession session) {
         // Verifica se la sessione è presente
@@ -68,12 +62,9 @@ public class LoginCtrl {
         return ResponseEntity.ok("Logout effettuato con successo");
     }
 
-    
-   
-
     @GetMapping("/checkSession")
     public ResponseEntity<UtenteDto> checkSession() {
-        System.out.println("sessionid: " +session.getId());
+        System.out.println("sessionid: " + session.getId());
         Utente currentUser = (Utente) session.getAttribute("currentUser");
         if (currentUser != null) {
             System.out.println("Sessione trovata per l'utente: " + currentUser.getEmail());

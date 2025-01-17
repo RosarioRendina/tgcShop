@@ -3,7 +3,6 @@ package org.generation.NerdVault.ctrl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.generation.NerdVault.dtos.UtenteDto;
 import org.generation.NerdVault.entities.Utente;
 import org.generation.NerdVault.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import jakarta.servlet.http.HttpSession;
 
 // Indica che la classe è un controller e che restituirà dati (ad esempio JSON) anziché una vista HTML.
 // Si combina con @RequestMapping per specificare un prefisso URL.
@@ -48,20 +45,6 @@ public class UtenteCtrl {
 			}
 		} catch (Exception e) {
 			return ResponseEntity.internalServerError().body(new Utente());
-		}
-	}
-	
-	@GetMapping("/curr")
-	public ResponseEntity<UtenteDto> getCurr(HttpSession session) {
-		try {
-			UtenteDto utente = (UtenteDto) session.getAttribute("currentUser");
-			if (utente != null) {
-				return ResponseEntity.ok(utente);
-			} else {
-				return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new UtenteDto());
-			}
-		} catch (Exception e) {
-			return ResponseEntity.internalServerError().body(new UtenteDto());
 		}
 	}
 	

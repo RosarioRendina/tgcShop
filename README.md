@@ -86,7 +86,6 @@ Una lista degli Endpoint dell'applicazione:
 | -------- | ---------------------------------------- | ---------------------------------------- |
 | `GET`    | `/api/utente`                            | Ritorna la lista di tutti gli utenti.    |
 | `GET`    | `/api/utente/{id}`                       | Ritorna l'utente desiderato specificando l'id. |
-| `GET`    | `/api/utente/curr`                       | Ritorna l'utente loggato all'interno della Sessione (da testare). |
 
 ## Prodotto
 | Method   | URL                                      | Description                              |
@@ -101,6 +100,7 @@ Una lista degli Endpoint dell'applicazione:
 | `GET`    | `/api/prodotto/categoria/{c}`            | Ritorna la lista di tutti i prodotti appartenenti alla categoria specificata. (DTO) |
 
 ## Ordine
+L'ordine adesso contiene una voce details che ritorna una lista di ODD associati all'id dell'ordine.
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
 | `GET`    | `/api/ordine`                            | Ritorna la lista di tutti gli ordini.    |
@@ -120,11 +120,13 @@ ODD = OrdineDettaglioDto
 | `POST`   | `/api/details/`                          | Richiede ODD nel body, crea nuovo ordine_dettaglio   |
 | `GET`    | `/api/details/{ordine_id}`               | Ritorna la lista di tutti gli ordini-dettaglio legati all'id dell'ordine specificato (DTO).    |
 | `DELETE` | `/api/details/{ordine_id}`               | Cancella tutti gli ordine dettaglio correlati all'ordine di id specificato.    |
-| `PUT` | `/api/details/{ordine_id}`                  | Richiede ODD nel body, modifica l'ordine-dettaglio correlato all'ordine specificato.    |
+| `PUT`    | `/api/details/{ordine_id}`               | Richiede ODD nel body, modifica l'ordine-dettaglio correlato all'ordine specificato.    |
 
 
-## Login
+## Autenticazione
+I metodi di autenticazione si basano su HttpSession, quindi per poter salvare la sessione e accedervi senza che cambi in continuazione va visualizzata dal preview di Spring (che sia di eclipse o del plugin di VSC) e non da LiveServer.
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
-| `POST`    | `/auth/login`                           | Richiede JSON di UtenteSessione (email, password) per effettuare il login e salvare l'utente in sessione. |
-| `POST`    | `/auth/logout`                          | Invalida la sessione HttpSession, effettua il logout dell'utente. |
+| `POST`   | `/auth/login`                            | Richiede JSON di LoginRequest (email, password) per effettuare il login e salvare l'utente in sessione. |
+| `POST`   | `/auth/logout`                           | Invalida la sessione HttpSession, effettua il logout dell'utente. |
+| `GET`    | `/api/utente/checkSession`               | Ritorna l'utente loggato all'interno della Sessione (da spring :8080). |

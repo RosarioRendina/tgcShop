@@ -3,6 +3,7 @@ package org.generation.NerdVault.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.generation.NerdVault.dtos.LoginRequest;
 import org.generation.NerdVault.dtos.UtenteDto;
 import org.generation.NerdVault.entities.Utente;
 import org.generation.NerdVault.repositories.UtenteRepository;
@@ -44,6 +45,16 @@ public class UtenteServiceImpl implements UtenteService{
 	@Override
 	public void cancellaUtente(int id) {
 		utenteRepo.deleteById(id);
+	}
+	
+	@Override
+	public Utente autenticaUtente(LoginRequest datiUtente) {
+		Utente utente = utenteRepo.findByEmail(datiUtente.getEmail());
+		
+		if (utente != null && utente.getPassword().equals(datiUtente.getPassword())) {
+			return utente;
+		}
+		return null;
 	}
 	
 	private UtenteDto toUtenteDto(Utente utente) {

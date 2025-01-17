@@ -2,6 +2,7 @@ package org.generation.NerdVault.services;
 
 import java.util.List;
 
+import org.generation.NerdVault.dtos.LoginRequest;
 import org.generation.NerdVault.dtos.UtenteDto;
 import org.generation.NerdVault.entities.Utente;
 
@@ -15,5 +16,8 @@ public interface UtenteService {
 	public UtenteDto aggiungi(Utente utente);
 	
 	public void cancellaUtente(int id);
+
 	
+	// Per autenticazione login
+	Utente autenticaUtente(LoginRequest datiUtente);
 }
