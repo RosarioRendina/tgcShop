@@ -1,0 +1,298 @@
+body{
+    background-color: rgb(0, 0, 0);
+    /*background-image: url("/Front/assets/img/background-tcg.jpeg"); */
+}
+
+.navbar{
+    height: 70px;
+    box-shadow: 0 0 5px 0 ;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 70px;
+    z-index: 100; 
+    color: white;
+
+    .logo{
+        height: 50px;
+        width: auto;
+    }
+    .navbar-brand{
+        font-family: "Pixelify Sans", sans-serif;
+        font-size: xx-large;
+        /* border-bottom: 2px white dotted; */
+    }
+    .navbar-brand:hover{
+        color: rgb(255, 255, 255, 0.75);
+    }
+
+    a{
+        font-family: "Pixelify Sans", sans-serif;
+        font-size: larger;
+        color: rgb(165,55,240);
+        text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   /* Luce centrale */
+        0px 0px 15px rgba(165,55,240, 0.7),  /* Luce diffusa */
+        0px 0px 25px rgba(165,55,240, 0.6),  /* Luce più sfumata */
+        0px 0px 35px rgba(165,55,240, 0.5);  /* Luce che si dissipa */
+    }
+    a:hover {
+        color: rgb(255, 255, 255,0.75) !important;
+    }
+
+}
+
+/******** SLIDER *******/
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 70vh; 
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.content {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    color: #fff;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.content h1 {
+    font-size: 3rem;
+    margin: 0 0 10px;
+}
+
+.content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgb(165,55,240);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: white;
+    color: rgb(165,55,240);
+}
+
+.navigation {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.navigation button {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.navigation button:hover {
+    background: rgba(255, 254, 254, 0.8);
+}
+
+body.modal-backdrop {
+    z-index: 1040 !important; /* Assicurati che l'overlay sia dietro il modale */
+  }
+  
+body.modal {
+    z-index: 1050 !important; /* Modale sopra l'overlay */
+}
+
+/********************* PRODUCTS GRID *****************/
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonne */
+    gap: 20px; /* Spaziatura tra le card */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    /*background: #fff; */
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    max-width: 350px; /* Larghezza massima della card */
+    height: 400px; /* Altezza fissa della card */
+    margin: 0 auto; /* Centra le card in colonne più larghe */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer; /* Mostra il cursore "mano" su tutta la card */
+}
+
+.card img {
+    width: 100%; /* Riempie la larghezza della card */
+    height: auto; /* Mantiene le proporzioni */
+    max-height: 200px; /* Altezza massima per limitare l'immagine */
+    object-fit: cover; /* Adatta l'immagine all'area disponibile */
+    object-position: top;
+    padding-top: 10px;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 15px 0;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #ffffff;
+    padding: 0 15px;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Riempie lo spazio rimanente tra l'intestazione e il pulsante */
+}
+
+.card .btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #FF5733;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.card .btn:hover {
+    background: #FF7043;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-link {
+    text-decoration: none; /* Rimuove la sottolineatura del link */
+    color: inherit; /* Mantiene il colore del testo originale */
+    display: block; /* Rende il link un blocco per avvolgere la card */
+}
+/**********************************/
+
+.container-prodotti{
+    margin: auto!important;
+}
+
+.elencoHome{
+    justify-content: space-between;
+}
+.elencoHome img{
+
+}
+
+.section-title{
+    text-align: center;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 3rem;
+    color: white;
+}
+
+/******* PARALLAX *******/
+.parallax-logo{
+        width: auto;
+        font-family: "Pixelify Sans", sans-serif;
+        font-size: xx-large;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+}  
+    .parallax-logo .logo{
+        padding-top: 2rem;
+        max-height: 70%;
+        width: auto;
+    }
+        .parallax-logo a{
+        font-size: larger;
+        color: rgb(165,55,240);
+        text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   /* Luce centrale */
+        0px 0px 15px rgba(165,55,240, 0.7),  /* Luce diffusa */
+        0px 0px 25px rgba(165,55,240, 0.6),  /* Luce più sfumata */
+        0px 0px 35px rgba(165,55,240, 0.5);  /* Luce che si dissipa */
+    }
+    .parallax a:hover {
+        color: rgba(255, 255, 255,0.75) !important;
+    }
+
+.parallax {
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 250px;
+    clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .parallax1 {
+    background-image: url('..//img/parallax1.jpg');
+  }
+
+  .parallax2 {
+    background-image: url('../img/parallax2.jpg');
+  }
+
+  .parallax3{
+    background-image: url('../img/parallax3.jpg');
+  }
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonne per schermi più piccoli */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* 1 colonna per schermi molto piccoli */
+    }
+}

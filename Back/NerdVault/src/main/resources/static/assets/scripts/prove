@@ -1,0 +1,29 @@
+function filterAndDisplayAvailableProducts(prodotti) {
+  // Ottieni lo stato delle checkbox
+  const gamesChecked = document.getElementById("Check1").checked;
+  const merchChecked = document.getElementById("Check2").checked;
+  const accessoriesChecked = document.getElementById("Check3").checked;
+  const specialsChecked = document.getElementById("Check4").checked;
+  const otherChecked = document.getElementById("Check5").checked;
+
+  // Crea una lista delle categorie selezionate
+  const selectedCategories = [];
+  if (gamesChecked) selectedCategories.push("Games");
+  if (merchChecked) selectedCategories.push("Merch");
+  if (accessoriesChecked) selectedCategories.push("Accessories");
+  if (specialsChecked) selectedCategories.push("Specials");
+  if (otherChecked) selectedCategories.push("Other");
+
+  // Filtra i prodotti in base alle categorie selezionate
+  const filteredProducts = prodotti.filter(prodotto => {
+    // Se non è selezionato nessun filtro, restituisce tutti i prodotti
+    if (selectedCategories.length === 0) {
+      return true;
+    }
+    // Verifica se la categoria del prodotto è nelle categorie selezionate
+    return selectedCategories.includes(prodotto.categoria);
+  });
+
+  // Mostra i prodotti filtrati
+  displayProductCards(filteredProducts, "available-container");
+}

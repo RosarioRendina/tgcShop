@@ -1,0 +1,283 @@
+body {
+    background-color: #111;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{
+    height: 70px;
+    box-shadow: 0 0 5px 0 ;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 70px;
+    z-index: 100; 
+    color: white;
+
+    .logo{
+        height: 50px;
+        width: auto;
+    }
+    .navbar-brand{
+        font-family: "Pixelify Sans", sans-serif;
+        font-size: xx-large;
+        /* border-bottom: 2px white dotted; */
+    }
+    .navbar-brand:hover{
+        color: rgb(255, 255, 255, 0.75);
+    }
+
+    h1 {
+        margin-top: 80px;;
+    }
+
+    a{
+        font-family: "Pixelify Sans", sans-serif;
+        font-size: larger;
+        color: rgb(165,55,240);
+        text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   /* Luce centrale */
+        0px 0px 15px rgba(165,55,240, 0.7),  /* Luce diffusa */
+        0px 0px 25px rgba(165,55,240, 0.6),  /* Luce più sfumata */
+        0px 0px 35px rgba(165,55,240, 0.5);  /* Luce che si dissipa */
+    }
+    a:hover {
+        color: rgb(255, 255, 255,0.75) !important;
+    }
+
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgb(165,55,240);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: white;
+    color: rgb(165,55,240);
+}
+
+.navigation {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.navigation button {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.navigation button:hover {
+    background: rgba(255, 254, 254, 0.8);
+}
+
+/* Modulo di Modifica Prodotto */
+.product-form {
+    background-color: #222;
+    color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 80px 20px 20px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 1200px;
+    margin: 80px auto;
+}
+
+/* Titolo del modulo */
+.product-form h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ff4081;
+    width: 100%;
+}
+
+/* Disposizione dei campi in orizzontale per il modulo */
+.product-form .form-group {
+    display: flex;
+    justify-content: space-between; /* Dispone i campi su una singola riga */
+    gap: 20px; /* Distanza tra i campi */
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Etichetta dei campi */
+.product-form label {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Input, textarea e select */
+.product-form input,
+.product-form textarea,
+.product-form select {
+    font-size: 1rem;
+    padding: 10px;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: white;
+    width: 100%; /* Fa sì che i campi occupino tutta la larghezza disponibile */
+    box-sizing: border-box; /* Include il padding e il bordo nel calcolo della larghezza */
+}
+
+/* Box di tipo checkbox */
+.product-form input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Pulsante di invio */
+.product-form button {
+    background: #ff4081;
+    color: white;
+    font-size: 1.1rem;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.product-form button:hover {
+    background: #e6007f;
+}
+
+/* Contenitore per ogni prodotto */
+.product-card {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Dettagli del prodotto distribuiti in orizzontale */
+.product-card .product-details {
+    display: flex;
+    gap: 20px; /* Distanza tra i dettagli del prodotto */
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Ogni campo del prodotto, come nome, prezzo, descrizione, ecc. */
+.product-card .product-details div {
+    flex: 1;
+    min-width: 180px; /* Impedisce che i campi diventino troppo stretti */
+}
+
+/* Testo del prodotto */
+.product-card h4 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Griglia dei prodotti (una sola colonna) */
+.product-grid {
+    display: block; /* Ogni prodotto su una nuova riga */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Pulsante di azione nel prodotto (ad esempio modifica, elimina) */
+.product-card .product-button {
+    background: #ff4081;
+    color: white;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.product-card .product-button:hover {
+    background: #e6007f;
+}
+
+/* Sezione Parallax */
+.parallax {
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 250px;
+}
+
+.parallax1 {
+    background-image: url('/Front/assets/img/parallax1.jpg');
+}
+
+.parallax2 {
+    background-image: url('/Front/assets/img/parallax2.jpg');
+}
+
+.parallax3 {
+    background-image: url('/Front/assets/img/parallax3.jpg');
+}
+
+/* Media queries per dispositivi mobili */
+@media (max-width: 768px) {
+    .product-form {
+        padding: 15px;
+    }
+
+    .product-card {
+        padding: 15px;
+    }
+
+    .product-form .form-group {
+        min-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .product-form input,
+    .product-form select {
+        font-size: 1rem;
+    }
+
+    .product-form button {
+        width: 100%;
+    }
+
+    /* Modifica la visualizzazione dei prodotti su schermi più piccoli */
+    .product-card .product-details {
+        flex-direction: column;
+    }
+}
+
+/* Stile extra per la modale */
+.modal-content {
+    background-color: #222;
+    color: white;
+}
+
