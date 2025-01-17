@@ -246,7 +246,20 @@
 
 
 
-
+ (() => {
+    'use strict';
+    
+        const forms = document.querySelectorAll('.needs-validation');
+         Array.from(forms).forEach(modulo => {
+            modulo.addEventListener('submit', evento => {
+                if (!modulo.checkValidity()) {
+                    evento.preventDefault();
+                    evento.stopPropagation();
+                }
+                modulo.classList.add('was-validated');
+            }, false);
+         });
+     })();
 
 
 
