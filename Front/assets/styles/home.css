@@ -6,7 +6,8 @@ body{
 .navbar{
     height: 70px;
     box-shadow: 0 0 5px 0 ;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(0, 0, 0, 0); 
+    /*background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2),);*/
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     position: fixed;
@@ -187,16 +188,19 @@ body.modal {
     margin: 0 auto;
 }
 
+
 .card {
     /*background: #fff; */
-    background-color: rgba(0, 0, 0, 0);
-    color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.1); /* Sfondo nero con opacità 0.3 */
+    transition: background-color 0.3s ease; /* Per aggiungere un effetto di transizione al passaggio del mouse */
+    letter-spacing: 2px;
+    padding: 15px;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.2);
     text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
     max-width: 350px; /* Larghezza massima della card */
     height: 400px; /* Altezza fissa della card */
     margin: 0 auto; /* Centra le card in colonne più larghe */
@@ -204,13 +208,15 @@ body.modal {
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer; /* Mostra il cursore "mano" su tutta la card */
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
 }
 
 .card img {
     width: 100%; /* Riempie la larghezza della card */
-    height: auto; /* Mantiene le proporzioni */
-    max-height: 200px; /* Altezza massima per limitare l'immagine */
-    object-fit: cover; /* Adatta l'immagine all'area disponibile */
+    /*height: auto; /* Mantiene le proporzioni */
+    max-height: 260px; /* Altezza massima per limitare l'immagine */
+    object-fit: contain; /* Adatta l'immagine all'area disponibile */
     object-position: top;
     padding-top: 10px;
 }
@@ -308,6 +314,7 @@ body.modal {
     background-attachment: fixed;
     background-size: cover;
     height: 250px;
+    clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
   }
 
   .parallax1 {

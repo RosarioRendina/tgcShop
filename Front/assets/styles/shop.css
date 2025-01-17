@@ -133,7 +133,32 @@ position: fixed; /* Posizione fissa */
 /* AGGIUNGERE IL FILE SASS PER PERSONALIZZAZIONI */
 
 .card{
-    background-color: none!important;
+     /*background: #fff; */
+     background-color: rgba(0, 0, 0, 0.1); /* Sfondo nero con opacità 0.3 */
+     transition: background-color 0.3s ease; /* Per aggiungere un effetto di transizione al passaggio del mouse */
+     letter-spacing: 2px;
+     padding: 15px;
+     color: rgb(255, 255, 255);
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     border-radius: 10px;
+     overflow: hidden;
+     box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.2);
+     text-align: center;
+     max-width: 350px; /* Larghezza massima della card */
+     height: 400px; /* Altezza fissa della card */
+     margin: 0 auto; /* Centra le card in colonne più larghe */
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     cursor: pointer; /* Mostra il cursore "mano" su tutta la card */
+     backdrop-filter: blur(30px);
+     -webkit-backdrop-filter: blur(30px);
+}
+.card img{
+    width: auto;
+    height: 230px;
+    padding-top: 8px;
+    object-fit: contain;
 }
 
 .fixed{

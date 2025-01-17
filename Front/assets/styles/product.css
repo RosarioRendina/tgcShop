@@ -7,6 +7,7 @@ body{
     /*background-image: url("/assets/img/yugioh-wallpaper.jpg");*/
     background-color: white;
     overflow-x: hidden;
+    background-image: none;
 }
 
 /* ! PROVA SLIDERS */
@@ -50,6 +51,9 @@ body{
 
 /* ! PROVA SLIDERS */
 
+h1{
+    font-size: x-large;
+}
 
 .navbar{
     height: 70px;
@@ -109,7 +113,7 @@ body{
 
 .btn:hover {
     color: rgb(255, 255, 255,0.75);
-    font-size: inherit; 
+    font-size: 1.3rem; 
     transition: ease-in 0.3s;
 }
 
@@ -146,18 +150,37 @@ body{
 }
 
 .product-img{
-    width: ;
-    height: 50%;
+    width: auto;
+    height:500px;
     padding-top: 5%;
     object-fit: contain;
     align-self: center;
 }
 
-#product-info{
-    background-color: rgba(0, 0, 0, 0.5);
+    /* background:radial-gradient(circle,rgba(0,0,0,.6)0%,rgba(0,0,0,0)100%); */
+    
+
+/*! PROVE CSS GLASS */
+#product-info {
     width: 75%;
-    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.3); /* Sfondo nero con opacità 0.3 */
+    transition: background-color 0.3s ease; /* Per aggiungere un effetto di transizione al passaggio del mouse */
+    letter-spacing: 2px; /* Spaziatura tra le lettere */
+    padding: 15px; /* Spaziatura interna */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Bordo bianco con opacità 0.1 */
+    border-radius: 10px; /* Angoli arrotondati */
+    display: inline-block; /* Elemento in linea con proprietà di blocco */
+    font-weight: 600; /* Font semibold */
+    backdrop-filter: blur(30px); /* Effetto di sfocatura dello sfondo */
+    -webkit-backdrop-filter: blur(30px);
+    font-size: 14px; /* Dimensione del testo */
 }
+
+#product-info:hover {
+    background-color: rgba(0, 0, 0, 0.15); /* Sfondo nero con opacità 0.15 al passaggio del mouse */
+}
+/*! PROVE CSS*/
+
 
 #product-title{
 }
@@ -185,3 +208,9 @@ body{
         width: 100%;
     }
  }
+
+ @media (max-width: 600px) {
+    .product-img{
+        width: 350px;
+    }
+}
