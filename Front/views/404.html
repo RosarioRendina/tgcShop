@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Altezza completa della finestra */
+            overflow: hidden;
+        }
+
+        /* Video come sfondo che copre tutta la finestra */
+        .hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%; /* Imposta la larghezza del video */
+            height: 100%; /* Imposta l'altezza del video */
+            object-fit: cover; /* Assicura che il video copra tutta l'area senza distorsioni */
+            z-index: -1; /* Mette il video sotto il contenuto */
+        }
+
+        /* Contenitore dei testi */
+        .hero-content-1, .hero-content-2 {
+            font-family: Arial, Helvetica, sans-serif;
+            position: absolute;
+            top: 20%; /* Posiziona il contenuto a 30% dalla parte superiore della pagina */
+            color: rgb(0, 0, 0);
+            text-align: center;
+            font-size: larger;
+            width: 20%; /* Imposta la larghezza di ciascun contenuto */
+            padding: 10px;
+            margin: 5%;
+        }
+
+        /* Posizione del primo testo a sinistra */
+        .hero-content-1 {
+            left: 0; /* Fissa il primo div al lato sinistro */
+            transform: translateX(0); /* Rimuove la traslazione */
+        }
+
+        /* Posizione del secondo testo a destra */
+        .hero-content-2 {
+            right: 0; /* Fissa il secondo div al lato destro */
+            transform: translateX(0); /* Rimuove la traslazione */
+        }
+
+        /* Link di ritorno home */
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            font-family: "Pixelify Sans", sans-serif;
+        font-size: larger;
+        text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   /* Luce centrale */
+        0px 0px 15px rgba(165,55,240, 0.7),  /* Luce diffusa */
+        0px 0px 25px rgba(165,55,240, 0.6),  /* Luce più sfumata */
+        0px 0px 35px rgba(165,55,240, 0.5);  /* Luce che si dissipa */
+        }
+        a:hover {
+        color: rgb(255, 255, 255,0.75) !important;
+        }
+        
+        h1{
+            font-family: "Pixelify Sans", sans-serif;
+        font-size: larger;
+        text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   /* Luce centrale */
+        0px 0px 15px rgba(165,55,240, 0.7),  /* Luce diffusa */
+        0px 0px 25px rgba(165,55,240, 0.6),  /* Luce più sfumata */
+        0px 0px 35px rgba(165,55,240, 0.5);  /* Luce che si dissipa */
+        }
+        h1:hover { 
+            color: rgb(255, 255, 255,0.75) !important;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="hero">
+        <!-- Video che copre tutta la finestra -->
+        <video autoplay loop muted>
+            <source src="/assets/video/404.mp4" type="video/mp4">
+            <source src="/assets/video/404.webm" type="video/webm">
+            <source src="/assets/video/404.ogv" type="video/ogg">
+            Il tuo browser non supporta i video HTML5.
+        </video>
+
+        <!-- Contenuti sopra il video -->
+        <div class="hero-content-1" style="color: blue;">
+            <h1>BRUH</h1>
+            <p>What the fuck mate, you can't find what you're looking for</p>
+            <p> Try searching for something else</p>
+            <a style="color: blue;" href="/views/index.html">Go back to home</a>
+        </div>
+
+        <!-- Hero-content a destra -->
+        <div class="hero-content-2" style="color: red;">
+            <h1>HOLA AMIGO</h1>
+            <p>I GOT YOU, CLICK HERE FOR SOME SUPERDUPER ACTION BRRRRR</p>
+            <a style="color: red;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"> ROCK'NROLL</a>
+        </div>
+    </div>
+
+</body>
+</html>
