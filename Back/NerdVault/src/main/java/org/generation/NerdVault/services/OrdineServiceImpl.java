@@ -102,6 +102,8 @@ public class OrdineServiceImpl implements OrdineService{
 				);
 		dto.setUtente(ordine.getUtente());
 		
+		dto.setDetail(ordine.getDetail());
+		
 		return dto;
 	}
 

@@ -1,7 +1,9 @@
 package org.generation.NerdVault.dtos;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import org.generation.NerdVault.entities.OrdineDettaglio;
 import org.generation.NerdVault.entities.Utente;
 import org.generation.NerdVault.enums.OrdineStato;
 
@@ -13,6 +15,7 @@ public class OrdineDto {
 	private LocalDate dataConsegna;
 	private OrdineStato statoOrdine;
 	private String indirizzoSpedizione;
+	private List<OrdineDettaglio> detail;
 
 	/*------------------ Getters / Setters ------------------*/
 	
@@ -62,6 +65,14 @@ public class OrdineDto {
 
 	public void setUtente(Utente utente) {
 		this.utente = utente;
+	}
+
+	public List<OrdineDettaglio> getDetail() {
+		return detail;
+	}
+
+	public void setDetail(List<OrdineDettaglio> detail) {
+		this.detail = detail;
 	}
 
 	public OrdineDto() {

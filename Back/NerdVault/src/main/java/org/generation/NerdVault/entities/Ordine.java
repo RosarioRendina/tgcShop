@@ -1,6 +1,7 @@
 package org.generation.NerdVault.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.generation.NerdVault.enums.OrdineStato;
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Ordine {
@@ -39,6 +41,10 @@ public class Ordine {
 	
 	@Column(length = 75, nullable = false)
 	private String indirizzoSpedizione;
+	
+	// "ordine" è il nome della variabile nella classe ordineDettaglio
+	@OneToMany(mappedBy = "ordine")
+	private List<OrdineDettaglio> detail;
 	
 	/*------------------ Getters / Setters ------------------*/
 
@@ -88,6 +94,14 @@ public class Ordine {
 
 	public void setIndirizzoSpedizione(String indirizzoSpedizione) {
 		this.indirizzoSpedizione = indirizzoSpedizione;
+	}
+
+	public List<OrdineDettaglio> getDetail() {
+		return detail;
+	}
+
+	public void setDetail(List<OrdineDettaglio> dettaglio) {
+		this.detail = dettaglio;
 	}
 	
 }
