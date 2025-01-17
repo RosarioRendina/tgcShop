@@ -192,32 +192,6 @@ public class ProdottoCtrl {
 		}
 	}
 	
-//	@PutMapping("/{id}")
-//	public ResponseEntity<?> updateOne(@PathVariable int id, @RequestBody Prodotto prodotto, HttpSession session) {
-//		// TEST CONTROLLO ADMIN
-//		try {
-//			UtenteDto curr = (UtenteDto) session.getAttribute("currentUser");
-////			if (curr != null && curr.getRuolo() == UtenteRuolo.ADMIN) {
-//					
-////				Prodotto trovato = prodottoService.cercaPerId(prodotto.getProdottoId());
-//				Prodotto trovato = prodottoService.cercaPerId(id);
-//				
-//				if (trovato != null && prodotto.getProdottoId() == trovato.getProdottoId()) {
-//					ProdottoDto dto = prodottoService.aggiorna(trovato, prodotto);
-//					return ResponseEntity.ok(dto);
-//					
-//				} else {
-//					return ResponseEntity.badRequest().body("Errore: prodotto non trovato");
-//				}
-////			} else {
-////				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Non sei autorizzato a visualizzare questa pagina");
-////			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return ResponseEntity.internalServerError().body(new Prodotto()); // 500
-//		}
-//	}
-	
 	@PutMapping
     public ResponseEntity<?> updateOne(@RequestBody Prodotto prodotto, HttpSession session) {
         try {
