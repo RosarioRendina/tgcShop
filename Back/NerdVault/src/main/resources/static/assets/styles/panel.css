@@ -4,6 +4,7 @@ body {
     color: #fff;
     margin: 0;
     padding: 0;
+    padding-top: 5rem;
 }
 
 .navbar{
@@ -52,7 +53,7 @@ body {
 
 }
 
-.btn {
+/* .btn {
     display: inline-block;
     padding: 10px 20px;
     background: rgb(165,55,240);
@@ -63,8 +64,31 @@ body {
 }
 
 .btn:hover {
-    background: white;
-    color: rgb(165,55,240);
+    background: rgb(130, 35, 194);
+    color: rgb(222, 222, 222);
+    color: rgb(203, 155, 235); 
+} */    
+
+td .btn {
+    font-size: 1.8rem;
+}
+
+.edit-product-btn {
+    color: rgb(120, 30, 180);
+    transition: color .2s;
+}
+
+.edit-product-btn:hover {
+    color: rgb(73, 15, 125);    
+}
+
+.delete-product-btn {
+    color: rgb(150, 30, 30);
+    transition: color .2s;
+}
+
+.delete-product-btn:hover {
+    color: rgb(114, 24, 24);
 }
 
 .navigation {

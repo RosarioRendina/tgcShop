@@ -254,16 +254,6 @@ public class ProdottoCtrl {
 				Prodotto trovato = prodottoService.cercaPerId(id);
 				if (trovato != null) {
 					
-					try {	// Cancello Immagini e Cartella
-						String dir = CustomProperties.IMG_FOLDER_PATH + "/" + trovato.getProdottoId();
-						
-						if (Files.exists(Paths.get(dir))) {
-							FileUtils.deleteDirectory(new File(dir));
-						}
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					
 					prodottoService.cancellaProdotto(id);
 					return ResponseEntity.ok("Cancellato prodotto id = " + id);
 				}

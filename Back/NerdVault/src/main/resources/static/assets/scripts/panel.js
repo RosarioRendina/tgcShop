@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+    let page = 0;
     // Carica i prodotti all'inizio
-    fetchProducts();
+    fetchProducts(page);
+
 
     // Gestisce l'apertura della modale per aggiungere un nuovo prodotto
     const openAddProductModalButton = document.getElementById('open-add-product-modal');
@@ -83,8 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Funzione per caricare i prodotti
-    function fetchProducts() {
-        const apiUrl = 'http://localhost:8080/api/prodotto';
+    function fetchProducts(page) {
+        const apiUrl = `http://localhost:8080/api/prodotto/paging?page=${page}`;
 
         fetch(apiUrl)
         .then(function(response) {
@@ -119,14 +121,16 @@ document.addEventListener("DOMContentLoaded", () => {
         row.setAttribute('data-product-id', product.prodottoId);
 
         row.innerHTML = `
-            <td><img src="${product.imgUrl}" alt="${product.nome}" width="50"></td>
-            <td>${product.nome}</td>
-            <td>${product.categoria}</td>
-            <td>${product.prezzo}</td>
-            <td>${product.rimanenza}</td>
+            <td class="text-center"><img src="${product.imgUrl}" alt="${product.nome}" width="50"></td>
+            <td><div class="d-flex justify-content-center pt-2">${product.nome}</div></td>
+            <td><div class="d-flex justify-content-center pt-2">${product.categoria}</div></td>
+            <td><div class="d-flex justify-content-center pt-2">${product.prezzo}</div></td>
+            <td><div class="d-flex justify-content-center pt-2">${product.rimanenza}</div></td>
             <td>
-                <button class="btn btn-warning edit-product-btn">Modifica</button>
-                <button class="btn btn-danger delete-product-btn">Elimina</button>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <button class="btn edit-product-btn"><i class="fa-solid fa-pen-to-square edit-product-btn"></i></button>
+                    <button class="btn delete-product-btn"><i class="fa-solid fa-trash delete-product-btn"></i></button>
+                </div>
             </td>
         `;
 
@@ -318,4 +322,49 @@ document.addEventListener("DOMContentLoaded", () => {
             reader.readAsDataURL(file);
         }
     });
+
+
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+
+    nextBtn.addEventListener('click', e => {
+        e.preventDefault();
+        const nextPage = parseInt(e.target.getAttribute("data-id"));
+
+        if (page === 3) {
+            nextBtn.setAttribute("disabled", '');
+        } else {
+            prevBtn.removeAttribute("disabled");
+        }
+
+        page = nextPage;
+        nextBtn.setAttribute("data-id", (parseInt(page) + 1));
+        prevBtn.setAttribute("data-id", (parseInt(page) - 1));
+
+        console.log('Eseguo fetch sulla pagina: ', page);
+
+        fetchProducts(nextPage);
+    });
+
+    prevBtn.addEventListener('click', e => {
+        e.preventDefault();
+        const prevPage = parseInt(e.target.getAttribute("data-id"));
+
+        
+        page = prevPage;
+        console.log('Eseguo fetch sulla pagina: ', page);
+        
+        if (page === 0) {
+            prevBtn.setAttribute('disabled', '');
+            prevBtn.removeAttribute('data-id');
+        } else {
+            prevBtn.setAttribute('data-id', (parseInt(page) - 1));
+        }
+
+        nextBtn.setAttribute('data-id', (parseInt(page) + 1));
+        nextBtn.removeAttribute('disabled');
+        
+        fetchProducts(prevPage);
+    });
+
 });
