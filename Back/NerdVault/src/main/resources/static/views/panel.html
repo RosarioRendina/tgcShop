@@ -27,6 +27,7 @@ c. Logout -->
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <img class="logo" src="/assets/img/logo.png" alt="">
@@ -37,7 +38,12 @@ c. Logout -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
+                      <button id="btnLogin" type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
+                      <button id="btnLogout" type="button" class="btn nav-link" style="display: none;">Logout</button>
+                        <button type="button" class="btn nav-link" id ="CheckSession">CheckSession</button>
+                        <button id="btnShop" type="button" class="btn nav-link" onclick="window.location.href='/views/shop.html'">Shop</button>
+                        <button id="btnOrders" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/user.html'">I miei ordini</button>
+                        <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
                     </li>
                     <li class="nav-item">
                       <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
@@ -49,30 +55,59 @@ c. Logout -->
             </div>
         </div>
     </nav>
-        <!-- MODALE CARRELLO -->
-        <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id=""></h1>
-                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3" id="cartImg">
-                      IMMAGINE
-                    </div>
-                    <div class="mb-3" id="cartInfo">
-                     QUANTITA/ PREZZO/ DESCRIZIONE 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
-                      </div>
-                </div>
-                
-              </div>
-            </div>
+    <!-- MODALE LOGIN +++ VA CON LA NAVBAR -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-         <!-- FINE MODALE CARRELLO --> 
+          <div class="modal-body">
+            <!-- Form di Login con action e method POST -->
+            <form action="/auth/login" method="POST" id="loginForm">
+              <div class="mb-3">
+                  <label for="inputEMail" class="col-form-label">E-mail</label>
+                  <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" required>
+              </div>
+              <div class="mb-3">
+                  <label for="inputPassword" class="col-form-label">Password</label>
+                  <input type="password" class="form-control" id="inputPassword" name="password" required>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Invia</button>
+              </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
+
+      <!-- MODALE CARRELLO -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id=""></h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
+          </div>
+          <div class="modal-body">
+              <div class="mb-3" id="cartImg">
+                IMMAGINE
+              </div>
+              <div class="mb-3" id="cartInfo">
+               QUANTITA/ PREZZO/ DESCRIZIONE 
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
+                </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+   <!-- FINE MODALE CARRELLO --> 
 
     <div class="container">
         <div class="d-flex justify-content-between my-3">
@@ -286,6 +321,7 @@ c. Logout -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/scripts/panel.js"></script>
+    <script src="/assets/scripts/panel-login.js"></script>
 </body>
 
 </html>

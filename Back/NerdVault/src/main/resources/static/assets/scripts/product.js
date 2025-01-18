@@ -7,17 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const productId = getProductId();
 
-    if (!productId) {
-        
-        window.location.href = "index.html";
-        return;
-    }
-
     
     const apiUrl = `http://localhost:8080/api/prodotto/${productId}`;
     
     fetch(apiUrl)
-        .then(response => response.json())
+        .then(response => {
+            if (response.status === 404) {
+            window.location.href = "./shop.html";
+        }
+        return response.json();
+    })
         .then(product => {
             if (!product) {
                 

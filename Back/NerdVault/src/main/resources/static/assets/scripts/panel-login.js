@@ -44,31 +44,70 @@ async function verificaRuoloUtente() {
         aggiornaUI(ruoloUtente);
     } else {
         console.log("Utente non loggato o sessione scaduta");
+
+        // Mostra il form di login
+        document.body.innerHTML = `
+            <h1>Non hai i permessi per accedere a questa pagina! Effettua il login</h1>
+            <form action="javascript:void(0);" method="POST" id="loginForm">
+                <div class="mb-3">
+                    <label for="inputEMail" class="col-form-label">E-mail</label>
+                    <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputPassword" class="col-form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" name="password" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Invia</button>
+                </div>
+            </form>
+        `;
+
+        // Aggiungi il listener per il submit del form di login
+        const loginForm = document.getElementById("loginForm");
+        if (loginForm) {
+            loginForm.addEventListener("submit", handleLoginSubmit);
+        }
     }
 }
 
 // Funzione per aggiornare l'interfaccia in base al ruolo
 function aggiornaUI(ruolo) {
     if (ruolo === 'UTENTE') {
-        document.getElementById("btnLogin").style.display = "none";
-        document.getElementById("btnLogout").style.display = "inline-block";
-        document.getElementById("btnOrders").style.display = "inline-block";
-        document.getElementById("btnPanel").style.display = "none";
+        window.location.href = "./errorlogin.html";
     } else if (ruolo === 'ADMIN') {
         document.getElementById("btnLogin").style.display = "none";
         document.getElementById("btnLogout").style.display = "inline-block";
         document.getElementById("btnOrders").style.display = "inline-block";
         document.getElementById("btnPanel").style.display = "inline-block";
     } else {
-        document.getElementById("btnLogin").style.display = "inline-block";
-        document.getElementById("btnLogout").style.display = "none";
-        document.getElementById("btnOrders").style.display = "none";
-        document.getElementById("btnPanel").style.display = "none";
+        document.body.innerHTML = `
+            <h1>Non hai i permessi per accedere a questa pagina! Effettua il login</h1>
+            <form action="javascript:void(0);" method="POST" id="loginForm">
+                <div class="mb-3">
+                    <label for="inputEMail" class="col-form-label">E-mail</label>
+                    <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputPassword" class="col-form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" name="password" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Invia</button>
+                </div>
+            </form>
+        `;
+
+        // Aggiungi il listener per il submit del form di login
+        const loginForm = document.getElementById("loginForm");
+        if (loginForm) {
+            loginForm.addEventListener("submit", handleLoginSubmit);
+        }
     }
 }
 
 // Gestisce il submit del form di login
-document.getElementById("loginForm").addEventListener("submit", async function(event) {
+function handleLoginSubmit(event) {
     event.preventDefault();  // Evita il comportamento di submit predefinito del form
 
     // Crea un oggetto con i dati del form
@@ -78,7 +117,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     };
 
     // Usa fetch per inviare i dati come JSON
-    const data = await fetch("http://localhost:8080/auth/login", {
+    fetch("http://localhost:8080/auth/login", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -87,33 +126,32 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         body: JSON.stringify(formData)  // Invia i dati del form come JSON
     })
     .then(response => response.json())
+    .then(data => {
+        if (data && data.utenteId) {
+            console.log("Login riuscito", data);
+
+            // Aggiorna l'interfaccia utente dopo il login
+            alert("Login riuscito, benvenuto " + data.nome);
+            console.log("Ruolo:", data.ruolo);
+
+            // Aggiorna il ruolo e la UI
+            ruoloUtente = data.ruolo;
+            // aggiornaUI(ruoloUtente); // Aggiorna l'interfaccia in base al ruolo
+
+            // // Rimuove il form di login se l'utente ha fatto il login correttamente
+            // document.body.innerHTML = '';
+            
+            location.reload();
+
+        } else {
+            console.log("Login fallito");
+            alert("Credenziali non valide");
+        }
+    })
     .catch(error => console.error("Errore nel login", error));
-
-    if (data && data.utenteId) {
-        console.log("Login riuscito", data);
-
-        // Usa Bootstrap per chiudere la modale (senza jQuery)
-        const modalElement = document.getElementById('loginModal');
-        const modal = bootstrap.Modal.getInstance(modalElement);
-        modal.hide();  // Chiudi la modale
-
-        // Aggiorna l'interfaccia utente o esegui altre azioni necessarie dopo il login
-        // Ad esempio, mostra un messaggio di benvenuto o aggiorna la navbar
-        alert("Login riuscito, benvenuto " + data.nome);
-        console.log("Ruolo:", data.ruolo);
-        
-        ruoloUtente = data.ruolo;
-        aggiornaUI(ruoloUtente); // Aggiorna l'interfaccia in base al ruolo
-        location.reload();
-
-    } else {
-        console.log("Login fallito");
-        alert("Credenziali non valide");
-    }
-});
+}
 
 document.getElementById("btnLogout").addEventListener("click", async function() {
-    
     if (confirm("sei sicuro di voler effettuare il logout?")) {
         await logout();
         window.location.href = "./index.html";
@@ -130,9 +168,6 @@ async function logout() {
         document.getElementById("btnLogout").style.display = "none";
         document.getElementById("btnOrders").style.display = "none";
         document.getElementById("btnPanel").style.display = "none";  // Nasconde i pulsanti specifici quando si è disconnessi
-        
-        
-
         alert("Logout avvenuto con successo");
     } catch (error) {
         console.error("Errore nel logout", error);
