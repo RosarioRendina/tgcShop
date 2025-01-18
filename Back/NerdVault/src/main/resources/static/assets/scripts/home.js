@@ -130,6 +130,69 @@ document.addEventListener("DOMContentLoaded", () => {
     // Chiamata alla funzione per caricare i prodotti
     getProducts(); // Richiama i prodotti al caricamento della pagina
   });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    checkSession(); // Controlla se l'utente è loggato al caricamento della pagina
+});
+
+async function checkSession() {
+    try {
+        const response = await fetch("http://localhost:8080/auth/checkSession", {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        
+        if (response.status === 401) {
+            // Utente non loggato
+            toggleLoginButtons(false);
+        } else {
+            const data = await response.json();
+            if (data) {
+                // Utente loggato
+                toggleLoginButtons(true, data);
+            }
+        }
+    } catch (error) {
+        console.error("Errore nel verificare la sessione", error);
+    }
+}
+
+
+console.log("pagina " + window.location.href);
+
+
+
+
+
+
+
+
+// function toggleLoginButtons(isLoggedIn, userData) {
+//     if (isLoggedIn) {
+//         document.getElementById("btnLogin").style.display = "none";
+//         document.getElementById("btnLogout").style.display = "inline-block";
+
+//         // Aggiungi pulsanti specifici in base al ruolo
+//         if (userData.ruolo === 'UTENTE') {
+//             document.getElementById("btnOrders").style.display = "inline-block";
+//         } else if (userData.ruolo === 'ADMIN') {
+//             document.getElementById("btnOrders").style.display = "inline-block";
+//             document.getElementById("btnPanel").style.display = "inline-block";
+//         }
+//     } else {
+//         document.getElementById("btnLogin").style.display = "inline-block";
+//         document.getElementById("btnLogout").style.display = "none";
+//         document.getElementById("btnOrders").style.display = "none";
+//         document.getElementById("btnPanel").style.display = "none";
+//     }
+
+//     console.log(userData.ruolo);
+    
+// }
+
   
 
 

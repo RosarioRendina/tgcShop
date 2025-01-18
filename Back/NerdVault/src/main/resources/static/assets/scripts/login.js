@@ -243,7 +243,8 @@
 //     inizializza();  // Chiamata iniziale per aggiornare il bottone all'avvio della pagina
 // });
 
-
+let ruoloUtente = "";
+console.log(ruoloUtente);
 
 
  (() => {
@@ -296,19 +297,76 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             // Aggiorna l'interfaccia utente o esegui altre azioni necessarie dopo il login
             // Ad esempio, mostra un messaggio di benvenuto o aggiorna la navbar
             alert("Login riuscito, benvenuto " + data.nome);
+            
+            console.log("prova" + data.nome);
+            console.log("prova" + data.ruolo);
+            ruoloUtente = data.ruolo;
+            console.log(ruoloUtente);
+
+            if(data.ruolo === 'UTENTE') {
+                document.getElementById("btnLogin").style.display = "none";
+                document.getElementById("btnLogout").style.display = "inline-block";
+                document.getElementById("btnOrders").style.display = "inline-block";
+            } else if (data.ruolo === 'ADMIN') {
+                document.getElementById("btnLogin").style.display = "none";
+                document.getElementById("btnLogout").style.display = "inline-block";
+                document.getElementById("btnOrders").style.display = "inline-block";
+                document.getElementById("btnPanel").style.display = "inline-block";
+            } else {
+                document.getElementById("btnLogin").style.display = "inline-block";
+                document.getElementById("btnLogout").style.display = "none";
+                document.getElementById("btnOrders").style.display = "none";
+                document.getElementById("btnPanel").style.display = "none";
+            }
+
+        
+            
+            
         } else {
             console.log("Login fallito");
             alert("Credenziali non valide");
         }
     
-
-    
-    
 });
+
+document.getElementById("btnLogout").addEventListener("click", async function() {
+    await logout();
+    window.location.href = "/";  // Reindirizza alla home dopo il logout
+});
+
+
+
+
+async function logout() {
+    try {
+        await fetch("http://localhost:8080/auth/logout", {
+            method: "POST",
+            credentials: "include"
+        });
+        document.getElementById("btnLogin").style.display = "inline-block";
+        document.getElementById("btnLogout").style.display = "none";
+        document.getElementById("btnOrders").style.display = "none";
+        document.getElementById("btnPanel").style.display = "none";  // Nasconde i pulsanti specifici quando si è disconnessi
+        if (window.location.href !== "http://localhost:8080/views/index.html") {
+            window.location.assign("http://localhost:8080/views/index.html")
+        }
+
+        alert("Logout avvenuto con successo");
+    } catch (error) {
+        console.error("Errore nel logout", error);
+    }
+}
 
 document.getElementById("CheckSession").addEventListener("click", async function(event) {
     await checkSession();
 })
+
+
+
+
+
+
+
 // Funzione per verificare lo stato della sessione
 async function checkSession() {
     var data = await fetch("http://localhost:8080/auth/checkSession", {
@@ -341,5 +399,6 @@ async function checkSession() {
 // document.addEventListener("DOMContentLoaded", function() {
 //     checkSession();  // Verifica la sessione appena la pagina è pronta
 // });
+
 
 
