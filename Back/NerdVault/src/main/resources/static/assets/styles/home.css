@@ -283,6 +283,39 @@ body.modal {
 }
 
 /******* PARALLAX *******/
+
+/* video */
+.video-parallax {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1;
+  }
+  
+  .video-parallax .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    font-family: 'Pixelify Sans', sans-serif;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  }
+/* fine video */
+
 .parallax-logo{
         width: auto;
         font-family: "Pixelify Sans", sans-serif;
@@ -329,6 +362,7 @@ body.modal {
     background-image: url('../img/parallax3.jpg');
   }
 
+  /* MEDIA QUERIES */
 @media (max-width: 768px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr); /* 2 colonne per schermi più piccoli */

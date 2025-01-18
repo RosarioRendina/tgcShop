@@ -5,6 +5,7 @@ import java.util.List;
 import org.generation.NerdVault.dtos.ProdottoDto;
 import org.generation.NerdVault.entities.Prodotto;
 import org.generation.NerdVault.enums.ProdottoCategoria;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ProdottoService {
@@ -26,6 +27,9 @@ public interface ProdottoService {
 	void cancellaProdotto(int id);
 
 	ProdottoDto aggiornaConImg(Prodotto esistente, Prodotto aggiornato, MultipartFile img);
+
+	List<ProdottoDto> prendiTuttiPaging(Pageable pageable);
+	List<ProdottoDto> prendiTuttiPagingCategoria(Pageable pageable, String categoriaFilter);
 
 	
 	

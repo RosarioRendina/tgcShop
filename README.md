@@ -98,6 +98,14 @@ Una lista degli Endpoint dell'applicazione:
 | `GET`    | `/api/prodotto/{id}`                     | Ritorna il prodotto desiderato specificandone l'id. (DTO) |
 | `DELETE` | `/api/prodotto/{id}`                     | Cancella dal DB il prodotto di id specificato. |
 | `GET`    | `/api/prodotto/categoria/{c}`            | Ritorna la lista di tutti i prodotti appartenenti alla categoria specificata. (DTO) |
+| `GET`    | `/api/prodotto/paging`                   | Ritorna la lista di tutti i prodotti secondo paging. (DTO) |
+
+Il metodo GET /paging accetta nella queryString i seguenti parametri:
+- page = `int` -> ritorna la pagina selezionata (default = 0);
+- size = `int` -> ritorna il numero di valori selezionati per pagina (default = 10);
+- sortBy = `String` -> ordina per la proprietà selezionata (default = prodottoId)
+- sortDirection = `DESC` o `ASC` -> ordina in modo ascendente o discendente (default = ASC)
+- categoria = `String` -> ritorna i prodotti appartenenti alla categoria inserita.
 
 ## Ordine
 L'ordine adesso contiene una voce details che ritorna una lista di ODD associati all'id dell'ordine.

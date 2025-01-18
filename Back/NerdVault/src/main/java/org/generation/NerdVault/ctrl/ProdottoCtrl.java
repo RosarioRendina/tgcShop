@@ -16,6 +16,10 @@ import org.generation.NerdVault.enums.ProdottoCategoria;
 import org.generation.NerdVault.services.ProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +29,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -69,6 +74,34 @@ public class ProdottoCtrl {
 		}	catch (Exception e) {
 
 			return ResponseEntity.internalServerError().body(new ProdottoDto());
+		}
+	}
+	
+	@GetMapping("/paging")
+	public ResponseEntity<List<ProdottoDto>> getPaging(
+				@RequestParam(defaultValue = "0") int page,
+				@RequestParam(defaultValue = "10") int size,
+				@RequestParam(defaultValue = "prodottoId") String sortBy,	//es: categoria
+				@RequestParam(defaultValue = "ASC") String sortDirection,
+				@RequestParam(required = false) String categoria
+				) {
+		try {
+			
+			Direction direction = sortDirection.equalsIgnoreCase("ASC") ? Direction.ASC : Direction.DESC;
+			Sort sort = Sort.by(direction, sortBy);
+			
+			Pageable pageable = PageRequest.of(page, size, sort);
+			
+			if (categoria != null && !categoria.isEmpty()) {
+				List<ProdottoDto> prodottiDto = prodottoService.prendiTuttiPagingCategoria(pageable, categoria);
+				return ResponseEntity.ok(prodottiDto);
+			} else {
+				List<ProdottoDto> prodottiDto = prodottoService.prendiTuttiPaging(pageable);
+				return ResponseEntity.ok(prodottiDto);
+			}
+			
+		} catch (Exception e) {
+			return ResponseEntity.status(500).body(new ArrayList<ProdottoDto>());
 		}
 	}
 	
@@ -220,16 +253,6 @@ public class ProdottoCtrl {
 			
 				Prodotto trovato = prodottoService.cercaPerId(id);
 				if (trovato != null) {
-					
-					try {	// Cancello Immagini e Cartella
-						String dir = CustomProperties.IMG_FOLDER_PATH + "/" + trovato.getProdottoId();
-						
-						if (Files.exists(Paths.get(dir))) {
-							FileUtils.deleteDirectory(new File(dir));
-						}
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
 					
 					prodottoService.cancellaProdotto(id);
 					return ResponseEntity.ok("Cancellato prodotto id = " + id);
