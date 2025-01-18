@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let page = 0;
+    let currentPage = 0;
     // Carica i prodotti all'inizio
-    fetchProducts(page);
+    fetchProducts(currentPage);
 
 
     // Gestisce l'apertura della modale per aggiungere un nuovo prodotto
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(function(product) {
             alert("Prodotto aggiunto con successo!");
-            fetchProducts(); // Ricarica la lista dei prodotti
+            fetchProducts(currentPage); // Ricarica la lista dei prodotti
             const modal = bootstrap.Modal.getInstance(newProductModal);
             modal.hide();
             console.log(product);
@@ -85,8 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Funzione per caricare i prodotti
-    function fetchProducts(page) {
-        const apiUrl = `http://localhost:8080/api/prodotto/paging?page=${page}`;
+    function fetchProducts(currentPage) {
+        console.log('Eseguo fetch dei prodotti sulla pagine: ', currentPage);
+        
+        const apiUrl = `http://localhost:8080/api/prodotto/paging?page=${currentPage}`;
 
         fetch(apiUrl)
         .then(function(response) {
@@ -265,6 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("prodotto", JSON.stringify(editedProduct));
         if (editImmagine) {
             formData.append("image", editImmagine); // Aggiungi immagine solo se presente
+            console.log("Aggiunta immagine");
+            
         } else {
             console.log("Nessuna immagine selezionata");
         }
@@ -290,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(function(response) {
             if (response.ok) {
                 alert("Prodotto modificato con successo!");
-                fetchProducts(); // Ricarica la lista dei prodotti
+                fetchProducts(currentPage); // Ricarica la lista dei prodotti
                 const modal = bootstrap.Modal.getInstance(document.getElementById('edit-product-modal'));
                 modal.hide(); // Chiudi la modale
             } else {
@@ -323,25 +327,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-
+/* ------------------------------- PAGINAZIONE ------------------------------ */
     const prevBtn = document.getElementById('prev-page');
     const nextBtn = document.getElementById('next-page');
+    const pageBtns = document.querySelectorAll('.pag-btn');
 
     nextBtn.addEventListener('click', e => {
         e.preventDefault();
         const nextPage = parseInt(e.target.getAttribute("data-id"));
+        currentPage = nextPage;
 
-        if (page === 3) {
-            nextBtn.setAttribute("disabled", '');
+        if (currentPage > 3) {
+            nextBtn.parentElement.classList.add('disabled');
         } else {
-            prevBtn.removeAttribute("disabled");
+            prevBtn.parentElement.classList.remove('disabled');
         }
 
-        page = nextPage;
-        nextBtn.setAttribute("data-id", (parseInt(page) + 1));
-        prevBtn.setAttribute("data-id", (parseInt(page) - 1));
+        setCurrPageBtn();
 
-        console.log('Eseguo fetch sulla pagina: ', page);
+        nextBtn.setAttribute("data-id", (parseInt(currentPage) + 1));
+        prevBtn.setAttribute("data-id", (parseInt(currentPage) - 1));
+
+        console.log('Eseguo fetch sulla pagina: ', currentPage);
 
         fetchProducts(nextPage);
     });
@@ -349,22 +356,72 @@ document.addEventListener("DOMContentLoaded", () => {
     prevBtn.addEventListener('click', e => {
         e.preventDefault();
         const prevPage = parseInt(e.target.getAttribute("data-id"));
+        
+        currentPage = prevPage;
+        console.log('Eseguo fetch sulla pagina: ', currentPage);
 
+        setCurrPageBtn();
         
-        page = prevPage;
-        console.log('Eseguo fetch sulla pagina: ', page);
-        
-        if (page === 0) {
-            prevBtn.setAttribute('disabled', '');
+        if (currentPage < 1) {
+            prevBtn.parentElement.classList.add('disabled');
             prevBtn.removeAttribute('data-id');
         } else {
-            prevBtn.setAttribute('data-id', (parseInt(page) - 1));
+            prevBtn.setAttribute('data-id', (parseInt(currentPage) - 1));
         }
 
-        nextBtn.setAttribute('data-id', (parseInt(page) + 1));
-        nextBtn.removeAttribute('disabled');
+        nextBtn.setAttribute('data-id', (parseInt(currentPage) + 1));
+        nextBtn.parentElement.classList.remove('disabled');
         
         fetchProducts(prevPage);
     });
+
+    pageBtns.forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            let target = (e.target.tagName === 'A') ? e.target.parentElement : e.target;
+            
+            const btnPage = parseInt(target.getAttribute("data-id"));
+            console.log("Button page: ", btnPage);
+            
+            if (currentPage !== btnPage) {
+                currentPage = btnPage;
+                console.log("currentPage: ", currentPage);
+
+                setCurrPageBtn();
+                
+                if (currentPage < 1) {
+                    prevBtn.parentElement.classList.add('disabled');
+                    prevBtn.removeAttribute('data-id');
+
+                    nextBtn.parentElement.classList.remove('disabled');
+                    nextBtn.setAttribute('data-id', (parseInt(currentPage) + 1))
+                } else if (currentPage > 3) {
+                    prevBtn.setAttribute('data-id', (parseInt(currentPage) - 1));
+                    prevBtn.parentElement.classList.remove('disabled');
+                    
+                    nextBtn.parentElement.classList.add('disabled');
+                    nextBtn.removeAttribute('data-id');
+                } else {
+                    prevBtn.parentElement.classList.remove('disabled');
+                    prevBtn.setAttribute('data-id', (parseInt(currentPage) - 1));
+
+                    nextBtn.parentElement.classList.remove('disabled');
+                    nextBtn.setAttribute('data-id', (parseInt(currentPage) + 1))
+                }
+
+                fetchProducts(btnPage);
+            }
+        });
+    });
+
+    function setCurrPageBtn() {
+        pageBtns.forEach(b => {
+            if (parseInt(b.getAttribute('data-id')) === currentPage) {
+                b.classList.add('active');
+            } else {
+                b.classList.remove('active');
+            }
+        });
+    }    
 
 });

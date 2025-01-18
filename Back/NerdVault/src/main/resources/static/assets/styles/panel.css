@@ -73,13 +73,45 @@ td .btn {
     font-size: 1.8rem;
 }
 
+.page-item a,
+.page-item button {
+    color: #fff;
+    background-color: #9132d1;
+    border-color: #524958;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.page-item a:hover,
+.page-item button:hover,
+.page-item a:focus,
+.page-item button:focus {
+    color: #fff;
+    background-color: #820bd0;
+    border-color: #820bd0;
+    transition: all .2s;
+}
+
+.pag-btn.active .page-link {
+    background-color: #820bd0;
+    border-color: #820bd0;
+    cursor: default;
+}
+
+.page-item.disabled .page-link {
+    color: #ccc;
+    background-color: #9b58c7;
+    border-color: #9b58c7;
+}
+
+
 .edit-product-btn {
-    color: rgb(120, 30, 180);
+    color: #781eb4;
     transition: color .2s;
 }
 
 .edit-product-btn:hover {
-    color: rgb(73, 15, 125);    
+    color: #490f7d;    
 }
 
 .delete-product-btn {
@@ -89,6 +121,25 @@ td .btn {
 
 .delete-product-btn:hover {
     color: rgb(114, 24, 24);
+}
+
+#open-add-product-modal,
+#submit-product-btn,
+#update-product-btn {
+    background: #661a98;
+    border-color: #661a98;
+    transition: all .2s;
+}
+
+#open-add-product-modal:hover,
+#open-add-product-modal:active,
+#submit-product-btn:hover,
+#submit-product-btn:active,
+#update-product-btn:hover,
+#update-product-btn:active
+ {
+    background: #490f7d;
+    border-color: #490f7d;
 }
 
 .navigation {
@@ -304,4 +355,3 @@ td .btn {
     background-color: #222;
     color: white;
 }
-

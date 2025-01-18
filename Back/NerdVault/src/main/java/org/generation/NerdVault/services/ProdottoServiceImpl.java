@@ -179,7 +179,10 @@ public class ProdottoServiceImpl implements ProdottoService {
 		prodotto.setRimanenza(modifiche.getRimanenza());
 		prodotto.setAbilitato(modifiche.isAbilitato());
 		prodotto.setVisibile(modifiche.isVisibile());
-		prodotto.setImmagine(modifiche.getImmagine());
+		
+		if (modifiche.getImmagine() != null) {
+			prodotto.setImmagine(modifiche.getImmagine());
+		}
 		if (modifiche.getCopieVendute() != 0) {
 			prodotto.setCopieVendute(modifiche.getCopieVendute());
 		}

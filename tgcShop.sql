@@ -72,7 +72,6 @@ INSERT INTO `prodotto` (`nome`, `descrizione`, `categoria`, `prezzo`, `rimanenza
 ('Set Pokémon Allenatore Base', 'Set base per iniziare a giocare al Gioco di Carte Collezionabili Pokémon.', 'PREVENDITA', 39.99, 90, 7, TRUE, TRUE, NULL, '2025-01-05', '2025-02-10', 12.50),
 ('Collezione Yu-Gi-Oh! Oro Massiccio', 'Set di carte Yu-Gi-Oh! in edizione limitata con rifiniture dorate.', 'PREVENDITA', 59.99, 40, 4, TRUE, TRUE, 'max-gold.jpg', '2025-01-15', '2025-03-15', 7.00),
 ('The Legend of Zelda: Tears of the Kingdom', 'Gioco d’azione e avventura per Nintendo Switch.', 'GAMES', 15.99, 300, 50, TRUE, TRUE, 'tears-of-kingdom.jpg', '2024-09-01', '2024-12-01', 5.00),
-('The Legend of Zelda: Tears of the Kingdom', 'Gioco d’azione e avventura per Nintendo Switch.', 'GAMES', 15.99, 300, 50, TRUE, TRUE, 'tears-of-kingdom.jpg', '2024-09-01', '2024-12-01', 5.00),
 ('Funko Pop Pikachu', 'Figura da collezione Funko Pop del Pokémon Pikachu.', 'MERCH', 19.99, 100, 0, TRUE, FALSE, 'funko-pika.jpg', NULL, NULL, NULL),
 ('Tappetino da Gioco Yu-Gi-Oh!', 'Tappetino decorato per giocare a Yu-Gi-Oh! comodamente.', 'ACCESSORI', 12.99, 60, 6, TRUE, TRUE, 'yugi-mat.jpg', '2024-08-01', '2024-11-15', 10.00),
 ('Set Deluxe Pokémon', 'Set speciale con carte rare e accessori esclusivi.', 'NOVITA', 89.99, 15, 2, TRUE, TRUE, 'poke-deluxe.jpg', '2024-07-01', '2025-01-20', 18.00),
