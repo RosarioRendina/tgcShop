@@ -51,7 +51,9 @@ public class ProdottoServiceImpl implements ProdottoService {
 	@Override
 	public List<ProdottoDto> prendiTuttiPagingCategoria(Pageable pageable, String categoriaFilter) {
 		if (categoriaFilter != null & !categoriaFilter.isEmpty()) {
-			ProdottoCategoria categoria = ProdottoCategoria.valueOf("PREVENDITA");
+			
+			ProdottoCategoria categoria = ProdottoCategoria.valueOf(categoriaFilter.toUpperCase());
+			
 			Page<Prodotto> page = prodottoRepo.findByCategoria(categoria, pageable);
 			List<Prodotto> result = page.getContent();
 			
@@ -214,6 +216,32 @@ public class ProdottoServiceImpl implements ProdottoService {
 				);
 		dto.setImgUrl(prodotto.getUrl()); // settiamo l'immagine nel dto con l'url composito
 		return dto;
+	}
+
+	@Override
+	public List<ProdottoDto> prendiPagingNome(String nome, Pageable pageable) {
+		Page<Prodotto> page = prodottoRepo.findBySearchContainingIgnoreCase(nome, pageable);
+		List<Prodotto> result = page.getContent();
+		
+		ArrayList<ProdottoDto> prodottiFiltrati = new ArrayList<ProdottoDto>();
+		result.forEach(prodotto -> prodottiFiltrati.add(this.toProdottoDto(prodotto)));
+		return prodottiFiltrati;
+	}
+
+	@Override
+	public List<ProdottoDto> prendiPagingNomeCategoria(String categoria, String nome, Pageable pageable) {
+		if (categoria != null & !categoria.isEmpty()) {
+			
+			ProdottoCategoria catEnum = ProdottoCategoria.valueOf(categoria.toUpperCase());
+			
+			Page<Prodotto> page = prodottoRepo.findByCategoriaAndSearchContainingIgnoreCase(catEnum, nome, pageable);
+			List<Prodotto> result = page.getContent();
+			
+			ArrayList<ProdottoDto> prodottiFiltrati = new ArrayList<ProdottoDto>();
+			result.forEach(prodotto -> prodottiFiltrati.add(this.toProdottoDto(prodotto)));
+			return prodottiFiltrati;
+		}
+		return prendiPagingNome(nome, pageable);
 	}
 
 }

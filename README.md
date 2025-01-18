@@ -103,9 +103,10 @@ Una lista degli Endpoint dell'applicazione:
 Il metodo GET /paging accetta nella queryString i seguenti parametri:
 - page = `int` -> ritorna la pagina selezionata (default = 0);
 - size = `int` -> ritorna il numero di valori selezionati per pagina (default = 10);
-- sortBy = `String` -> ordina per la proprietà selezionata (default = prodottoId)
+- sortBy = `string` -> ordina per la proprietà selezionata (default = prodottoId)
 - sortDirection = `DESC` o `ASC` -> ordina in modo ascendente o discendente (default = ASC)
-- categoria = `String` -> ritorna i prodotti appartenenti alla categoria inserita.
+- categoria = `string` -> ritorna i prodotti appartenenti alla categoria inserita.
+- nome = `string` -> ritorna i prodotti che contengono il nome, ignora simboli, spazi e maiuscole ma non l'ordine delle parole.
 
 ## Ordine
 L'ordine adesso contiene una voce details che ritorna una lista di ODD associati all'id dell'ordine.
@@ -114,7 +115,12 @@ L'ordine adesso contiene una voce details che ritorna una lista di ODD associati
 | `GET`    | `/api/ordine`                            | Ritorna la lista di tutti gli ordini.    |
 | `PUT`    | `/api/ordine/{id}`                       | Richiede JSON di OrdineDTO nel body, modifica l'ordine con id specificato. |
 | `POST`   | `/api/ordine/u/{UtenteId}`               | Richiede JSON di Ordine nel body, inserisce il nuovo ordine all'interno del DB per l'utente di id specificato. |
-| `GET`    | `/api/ordine/u/{UtenteId}`               | Ritorna la lista di tutti gli ordini per l'utente con l'id specificato. |
+| `GET`    | `/api/ordine/u/{UtenteId}`               | Ritorna la lista di tutti gli ordini per l'utente con l'id secondo paging. |
+
+Il metodo GET /u/{utenteId} accetta nella queryString i seguenti parametri:
+- page = `int` -> ritorna la pagina selezionata (default = 0);
+- size = `int` -> numero di valori da ritornare per pagina (default = 10);
+- stato = `string` -> ritorna i prodotti appartenenti allo stato selezionato.
 
 ## Ordine Dettaglio
 ODD = OrdineDettaglioDto

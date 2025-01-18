@@ -36,7 +36,8 @@ CREATE TABLE IF NOT EXISTS `prodotto` (
     `immagine` VARCHAR(150) DEFAULT NULL,
     `inizio_prevendita` DATE DEFAULT NULL,
 	`data_uscita` DATE DEFAULT NULL,
-    `sconto_prevendita` DECIMAL(4,2) DEFAULT NULL
+    `sconto_prevendita` DECIMAL(4,2) DEFAULT NULL,
+    `search` VARCHAR(150) AS (LOWER(REGEXP_REPLACE(nome, '[^a-zA-Z0-9]', '')))
 );
 
 CREATE TABLE IF NOT EXISTS `ordine` (

@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import org.generation.NerdVault.config.CustomProperties;
 import org.generation.NerdVault.enums.ProdottoCategoria;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -59,6 +61,9 @@ public class Prodotto {
 	@Column(nullable = true)
 	private Double scontoPrevendita;
 	
+	@JsonIgnore
+	@Column(length = 150, name = "search", insertable = false, updatable = false)
+	private String search;
 	/*------------------ Getters / Setters ------------------*/
 
 	public String getNome() {
@@ -172,6 +177,10 @@ public class Prodotto {
 
 	public void setCopieVendute(int copieVendute) {
 		this.copieVendute = copieVendute;
+	}
+
+	public String getSearch() {
+		return search;
 	}
 	
 }

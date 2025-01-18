@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.generation.NerdVault.dtos.OrdineDto;
 import org.generation.NerdVault.entities.Ordine;
-//import org.generation.NerdVault.entities.Ordine;
+import org.springframework.data.domain.Pageable;
 
 public interface OrdineService {
 
@@ -21,4 +21,6 @@ public interface OrdineService {
 //	OrdineDto aggiorna(Ordine daModificare, Ordine ordine);
 	OrdineDto aggiorna(Ordine daModificare, OrdineDto ordine);
 	void cancellaOrdine(int trovatoId);
+	List<OrdineDto> prendiConUtenteIdPaging(int utenteId, Pageable pageable);
+	List<OrdineDto> prendiConStatoOrdineEUtenteIdPaging(String stato, int utenteId, Pageable pageable);
 }

@@ -31,6 +31,9 @@ public interface ProdottoService {
 	List<ProdottoDto> prendiTuttiPaging(Pageable pageable);
 	List<ProdottoDto> prendiTuttiPagingCategoria(Pageable pageable, String categoriaFilter);
 
+	List<ProdottoDto> prendiPagingNome(String nome, Pageable pageable);
+	List<ProdottoDto> prendiPagingNomeCategoria(String categoria, String nome, Pageable pageable);
+
 	
 	
 }

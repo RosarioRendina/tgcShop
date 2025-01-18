@@ -9,6 +9,8 @@ import org.generation.NerdVault.entities.Ordine;
 import org.generation.NerdVault.enums.OrdineStato;
 import org.generation.NerdVault.repositories.OrdineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -105,6 +107,31 @@ public class OrdineServiceImpl implements OrdineService{
 		dto.setDetail(ordine.getDetail());
 		
 		return dto;
+	}
+
+	@Override
+	public List<OrdineDto> prendiConStatoOrdineEUtenteIdPaging(String statoOrdine, int utenteId, Pageable pageable) {
+		if (statoOrdine != null && !statoOrdine.isEmpty()) {
+			OrdineStato stato = OrdineStato.valueOf(statoOrdine);
+			
+			Page<Ordine> page = ordineRepo.findByStatoOrdineAndUtenteUtenteId(stato, utenteId, pageable);
+			List<Ordine> result = page.getContent();
+			
+			ArrayList<OrdineDto> ordiniFiltered = new ArrayList<OrdineDto>();
+			result.forEach(ordine -> ordiniFiltered.add(this.toOrdineDto(ordine)));
+			return ordiniFiltered;
+		}
+		return prendiConUtenteIdPaging(utenteId, pageable);
+	}
+
+	@Override
+	public List<OrdineDto> prendiConUtenteIdPaging(int utenteId, Pageable pageable) {
+		Page<Ordine> page = ordineRepo.findByUtenteUtenteId(utenteId, pageable);
+		List<Ordine> ordini = page.getContent();
+		
+		ArrayList<OrdineDto> dtos = new ArrayList<OrdineDto>();
+		ordini.forEach(toDto -> dtos.add(this.toOrdineDto(toDto)));
+		return dtos;
 	}
 
 }

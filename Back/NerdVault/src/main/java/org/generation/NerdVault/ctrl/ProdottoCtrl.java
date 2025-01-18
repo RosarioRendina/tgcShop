@@ -1,15 +1,10 @@
 package org.generation.NerdVault.ctrl;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
-import org.apache.commons.io.FileUtils;
-import org.generation.NerdVault.config.CustomProperties;
 import org.generation.NerdVault.dtos.ProdottoDto;
 import org.generation.NerdVault.entities.Prodotto;
 import org.generation.NerdVault.enums.ProdottoCategoria;
@@ -83,14 +78,26 @@ public class ProdottoCtrl {
 				@RequestParam(defaultValue = "10") int size,
 				@RequestParam(defaultValue = "prodottoId") String sortBy,	//es: categoria
 				@RequestParam(defaultValue = "ASC") String sortDirection,
-				@RequestParam(required = false) String categoria
+				@RequestParam(required = false) String categoria,
+				@RequestParam(required = false) String nome
 				) {
 		try {
+			
+			final Pattern NON_ALPHANUMERIC = Pattern.compile("[^a-zA-Z0-9]");
+			String name = NON_ALPHANUMERIC.matcher(nome).replaceAll("");
 			
 			Direction direction = sortDirection.equalsIgnoreCase("ASC") ? Direction.ASC : Direction.DESC;
 			Sort sort = Sort.by(direction, sortBy);
 			
 			Pageable pageable = PageRequest.of(page, size, sort);
+			if (name != null && !name.isEmpty()) {
+				if (categoria != null && !categoria.isEmpty()) {
+					List<ProdottoDto> dtos = prodottoService.prendiPagingNomeCategoria(categoria, name.trim(), pageable);
+					return ResponseEntity.ok(dtos);
+				}
+				return ResponseEntity.ok(prodottoService.prendiPagingNome(name.trim(), pageable));
+				
+			}
 			
 			if (categoria != null && !categoria.isEmpty()) {
 				List<ProdottoDto> prodottiDto = prodottoService.prendiTuttiPagingCategoria(pageable, categoria);

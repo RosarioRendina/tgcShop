@@ -6,10 +6,15 @@ import java.util.List;
 import org.generation.NerdVault.dtos.OrdineDto;
 import org.generation.NerdVault.entities.Ordine;
 import org.generation.NerdVault.entities.Utente;
+import org.generation.NerdVault.enums.OrdineStato;
 import org.generation.NerdVault.services.OrdineService;
 import org.generation.NerdVault.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -76,9 +82,24 @@ public class OrdineCtrl {
 	}
 	
 	@GetMapping("/u/{utenteId}")
-	public ResponseEntity<List<OrdineDto>> getAllForUtente(@PathVariable int utenteId) {
+	public ResponseEntity<List<OrdineDto>> getAllForUtente(
+			@PathVariable int utenteId,
+			@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size,
+			@RequestParam(required = false) String stato
+			) {
 		try {
-			List<OrdineDto> ordini = ordineService.prendiConUtenteId(utenteId);
+			Sort sort = Sort.by(Direction.DESC, "ordineId");
+			
+			Pageable pageable = PageRequest.of(page, size, sort);
+			
+			if (stato != null && !stato.isEmpty()) {
+				List<OrdineDto> ordiniDto = ordineService.prendiConStatoOrdineEUtenteIdPaging(stato.toUpperCase(), utenteId, pageable);
+				return ResponseEntity.ok(ordiniDto);
+			}
+			
+//			List<OrdineDto> ordini = ordineService.prendiConUtenteId(utenteId);
+			List<OrdineDto> ordini = ordineService.prendiConUtenteIdPaging(utenteId, pageable);
 			return ResponseEntity.ok(ordini);
 		} catch (Exception e) {
 			e.printStackTrace();
