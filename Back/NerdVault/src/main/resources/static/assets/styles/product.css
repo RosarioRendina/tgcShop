@@ -202,7 +202,9 @@ h1{
         display: none;
     }
     body{
-        background-image: url("/assets/img/yugioh-bg.jpg");
+        background-image: url("/assets/img/pokemo-bg.jpeg");
+        transform: rotate(90);
+        background-size: 200% 100%;
     }
     #product-info{
         width: 100%;

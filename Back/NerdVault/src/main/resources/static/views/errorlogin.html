@@ -6,8 +6,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<style>
+    /* Hero Section */
+    .hero {
+        position: relative;
+        width: 100vw;
+        height: 100vh; 
+        overflow: hidden;
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+    }
+
+    /* Video come sfondo che copre tutta la finestra */
+    .hero video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%; /* Imposta la larghezza del video */
+        height: 100%; /* Imposta l'altezza del video */
+        object-fit: cover; /* Assicura che il video copra tutta l'area senza distorsioni */
+        z-index: -1; /* Mette il video sotto il contenuto */
+    }
+
+    /* Contenitore dei testi */
+    .hero-content-1 {
+        font-family: Arial, Helvetica, sans-serif;
+        position: absolute;
+        top: 20%; /* Posiziona il contenuto a 30% dalla parte superiore della pagina */
+        justify-self: center;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        font-size: larger;
+    }
+
+    a {
+    text-decoration: none;
+    font-weight: bold;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: larger;
+    text-shadow: 
+    0px 0px 5px rgba(165,55,240, 0.8),  
+    0px 0px 15px rgba(165,55,240, 0.7), 
+    0px 0px 25px rgba(165,55,240, 0.6), 
+    0px 0px 35px rgba(165,55,240, 0.5);  
+    }
+    a:hover {
+    color: rgb(255, 255, 255,0.75) !important;
+    }
+     
+    h1{
+    color: white;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: larger;
+    text-shadow: 
+    0px 0px 5px rgba(165,55,240, 0.8),   
+    0px 0px 15px rgba(165,55,240, 0.7), 
+    0px 0px 25px rgba(165,55,240, 0.6), 
+    0px 0px 35px rgba(165,55,240, 0.5);  
+    }
+    h1:hover { 
+        color: rgb(255, 255, 255,0.75) !important;
+    }
+</style>
+<script>
+    // Funzione che reindirizza alla pagina "index.html" dopo 6 secondi
+    console.log("script caricato correttamente");
+    
+    function redirectToIndex() {
+        setTimeout(() => {
+            window.location.href = "/views/index.html";
+        }, 5500); // 6000 millisecondi = 6 secondi
+    }
+    redirectToIndex();
+</script>
 </head>
 <body>
-    <h1>NON HAI IL PERMESSO PER VISUALIZZARE PANNELLO</h1>
+
+<div class="hero">
+    <!-- Video che copre tutta la finestra -->
+    <video autoplay loop muted>
+        <source src="/assets/video/Gandalf.mp4" type="video/mp4">
+        <source src="/assets/video/Gandalf.webm" type="video/webm">
+        <source src="/assets/video/Gandalf.ogv" type="video/ogg">
+        Il tuo browser non supporta i video HTML5.
+    </video>
+
+    <a class="hero-content-1" href="index.html"><h1>YOU SHALL NOT LOG WITHOUT PERMISSION!</h1></a>
+</div>
 </body>
 </html>
