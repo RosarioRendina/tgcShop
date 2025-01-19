@@ -188,8 +188,12 @@ body.modal {
     margin: 0 auto;
 }
 
-
+/* ! MACELLO CLAMOROSO PER LE CARD MA FUNZIONA */
 .card {
+    position: relative;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
     /*background: #fff; */
     background-color: rgba(0, 0, 0, 0.1); /* Sfondo nero con opacità 0.3 */
     transition: background-color 0.3s ease; /* Per aggiungere un effetto di transizione al passaggio del mouse */
@@ -197,7 +201,6 @@ body.modal {
     padding: 15px;
     color: rgb(255, 255, 255);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
     overflow: hidden;
     box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -206,34 +209,130 @@ body.modal {
     margin: 0 auto; /* Centra le card in colonne più larghe */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     cursor: pointer; /* Mostra il cursore "mano" su tutta la card */
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
 }
 
-.card img {
-    width: 100%; /* Riempie la larghezza della card */
-    /*height: auto; /* Mantiene le proporzioni */
-    max-height: 260px; /* Altezza massima per limitare l'immagine */
-    object-fit: contain; /* Adatta l'immagine all'area disponibile */
+.imgBx {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* Posiziona l'immagine sotto il contenuto */
+  }
+  
+  .imgBx img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* L'immagine riempie lo sfondo senza distorsioni */
+  }
+
+.card .content{
+    position: absolute;
+    bottom: -200px;
+    left: 0%;
+    width: 100%;
+    height: 165px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    flex-direction: column;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 -10px 10px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: bottom 0.5s;
+    transition-delay: 0.8s;
+  }
+
+  .card:hover .content{
+    bottom: 0px;
+    transition-delay: 0s;
+  }
+
+  .card .content .contentBx h5{
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1.1em;
+    text-align: center;
+    margin: 15px 0 15px;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition-delay: 0.6s;
+  }
+  .card:hover .content .contentBx h5{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+ .card .content .contentBx h5 span{
+    text-transform: initial;
+  }
+  .card .content .sci{
+    position: relative;
+    bottom: 10px;
+    display: flex;
+  }
+  .card .content .sci li{
+    list-style: none;
+    margin:  10px;
+    transform: translateY(40px);
+    transition: 0.5s;
+    opacity: 0;
+    transition-delay: calc(0.2s * var(--i));
+  }
+ .card:hover .content .sci li{
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  
+  .card .content .sci li a{
+    color: #fff;
+  }
+
+  .card .content .contentBx .discount {
+    display: inline-block; /* Per assicurare un corretto comportamento con l'animazione */
+    /*color: #FF5733; */
+    font-weight: bold;
+    transform: translateY(40px); /* Parte nascosto fuori vista */
+    transition: 0.5s; /* Durata dell'animazione */
+    opacity: 0; /* Nascondi inizialmente */
+    transition-delay: 0.8s; /* Aggiungi un ritardo */
+  }
+  
+  .card:hover .content .contentBx .discount {
+    transform: translateY(0px); /* Ritorna alla posizione originale */
+    opacity: 1; /* Rendi visibile */
+  }
+
+/* ! MACELLO CLAMOROSO PER LE CARD MA FUNZIONA */
+
+/*.card img {
+    width: 100%; 
+    /*height: auto; 
+    max-height: 260px; 
+    object-fit: contain; 
     object-position: top;
     padding-top: 10px;
-}
+}*/
 
-.card h3 {
+/*.card h3 {
     font-size: 1.5rem;
     color: #ffffff;
     margin: 15px 0;
-}
+}*/
 
-.card p {
+/*.card p {
     font-size: 1rem;
     color: #ffffff;
     padding: 0 15px;
     margin-bottom: 20px;
-    flex-grow: 1; /* Riempie lo spazio rimanente tra l'intestazione e il pulsante */
-}
+    flex-grow: 1; 
+}*/
 
 .card .btn {
     display: inline-block;
@@ -252,10 +351,10 @@ body.modal {
     background: #FF7043;
 }
 
-.card:hover {
+/*.card:hover {
     transform: translateY(-10px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+}*/
 
 .card-link {
     text-decoration: none; /* Rimuove la sottolineatura del link */

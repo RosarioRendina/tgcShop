@@ -111,11 +111,14 @@ document.addEventListener("DOMContentLoaded", () => {
   
         {
           card.innerHTML = `
-          <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.imgUrl}" class="card-img-top" alt="${prodotto.nome}"></a>
-          <div class="card-body d-flex flex-column ">
-            <h5 class="card-title">${prodotto.nome}</h5>
-            <div class="d-flex justify-content-between">
-              <span class="card-text discount"><strong>€${prodotto.prezzo}</strong></span>
+          <div class="imgBx">
+            <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.imgUrl}" class="card-img-top" alt="${prodotto.nome}"></a>
+          </div>
+          <div class="content">
+            <div class="contentBx">
+              <h5>${prodotto.nome} <br>
+              <span class="discount mt-3"> €${prodotto.prezzo}</h5>
+              <span class="card-text discount"><strong></strong></span>
             </div>
           </div>
         `;} 

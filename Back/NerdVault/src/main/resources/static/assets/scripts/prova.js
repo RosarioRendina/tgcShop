@@ -87,3 +87,35 @@
     });
   });
   
+
+
+
+
+  cart.addEventListener('click', e => {
+    e.preventDefault();
+
+    // Controlla se il clic avviene sull'icona del cestino
+    if (e.target.tagName === 'I' && e.target.classList.contains('fa-trash')) {
+        console.log('CANCELLA PRODOTTO');
+        
+        // Trova l'elemento HTML del prodotto
+        const prodottoElement = e.target.parentElement.parentElement;
+        
+        // Ottieni il nome del prodotto (o un identificatore unico)
+        const nomeProdotto = prodottoElement.querySelector('.prodottoNome').textContent;
+
+        // Recupera il carrello dal localStorage
+        let carrelloStorage = JSON.parse(localStorage.getItem('carrello')) || [];
+
+        // Filtra il prodotto da rimuovere
+        carrelloStorage = carrelloStorage.filter(prodotto => prodotto.nome !== nomeProdotto);
+
+        // Aggiorna il localStorage con il nuovo array
+        localStorage.setItem('carrello', JSON.stringify(carrelloStorage));
+
+        // Rimuovi l'elemento HTML dal DOM
+        prodottoElement.remove();
+    }
+
+    console.log('TAG: ', e.target.tagName);
+});
