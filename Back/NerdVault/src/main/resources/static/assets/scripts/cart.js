@@ -33,7 +33,6 @@ function loadCart() {
                   class="img-fluid rounded-3 w-full">
               </div>
               <div class="col-6 col-md-3 mt-3 mt-md-0">
-                  <h6 class="text-secondary prodottoCategoria">categoria</h6>
                   <h6 class="mb-0 prodottoNome">${prodotto.nome}</h6>
               </div>
               <div class="col-6 col-md-3 d-flex mt-3 mt-md-0">
@@ -59,12 +58,12 @@ function loadCart() {
         `;
 
         cart.prepend(prodottoCart);
-        cart.innerHTML += `
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
-        </div>
-        `;
-    });
+    })
+    cart.innerHTML += `
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
+    </div>
+    `;
 
     cart.addEventListener('click', e => {
         e.preventDefault();

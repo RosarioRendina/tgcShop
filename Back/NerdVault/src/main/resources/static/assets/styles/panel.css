@@ -53,21 +53,22 @@ body {
 
 }
 
-/* .btn {
+.btn {
     display: inline-block;
     padding: 10px 20px;
-    background: rgb(165,55,240);
+    /*background: rgb(165,55,240);
     color: #fff;
-    text-decoration: none;
+    text-decoration: none;*/
     border-radius: 5px;
     transition: background 0.3s ease;
 }
 
+/*
 .btn:hover {
-    background: rgb(130, 35, 194);
-    color: rgb(222, 222, 222);
-    color: rgb(203, 155, 235); 
-} */    
+    color: rgb(255, 255, 255,0.75);
+    font-size: x-large;
+    transition: ease-in 0.3s;
+} */     
 
 td .btn {
     font-size: 1.8rem;
