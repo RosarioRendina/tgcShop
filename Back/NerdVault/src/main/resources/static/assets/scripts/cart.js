@@ -16,6 +16,7 @@ cartBtn.addEventListener('click', loadCart);
 
 function loadCart() {
     console.log('cart: ', cart);
+    cart.innerHTML = '';
 
     let carrelloStorage = JSON.parse(localStorage.getItem('carrello'));
     console.log('Carrello in LocalStorage: ', carrelloStorage);

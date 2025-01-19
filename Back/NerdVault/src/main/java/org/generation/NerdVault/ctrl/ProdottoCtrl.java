@@ -83,14 +83,14 @@ public class ProdottoCtrl {
 				) {
 		try {
 			
-			final Pattern NON_ALPHANUMERIC = Pattern.compile("[^a-zA-Z0-9]");
-			String name = NON_ALPHANUMERIC.matcher(nome).replaceAll("");
 			
 			Direction direction = sortDirection.equalsIgnoreCase("ASC") ? Direction.ASC : Direction.DESC;
 			Sort sort = Sort.by(direction, sortBy);
 			
 			Pageable pageable = PageRequest.of(page, size, sort);
-			if (name != null && !name.isEmpty()) {
+			if (nome != null && !nome.isEmpty()) {
+				final Pattern NON_ALPHANUMERIC = Pattern.compile("[^a-zA-Z0-9]");
+				String name = NON_ALPHANUMERIC.matcher(nome).replaceAll("");
 				if (categoria != null && !categoria.isEmpty()) {
 					List<ProdottoDto> dtos = prodottoService.prendiPagingNomeCategoria(categoria, name.trim(), pageable);
 					return ResponseEntity.ok(dtos);
