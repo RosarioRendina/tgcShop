@@ -91,7 +91,7 @@ body{
 }
 
 #prodotti{
-    margin-left: 250px;
+    padding-left: 250px;
     /*overflow-y: auto;
     border: 2px solid #ddd;; */
 }

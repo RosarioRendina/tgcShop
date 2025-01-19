@@ -1,5 +1,5 @@
 let ruoloUtente = "";
-console.log(ruoloUtente);
+console.log(ruoloUtente);               // ????
 
 // Funzione che si avvia al caricamento o al refresh della pagina
 window.addEventListener('load', async () => {
@@ -23,18 +23,9 @@ window.addEventListener('load', async () => {
 
 // Funzione per gestire il controllo del ruolo utente
 async function verificaRuoloUtente() {
-    const data = await fetch("http://localhost:8080/auth/checkSession", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
+    const data = await fetch("http://localhost:8080/auth/checkSession")
     .then(response => response.json())
-    .catch(error => {
-        console.error("Errore nel verificare la sessione", error);
-        return null;
-    });
+    .catch(error => console.error("Errore nel verificare la sessione", error));
 
     if (data && data.ruolo) {
         console.log("Ruolo utente verificato:", data.ruolo);
@@ -46,66 +37,22 @@ async function verificaRuoloUtente() {
         console.log("Utente non loggato o sessione scaduta");
 
         // Mostra il form di login
-        document.body.innerHTML = `
-            <h1>Non hai i permessi per accedere a questa pagina! Effettua il login</h1>
-            <form action="javascript:void(0);" method="POST" id="loginForm">
-                <div class="mb-3">
-                    <label for="inputEMail" class="col-form-label">E-mail</label>
-                    <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" required>
-                </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="col-form-label">Password</label>
-                    <input type="password" class="form-control" id="inputPassword" name="password" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Invia</button>
-                </div>
-            </form>
-        `;
-
-        // Aggiungi il listener per il submit del form di login
-        const loginForm = document.getElementById("loginForm");
-        if (loginForm) {
-            loginForm.addEventListener("submit", handleLoginSubmit);
-        }
+        showLogin();
     }
 }
 
 // Funzione per aggiornare l'interfaccia in base al ruolo
 function aggiornaUI(ruolo) {
-    if (ruolo === 'UTENTE') {
-        document.getElementById("btnLogin").style.display = "none";
-        document.getElementById("btnLogout").style.display = "inline-block";
-        document.getElementById("btnOrders").style.display = "inline-block";
-        document.getElementById("btnPanel").style.display = "none";
-    } else if (ruolo === 'ADMIN') {
-        document.getElementById("btnLogin").style.display = "none";
-        document.getElementById("btnLogout").style.display = "inline-block";
-        document.getElementById("btnOrders").style.display = "inline-block";
+    if (ruolo === 'ADMIN') {
         document.getElementById("btnPanel").style.display = "inline-block";
-    } else {
-        document.body.innerHTML = `
-            <h1>Non hai i permessi per accedere a questa pagina! Effettua il login</h1>
-            <form action="javascript:void(0);" method="POST" id="loginForm">
-                <div class="mb-3">
-                    <label for="inputEMail" class="col-form-label">E-mail</label>
-                    <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" required>
-                </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="col-form-label">Password</label>
-                    <input type="password" class="form-control" id="inputPassword" name="password" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Invia</button>
-                </div>
-            </form>
-        `;
+    }
 
-        // Aggiungi il listener per il submit del form di login
-        const loginForm = document.getElementById("loginForm");
-        if (loginForm) {
-            loginForm.addEventListener("submit", handleLoginSubmit);
-        }
+    if (ruolo === 'UTENTE' || ruolo === 'ADMIN') {
+        document.getElementById("btnLogin").style.display = "none";
+        document.getElementById("btnLogout").style.display = "inline-block";
+        document.getElementById("btnOrders").style.display = "inline-block";
+    } else {
+        showLogin();
     }
 }
 
@@ -134,7 +81,7 @@ function handleLoginSubmit(event) {
             console.log("Login riuscito", data);
 
             // Aggiorna l'interfaccia utente dopo il login
-            alert("Login riuscito, benvenuto " + data.nome);
+            // alert("Login riuscito, benvenuto " + data.nome);
             console.log("Ruolo:", data.ruolo);
 
             // Aggiorna il ruolo e la UI
@@ -148,7 +95,7 @@ function handleLoginSubmit(event) {
 
         } else {
             console.log("Login fallito");
-            alert("Credenziali non valide");
+            // alert("Credenziali non valide");
         }
     })
     .catch(error => console.error("Errore nel login", error));
@@ -183,18 +130,12 @@ document.getElementById("CheckSession").addEventListener("click", async function
 
 // Funzione per verificare lo stato della sessione
 async function checkSession() {
-    const data = await fetch("http://localhost:8080/auth/checkSession", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
+    const data = await fetch("http://localhost:8080/auth/checkSession")
     .then(response => {
         if (response.status === 401) {
             // Se la risposta è 401 (Unauthorized), significa che l'utente non è loggato
             console.log("Utente non loggato");
-            alert("Non sei loggato");
+            // alert("Non sei loggato");
             return null;  // Nessun dato da parsare
         }
         return response.json();  // Solo se la risposta è valida, la parsificiamo come JSON
@@ -203,6 +144,31 @@ async function checkSession() {
     if (data) {
         // Se siamo riusciti a fare il parsing, significa che l'utente è loggato
         console.log("Utente loggato:", data);
-        alert("Utente loggato: " + data.nome);
+        // alert("Utente loggato: " + data.nome);
+    }
+}
+
+function showLogin() {
+    // Mostra il form di login
+    document.body.innerHTML = `
+            <h1>Non hai i permessi per accedere a questa pagina! Effettua il login</h1>
+            <form action="javascript:void(0);" method="POST" id="loginForm">
+                <div class="mb-3">
+                    <label for="inputEMail" class="col-form-label">E-mail</label>
+                    <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputPassword" class="col-form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" name="password" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Invia</button>
+                </div>
+            </form>
+        `;
+    // Aggiungi il listener per il submit del form di login
+    const loginForm = document.getElementById("loginForm");
+    if (loginForm) {
+        loginForm.addEventListener("submit", handleLoginSubmit);
     }
 }

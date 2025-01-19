@@ -13,7 +13,7 @@ window.addEventListener('load', async () => {
     Array.from(forms).forEach(modulo => {
         modulo.addEventListener('submit', evento => {
             if (!modulo.checkValidity()) {
-                evento.preventDefault();
+                evento.preventDefault();   
                 evento.stopPropagation();
             }
             modulo.classList.add('was-validated');
@@ -156,7 +156,7 @@ async function checkSession() {
         if (response.status === 401) {
             // Se la risposta è 401 (Unauthorized), significa che l'utente non è loggato
             console.log("Utente non loggato");
-            alert("Non sei loggato");
+            // alert("Non sei loggato");
             return null;  // Nessun dato da parsare
         }
         return response.json();  // Solo se la risposta è valida, la parsificiamo come JSON
@@ -165,6 +165,6 @@ async function checkSession() {
     if (data) {
         // Se siamo riusciti a fare il parsing, significa che l'utente è loggato
         console.log("Utente loggato:", data);
-        alert("Utente loggato: " + data.nome);
+        // alert("Utente loggato: " + data.nome);
     }
 }

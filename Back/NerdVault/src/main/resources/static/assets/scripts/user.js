@@ -139,10 +139,10 @@ function createOrdersRow(ordini) {
  function filterAndDisplayOrders(ordini){
 
     //ottieni lo stato dei filtri
-    const speditiChecked =document.getElementById("CheckSpediti").checked;
-    const lavorazioneChecked =document.getElementById("CheckLavorazione").checked;
-    const consegnatiChecked =document.getElementById("CheckConsegnati").checked;
-    const annullatiChecked =document.getElementById("CheckAnnullati").checked;
+    const speditiChecked = document.getElementById("CheckSpediti").checked;
+    const lavorazioneChecked = document.getElementById("CheckLavorazione").checked;
+    const consegnatiChecked = document.getElementById("CheckConsegnati").checked;
+    const annullatiChecked = document.getElementById("CheckAnnullati").checked;
 
     //crea una lista dei filtri selezionati
     const selectedFilters = [];
@@ -163,7 +163,7 @@ function createOrdersRow(ordini) {
     });
 
        //controlli di validità
-       console.log("filtri selezionati:" + speditiChecked, lavorazioneChecked,consegnatiChecked,annullatiChecked);
+       console.log("filtri selezionati:" + speditiChecked, lavorazioneChecked, consegnatiChecked, annullatiChecked);
        console.log("Ordini filtrati:", filteredOrders);
 
     //stampa degli ordini

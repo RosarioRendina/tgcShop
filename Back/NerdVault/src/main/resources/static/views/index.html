@@ -67,32 +67,62 @@
         </div>
       </div>
     </div>
-     <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
+    <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
 
-      <!-- MODALE CARRELLO -->
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
+    <!-- MODALE CARRELLO -->
+    <!-- Per eliminare effetto tema scuro, togliere data-bst-theme="dark" e classe text-white dal div 2 righe sotto -->
+    <div class="modal fade" id="cartModal" data-bs-theme="dark" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable text-white me-3" data-bs-theme="dark">
+        <div class="modal-content h-100" data-bs-theme="dark">
+          <div class="modal-header" data-bs-theme="dark">
             <h1 class="modal-title fs-5" id=""></h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
           </div>
-          <div class="modal-body">
-              <div class="mb-3" id="cartImg">
-                IMMAGINE
-              </div>
-              <div class="mb-3" id="cartInfo">
-               QUANTITA/ PREZZO/ DESCRIZIONE 
-              </div>
+          <div class="modal-body" data-bs-theme="dark">
+
+            <!-- PRODOTTO MODALE -->
+          <div class="container-fluid">
+            <div class="row mb-4 d-flex justify-content-between align-items-center">
+                <div class="col-md-3">
+                    <img
+                    src="/assets/img/prodotti/bundle-ff.jpg"
+                    class="img-fluid rounded-3 w-full">
+                </div>
+                <div class="col-6 col-md-3 mt-3 mt-md-0">
+                    <h6 class="text-secondary prodottoCategoria">categoria</h6>
+                    <h6 class="mb-0 prodottoNome">NOME PRODOTTO</h6>
+                </div>
+                <div class="col-6 col-md-3 d-flex mt-3 mt-md-0">
+                    <button class="btn btn-link px-2"
+                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                    <i class="fas fa-minus"></i>
+                    </button>
+                    <input min="0" name="quantity" value="1" type="number"
+                      class="form-control form-control-sm quantityForm">
+                    <button class="btn btn-link px-2"
+                      onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="col-6 col-md-2 mt-3 mt-md-0">
+                    <h6 class="mb-0">PREZZO</h6>
+                </div>
+                <div class="col-6 col-md-1 text-end mt-3 mt-md-0 pe-4 pe-md-1">
+                    <i class="fas fa-trash"></i>
+                </div>
+            </div>
+          </div>
+          <!-- FINE PRODOTTO MODALE -->
+
               <div class="modal-footer">
                   <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
-                </div>
+              </div>
           </div>
           
         </div>
       </div>
     </div>
-   <!-- FINE MODALE CARRELLO --> 
+    <!-- FINE MODALE CARRELLO --> 
 
 
     <!-- SLIDER HERO -->
@@ -197,6 +227,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/assets/scripts/home.js"></script>
+    <script src="/assets/scripts/cart.js"></script>
     <script src="/assets/scripts/login.js"></script>
 </body>
 </html>

@@ -75,7 +75,7 @@ INSERT INTO `prodotto` (`nome`, `descrizione`, `categoria`, `prezzo`, `rimanenza
 ('The Legend of Zelda: Tears of the Kingdom', 'Gioco d’azione e avventura per Nintendo Switch.', 'GAMES', 15.99, 300, 50, TRUE, TRUE, 'tears-of-kingdom.jpg', '2024-09-01', '2024-12-01', 5.00),
 ('Funko Pop Pikachu', 'Figura da collezione Funko Pop del Pokémon Pikachu.', 'MERCH', 19.99, 100, 0, TRUE, FALSE, 'funko-pika.jpg', NULL, NULL, NULL),
 ('Tappetino da Gioco Yu-Gi-Oh!', 'Tappetino decorato per giocare a Yu-Gi-Oh! comodamente.', 'ACCESSORI', 12.99, 60, 6, TRUE, TRUE, 'yugi-mat.jpg', '2024-08-01', '2024-11-15', 10.00),
-('Set Deluxe Pokémon', 'Set speciale con carte rare e accessori esclusivi.', 'NOVITA', 89.99, 15, 2, TRUE, TRUE, 'poke-deluxe.jpg', '2024-07-01', '2025-01-20', 18.00),
+('Set Deluxe Pokémon', 'Set speciale con carte rare e accessori esclusivi.', 'NOVITA', 89.99, 0, 2, TRUE, TRUE, 'poke-deluxe.jpg', '2024-07-01', '2025-01-20', 18.00),
 ('Poster Naruto', 'Poster ufficiale della serie anime Naruto.', 'ALTRO', 29.99, 75, 10, FALSE, TRUE, 'naruto-poster.jpg', '2024-12-05', '2025-01-05', 6.00),
 ('Pacchetto Espansione Magic: Dominaria', 'Espansione con nuove carte per il mondo di Dominaria.', 'PREVENDITA', 34.99, 85, 9, TRUE, TRUE, 'dominaria-booster.jpg', '2025-01-10', '2025-02-15', 10.50),
 ('Starter Pack Digimon', 'Set iniziale per il gioco di carte Digimon.', 'PREVENDITA', 64.99, 35, 3, TRUE, TRUE, 'digimon-starter.jpg', '2025-01-20', '2025-03-20', 8.00),

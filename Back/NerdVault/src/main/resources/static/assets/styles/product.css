@@ -10,6 +10,16 @@ body{
     background-image: none;
 }
 
+
+/* --------------- RIMUOVI FRECCE SCROLLBAR INPUT TYPE NUMBER --------------- */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
 /* ! PROVA SLIDERS */
 
 .image-left,

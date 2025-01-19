@@ -19,103 +19,105 @@ impaginate -->
 <body>
 <div class="image-left"></div>
 <div class="image-right"></div>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-      <img class="logo" src="/assets/img/logo.png" alt="">
-      <a class="navbar-brand" href="/views/index.html" style="padding: 0!important;">Nerd Vault</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <button id="btnLogin" type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
-                <button id="btnLogout" type="button" class="btn nav-link" style="display: none;">Logout</button>
-                  <button type="button" class="btn nav-link" id ="CheckSession">CheckSession</button>
-                  <button id="btnShop" type="button" class="btn nav-link" onclick="window.location.href='/views/shop.html'">Shop</button>
-                  <button id="btnOrders" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/user.html'">I miei ordini</button>
-                  <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
-                  <i class="fa-solid fa-coins"></i>
-                  <span class="visually-hidden">Mostra carrello</span>
-                </button>
-            </li>
-          </ul>
-      </div>
-  </div>
-</nav>
-<!-- MODALE LOGIN +++ VA CON LA NAVBAR -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <!-- Form di Login con action e method POST -->
-      <form action="/auth/login" method="POST" id="loginForm">
-        <div class="mb-3">
-            <label for="inputEMail" class="col-form-label">E-mail</label>
-            <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" required>
-        </div>
-        <div class="mb-3">
-            <label for="inputPassword" class="col-form-label">Password</label>
-            <input type="password" class="form-control" id="inputPassword" name="password" required>
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Invia</button>
-        </div>
-    </form>
-    </div>
-  </div>
-</div>
-</div>
-<!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
 
-<!-- MODALE CARRELLO -->
-<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h1 class="modal-title fs-5" id=""></h1>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
-    </div>
-    <div class="modal-body">
-        <div class="mb-3" id="cartImg">
-          IMMAGINE
-        </div>
-        <div class="mb-3" id="cartInfo">
-         QUANTITA/ PREZZO/ DESCRIZIONE 
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+          <img class="logo" src="/assets/img/logo.png" alt="">
+          <a class="navbar-brand" href="/views/index.html" style="padding: 0!important;">Nerd Vault</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <button id="btnLogin" type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
+                    <button id="btnLogout" type="button" class="btn nav-link" style="display: none;">Logout</button>
+                      <button type="button" class="btn nav-link" id ="CheckSession">CheckSession</button>
+                      <button id="btnShop" type="button" class="btn nav-link" onclick="window.location.href='/views/shop.html'">Shop</button>
+                      <button id="btnOrders" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/user.html'">I miei ordini</button>
+                      <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
+                  </li>
+                  <li class="nav-item">
+                    <button type="button" id="cart-btn" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
+                      <i class="fa-solid fa-coins"></i>
+                      <span class="visually-hidden">Mostra carrello</span>
+                    </button>
+                </li>
+              </ul>
           </div>
+      </div>
+  </nav>
+  <!-- MODALE LOGIN +++ VA CON LA NAVBAR -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Form di Login con action e method POST -->
+          <form action="/auth/login" method="POST" id="loginForm">
+            <div class="mb-3">
+                <label for="inputEMail" class="col-form-label">E-mail</label>
+                <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" required>
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword" class="col-form-label">Password</label>
+                <input type="password" class="form-control" id="inputPassword" name="password" required>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Invia</button>
+            </div>
+        </form>
+        </div>
+      </div>
     </div>
-    
   </div>
-</div>
-</div>
-<!-- FINE MODALE CARRELLO --> 
+  <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
+
+  <!-- MODALE CARRELLO -->
+  <!-- Per eliminare effetto tema scuro, togliere data-bst-theme="dark" e classe text-white dal div 2 righe sotto -->
+  <div class="modal fade" id="cartModal" data-bs-theme="dark" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable text-white me-md-3" data-bs-theme="dark">
+      <div class="modal-content h-100" data-bs-theme="dark">
+        <div class="modal-header" data-bs-theme="dark">
+          <h1 class="modal-title fs-5" id=""></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
+        </div>
+        <div class="modal-body" data-bs-theme="dark" id="cart-body">
+
+
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- FINE MODALE CARRELLO --> 
 
     <div class="container w-75 justify-content-center row" id="product-container"> 
         <div class="col-12 d-flex flex-column align-items-center">
             <img class="product-img mb-5" id="product-img" alt="sium" src="">
             <div class="d-flex flex-row row" id="product-info">
-              <div class="product-desc col-xs-12 col-md-8 mt-3" id="product-description">
-                <p></p>
+              <div class="col-xs-12 col-md-8 mt-3">
+                <h1 id="product-title"> </h1>
+                <div class="product-desc" id="product-description">
+                  <p></p>
+                </div>
               </div>
               <div class="col-xs-12 col-md-4 flex-column" >
-                <h1 id="product-title"> </h1>
-                <h3 id="product-price">  </h3>
-                <div class="d-flex ">
-                  <input type="number" class="form-control w-25" id="product-quantity" placeholder="0" min="1" step="1" required style="align-self: center;">    
-                <button type="button" id="btn-carrello" class="btn my-3"> Aggiungi al carrello </button>
+                <h5 class="text-danger mt-3 d-none pochiDisponibili">Scorte in esaurimento. Disponibili: </h5>
+                <h5 class="text-danger mt-3 d-none nonDisponibile">Prodotto attualmente non disponibile.</h5>
+                <h3 class="mt-3" id="product-price">PREZZO</h3>
+                <div class="d-flex">
+                  <input type="number" class="form-control w-25" id="product-quantity" placeholder="1" min="1" step="1" required style="align-self: center;">    
+                  <button type="button" id="btn-carrello" class="btn my-3"> Aggiungi al carrello </button>
                 </div>
-                <h3 id="product-available" class="d-none"> Il prodotto non è disponibile </h3>
               </div>
             </div>
         </div>
@@ -124,5 +126,6 @@ impaginate -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/assets/scripts/product.js"></script>
     <script src="/assets/scripts/login.js"></script>
+    <script src="/assets/scripts/cart.js"></script>
 </body>
 </html>
