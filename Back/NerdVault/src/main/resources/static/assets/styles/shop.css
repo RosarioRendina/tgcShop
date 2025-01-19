@@ -2,8 +2,10 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
-    background-color: bisque;
+    background-image: url('/assets/img/colored-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
 }
 
 .navbar{
@@ -93,7 +95,7 @@ body{
 }
 
 #prodotti{
-    padding-left: 250px;
+    /*padding-left: 250px;*/
     /*overflow-y: auto;
     border: 2px solid #ddd;; */
 }
@@ -105,21 +107,43 @@ body{
 }
 
 #filtri{
-position: fixed; /* Posizione fissa */
+/*position: fixed; /* Posizione fissa */
   top: 150px; /* Incolla il filtro nella parte superiore della pagina */
   left: 0; /* Allinea il filtro a sinistra */
-  width: 200px; /* Larghezza fissa per la barra dei filtri */
-  height: 100vh; /* Altezza che occupa l'intero schermo */
+  /*width: 200px; /* Larghezza fissa per la barra dei filtri */
+  /*height: 100vh; /* Altezza che occupa l'intero schermo */
   /*overflow-y: auto; /* Aggiungi uno scroll interno se necessario */
-  /*background-color: #f8f9fa; /* Colore di sfondo */
   padding: 10px; /* Spazi interni */
   z-index: 100; 
 }
 
+#filtri h1 {
+    overflow-wrap: break-word; /* Spezza il testo */
+    word-break: break-word; /* Compatibilità */
+    max-width: 100%;
+    font-size: clamp(1rem, 5vw, 2.2rem);
+    font-weight: 600;
+}
+
+.fixed{
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    color: white;
+}
+
+#available-container,
+#presale-container{
+    justify-content: space-around;
+}
+
+
 #valore-disponibili{
-    position: fixed;
-    top: 100px;
-    left:250px;
+    /*position: fixed;
+     top: 100px;
+    left:250px;*/
     z-index:100;
 }
 
@@ -160,10 +184,6 @@ position: fixed; /* Posizione fissa */
     height: 230px;
     padding-top: 8px;
     object-fit: contain;
-}
-
-.fixed{
-    position: fixed;
 }
 
 .section-title{

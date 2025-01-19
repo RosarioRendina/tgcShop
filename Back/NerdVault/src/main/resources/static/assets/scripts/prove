@@ -49,3 +49,17 @@ function filterAndDisplayAvailableProducts(prodotti) {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+
+
+
+<div class="card">
+  <div class="imgBx"> // 
+    <img src=""> //card-img-top 
+  </div>
+  <div class="content"> //card-body 
+    <div class="contentBx">
+      <h3>Nome<br> //card-title
+      <span>Prezzp</span></h3> //card-text discount + animazione li
+    </div>
+  </div> //img
+</div> //card
