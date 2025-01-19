@@ -59,6 +59,11 @@ function loadCart() {
         `;
 
         cart.prepend(prodottoCart);
+        cart.innerHTML += `
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
+        </div>
+        `;
     });
 
     cart.addEventListener('click', e => {
