@@ -9,76 +9,95 @@ const isIndex = page === 'index.html' || page === '';
 console.log('sei sulla pagina: ', page);    //del
 console.log('sei sulla home? ', isIndex);   //del
 
-const cart = document.getElementById('cart-body');
+// Selezione degli elementi principali
+const cartBody = document.getElementById('cart-body');
 const cartBtn = document.getElementById('cart-btn');
 
+// Aggiungi l'evento click al pulsante del carrello
 cartBtn.addEventListener('click', loadCart);
 
 function loadCart() {
-    console.log('cart: ', cart);
-    cart.innerHTML = '';
+    // Svuota il contenuto corrente del carrello
+    cartBody.innerHTML = '';
 
-    let carrelloStorage = JSON.parse(localStorage.getItem('carrello'));
+    // Recupera i dati dal localStorage
+    let carrelloStorage = JSON.parse(localStorage.getItem('carrello')) || [];
+
     console.log('Carrello in LocalStorage: ', carrelloStorage);
 
+    // Genera gli elementi del carrello
     carrelloStorage.forEach(prodotto => {
+        // Crea il contenitore del prodotto
         let prodottoCart = document.createElement('div');
-        prodottoCart.classList.add('container-fluid');
+        prodottoCart.classList.add('container-fluid', 'prodotto-carrello');
+        prodottoCart.setAttribute('data-nome-prodotto', prodotto.nome); // Aggiungi un attributo personalizzato per identificare il prodotto
+
+        // Aggiungi il contenuto HTML del prodotto
         prodottoCart.innerHTML = `
-        <!-- PRODOTTO MODALE -->
-          <div class="row mb-4 d-flex justify-content-between align-items-center">
-              <div class="col-md-3">
-                  <img
-                  src="${prodotto.img}"
-                  class="img-fluid rounded-3 w-full">
-              </div>
-              <div class="col-6 col-md-3 mt-3 mt-md-0">
-                  <h6 class="mb-0 prodottoNome">${prodotto.nome}</h6>
-              </div>
-              <div class="col-6 col-md-3 d-flex mt-3 mt-md-0">
-                  <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
-                  </button>
-                  <input min="0" name="quantity" value="${prodotto.quanti}" type="number"
-                    class="form-control form-control-sm quantityForm">
-                  <button class="btn btn-link px-2"
-                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                      <i class="fas fa-plus"></i>
-                  </button>
-              </div>
-              <div class="col-6 col-md-2 mt-3 mt-md-0">
-                  <h6 class="mb-0">€${prodotto.prezzo}</h6>
-              </div>
-              <div class="col-6 col-md-1 text-end mt-3 mt-md-0 pe-4 pe-md-1">
-                  <i class="fas fa-trash"></i>
-              </div>
-          </div>
-        <!-- FINE PRODOTTO MODALE -->
+        <div class="row mb-4 d-flex justify-content-between align-items-center">
+            <div class="col-md-3">
+                <img src="${prodotto.img}" class="img-fluid rounded-3 w-full" alt="${prodotto.nome}">
+            </div>
+            <div class="col-6 col-md-3 mt-3 mt-md-0">
+                <h6 class="mb-0 prodotto-nome">${prodotto.nome}</h6>
+            </div>
+            <div class="col-6 col-md-3 d-flex mt-3 mt-md-0">
+                <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <input min="0" name="quantity" value="${prodotto.quanti}" type="number"
+                    class="form-control form-control-sm quantity-form">
+                <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="col-6 col-md-2 mt-3 mt-md-0">
+                <h6 class="mb-0">€${prodotto.prezzo}</h6>
+            </div>
+            <div class="col-6 col-md-1 text-end mt-3 mt-md-0 pe-4 pe-md-1">
+                <i class="fas fa-trash delete-product"></i>
+            </div>
+        </div>
         `;
 
-        cart.prepend(prodottoCart);
-    })
-    cart.innerHTML += `
+        // Aggiungi il prodotto al carrello nel DOM
+        cartBody.prepend(prodottoCart);
+    });
+
+    // Aggiungi il pulsante di conferma alla fine
+    cartBody.innerHTML += `
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
+        <button type="submit" class="btn btn-primary" id="ordineBtn">Concludi ordine</button>
     </div>
     `;
 
-    cart.addEventListener('click', e => {
+    // Gestione degli eventi di eliminazione prodotto
+    cartBody.addEventListener('click', function (e) {
         e.preventDefault();
 
-        if (e.target.tagName === 'I' && e.target.classList.contains('fa-trash')) {
-            // Implementare logica di eliminazione prodotto da array cart in localStorage
-            
-            
+        // Verifica se è stato cliccato il cestino
+        if (e.target.classList.contains('delete-product')) {
             console.log('CANCELLA PRODOTTO');
-            e.target.parentElement.parentElement.remove();
-        }
+            
+            // Trova il contenitore del prodotto
+            const prodottoElement = e.target.closest('.prodotto-carrello');
+            const nomeProdotto = prodottoElement.getAttribute('data-nome-prodotto'); // Recupera il nome del prodotto
 
-        console.log('TAG: ', e.target.tagName);
-        
-    })
+            // Recupera il carrello dal localStorage
+            let carrelloStorage = JSON.parse(localStorage.getItem('carrello')) || [];
+
+            // Rimuovi il prodotto dal carrello
+            carrelloStorage = carrelloStorage.filter(prodotto => prodotto.nome !== nomeProdotto);
+
+            // Aggiorna il localStorage
+            localStorage.setItem('carrello', JSON.stringify(carrelloStorage));
+
+            // Rimuovi il prodotto dal DOM
+            prodottoElement.remove();
+        }
+    });
 }
 
-document.querySelectorAll('.quantityForm');
+
+// document.querySelectorAll('.quantityForm');
+

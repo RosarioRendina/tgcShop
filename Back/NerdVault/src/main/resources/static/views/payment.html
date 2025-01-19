@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento Elettronico Ordine Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="number"], input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Pagamento Ordine Online</h1>
+        <form action="#" method="POST">
+            <h2>Dettagli Ordine</h2>
+            <label for="orderID">ID Ordine:</label>
+            <input type="text" id="orderID" name="orderID" required>
+
+            <label for="amount">Importo da Pagare (€):</label>
+            <input type="number" id="amount" name="amount" required>
+
+            <h2>Dettagli di Pagamento</h2>
+            <label for="cardHolder">Nome Intestatario Carta:</label>
+            <input type="text" id="cardHolder" name="cardHolder" required>
+
+            <label for="cardNumber">Numero Carta di Credito:</label>
+            <input type="number" id="cardNumber" name="cardNumber" required>
+
+            <label for="expiryDate">Data di Scadenza (MM/YY):</label>
+            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+
+            <label for="cvv">Codice di Sicurezza (CVV):</label>
+            <input type="number" id="cvv" name="cvv" required>
+
+            <h2>Indirizzo di Fatturazione</h2>
+            <label for="address">Indirizzo:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="city">Città:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="postalCode">CAP:</label>
+            <input type="text" id="postalCode" name="postalCode" required>
+
+            <label for="country">Paese:</label>
+            <select id="country" name="country" required>
+                <option value="italy">Italia</option>
+                <option value="france">Francia</option>
+                <option value="germany">Germania</option>
+                <option value="spain">Spagna</option>
+                <option value="uk">Regno Unito</option>
+            </select>
+
+            <h2>Contatti</h2>
+            <label for="email">Indirizzo Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Numero di Telefono:</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <input type="submit" value="Paga Ora">
+        </form>
+    </div>
+
+</body>
+</html>

@@ -30,7 +30,7 @@
                         <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
                     </li>
                     <li class="nav-item">
-                      <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
+                      <button type="button" id="cart-btn" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
                         <i class="fa-solid fa-coins"></i>
                         <span class="visually-hidden">Mostra carrello</span>
                       </button>
@@ -66,32 +66,30 @@
         </div>
       </div>
     </div>
-     <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
-
-      <!-- MODALE CARRELLO -->
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id=""></h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
-          </div>
-          <div class="modal-body">
-              <div class="mb-3" id="cartImg">
-                IMMAGINE
-              </div>
-              <div class="mb-3" id="cartInfo">
-               QUANTITA/ PREZZO/ DESCRIZIONE 
-              </div>
-              <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
-                </div>
-          </div>
-          
+    <!-- FINE MODALE LOGIN +++ VA CON LA NAVBAR --> 
+  
+    <!-- MODALE CARRELLO -->
+  <!-- Per eliminare effetto tema scuro, togliere data-bst-theme="dark" e classe text-white dal div 2 righe sotto -->
+  <div class="modal fade" id="cartModal" data-bs-theme="dark" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable text-white me-md-3" data-bs-theme="dark">
+      <div class="modal-content h-100" data-bs-theme="dark">
+        <div class="modal-header" data-bs-theme="dark">
+          <h1 class="modal-title fs-5" id=""></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
         </div>
+        <div class="modal-body" data-bs-theme="dark" id="cart-body">
+  
+  
+  
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
+            </div>
+        </div>
+        
       </div>
     </div>
-   <!-- FINE MODALE CARRELLO --> 
+  </div>
+  <!-- FINE MODALE CARRELLO -->
 
     <!-- MODALE DETTAGLI ORDINE-->
      <div id="order-details" class="modal" tabindex="-1">
@@ -208,5 +206,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/assets/scripts/user.js"></script>
     <script src="/assets/scripts/user-login.js"></script>
+    <script src="/assets/scripts/cart.js"></script>
 </body>
 </html>
