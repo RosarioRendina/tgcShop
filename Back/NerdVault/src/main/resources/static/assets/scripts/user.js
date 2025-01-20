@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const CANCELLATO = "CANCELLATO";
 
   async function fetchOrders() {
-
     const utente = await checkSession();
 
     const apiUrl = `http://localhost:8080/api/ordine/u/${utente.utenteId}`;
@@ -82,8 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (ordine.statoOrdine === IN_LAVORAZIONE) {
         row.innerHTML = `
-            <td>${ordine.dataConsegna || "Non disponibile"}</td>
             <td>${ordine.dataOrdine}</td>
+            <td>${ordine.dataConsegna || "Non disponibile"}</td>
             <td>${ordine.indirizzoSpedizione}</td>
             <td>${ordine.statoOrdine}</td>
              <td>
@@ -91,10 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="btn btn-warning cancel-order-btn">Annulla</button>
             </td>
         `;
-      } else
+      } else {
         row.innerHTML = `
-            <td>${ordine.dataConsegna || "Non disponibile"}</td>
             <td>${ordine.dataOrdine}</td>
+            <td>${ordine.dataConsegna || `Non disponibile`}</td>
             <td>${ordine.indirizzoSpedizione}</td>
             <td>${ordine.statoOrdine}</td>
              <td>
@@ -102,39 +101,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="btn btn-warning cancel-order-btn d-none">Annulla</button>
             </td>
         `;
+      }
 
       // Event listeners per i pulsanti
       row.querySelector(".cancel-order-btn").addEventListener("click", () => {
         console.log(`Annulla ordine con ID ${ordine.ordineId}`);
         // Implementa la logica per annullare l'ordine
       });
-    //   row.querySelector(".details-order-btn").addEventListener("click", () => {
-    //     openDetailsModal(ordine);
-    //   });
+      //   row.querySelector(".details-order-btn").addEventListener("click", () => {
+      //     openDetailsModal(ordine);
+      //   });
 
 
+      const button = row.querySelector(".details-order-btn"); // Seleziona il bottone nella riga
+      if (button) {
+        button.addEventListener("click", function () {
+          // Ottieni l'ID dell'ordine dalla riga
+          const ordineId = row.getAttribute("ordine-ID");
 
-
-    const rows = document.querySelectorAll("tr"); // Ottieni tutte le righe della tabella
-
-    rows.forEach(row => {
-        const button = row.querySelector(".details-order-btn"); // Seleziona il bottone nella riga
-        if (button) {
-            button.addEventListener("click", function () {
-                // Ottieni l'ID dell'ordine dalla riga
-                const ordineId = row.getAttribute("ordine-ID");
-
-                // Reindirizza alla pagina dei dettagli dell'ordine, passando l'ID nell'URL
-                window.location.href = `order-details.html?ordineId=${ordineId}`;
-            });
-        }
-    });
-
-
-
-
-
-
+          // Reindirizza alla pagina dei dettagli dell'ordine, passando l'ID nell'URL
+          window.location.href = `order-details.html?ordineId=${ordineId}`;
+        });
+      }
 
       // Aggiungi la riga al contenitore
       container.appendChild(row);
@@ -220,40 +208,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // const dettagliBtns = document.querySelectorAll(".details-order-btn");
 
+  // dettagliBtns.forEach(button => {
+  //     button.addEventListener("click", function () {
+  //         // Ottieni l'ID dell'ordine dal dato dell'attributo
+  //         const ordineId = this.closest('tr').getAttribute("ordine-ID");
 
-
-
-
-
-
-
-
-    // const dettagliBtns = document.querySelectorAll(".details-order-btn");
-
-    // dettagliBtns.forEach(button => {
-    //     button.addEventListener("click", function () {
-    //         // Ottieni l'ID dell'ordine dal dato dell'attributo
-    //         const ordineId = this.closest('tr').getAttribute("ordine-ID");
-
-    //         // Reindirizza alla pagina dei dettagli dell'ordine, passando l'ID nell'URL
-    //         window.location.href = `./order-details.html?ordineId=${ordineId}`;
-    //     });
-    // });
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
+  //         // Reindirizza alla pagina dei dettagli dell'ordine, passando l'ID nell'URL
+  //         window.location.href = `./order-details.html?ordineId=${ordineId}`;
+  //     });
+  // });
 
   fetchOrders();
 });
