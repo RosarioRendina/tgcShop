@@ -1,6 +1,9 @@
 body{
     /*background-color: rgb(0, 0, 0);*/
     background-image: url("/assets/img/colored-bg.jpg"); 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .navbar{
@@ -22,7 +25,7 @@ body{
         width: auto;
     }
     .navbar-brand{
-        font-family: "Pixelify Sans", sans-serif;
+        /*font-family: "Pixelify Sans", sans-serif;*/
         font-size: xx-large;
         /* border-bottom: 2px white dotted; */
     }
@@ -31,7 +34,7 @@ body{
     }
 
     a{
-        font-family: "Pixelify Sans", sans-serif;
+        /*font-family: "Pixelify Sans", sans-serif;*/
         font-size: larger;
         color: rgb(165,55,240);
         text-shadow: 
@@ -63,7 +66,7 @@ footer{
       width: auto;
   }
   a{
-    font-family: "Pixelify Sans", sans-serif;
+    /*font-family: "Pixelify Sans", sans-serif;*/
     font-size: larger;
     color: rgb(165,55,240);
     text-shadow: 
@@ -76,7 +79,7 @@ a:hover {
     color: rgb(255, 255, 255,0.75) !important;
 }
 .navbar-brand{
-  font-family: "Pixelify Sans", sans-serif;
+  /*font-family: "Pixelify Sans", sans-serif;*/
   font-size: xx-large;
   /* border-bottom: 2px white dotted; */
 }
@@ -142,7 +145,7 @@ a:hover {
 
 /******** SLIDER *******/
 .hero-slider {
-   margin-top: 70px;
+   margin-top: 250px;
     position: relative;
     left: 10%;
     width: 80%;
@@ -439,7 +442,7 @@ body.modal {
 /**********************************/
 
 .container-prodotti{
-    margin: auto!important;
+    margin: 0 auto 250px auto!important;
 }
 
 .elencoHome{
@@ -451,10 +454,18 @@ body.modal {
 }
 
 .section-title{
+  margin-top: 250px;
+  margin-bottom: 70px;
+
     text-align: center;
-    font-family: "Pixelify Sans", sans-serif;
-    font-size: 3rem;
-    color: white;
+    /*font-family: "Pixelify Sans", sans-serif;*/
+    font-size: clamp(2rem,5vw ,5rem);
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 
+    0px 0px 5px rgba(165,55,240, 0.8),   /* Luce centrale */
+    0px 0px 15px rgba(165,55,240, 0.7),  /* Luce diffusa */
+    0px 0px 25px rgba(165,55,240, 0.6),  /* Luce più sfumata */
+    0px 0px 35px rgba(165,55,240, 0.5);  /* Luce che si dissipa */
 }
 
 /******* PARALLAX *******/
@@ -487,14 +498,14 @@ body.modal {
     text-align: center;
     color: white;
     z-index: 2;
-    font-family: 'Pixelify Sans', sans-serif;
+    /*font-family: 'Pixelify Sans', sans-serif;*/
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
   }
 /* fine video */
 
 .parallax-logo{
         width: auto;
-        font-family: "Pixelify Sans", sans-serif;
+        /*font-family: "Pixelify Sans", sans-serif;*/
         font-size: xx-large;
         justify-content: center;
         align-items: center;
