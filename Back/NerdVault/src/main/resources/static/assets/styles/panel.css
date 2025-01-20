@@ -1,10 +1,23 @@
 body {
-    background-color: wheat;
+    /*background-color: wheat; */
     font-family: 'Arial', sans-serif;
     color: #fff;
     margin: 0;
     padding: 0;
-    padding-top: 5rem;
+    background-image: url("/assets/img/yami-yugi-bg.png");
+    background-size: cover;
+    background-position: center;
+}
+
+#bodypanel{
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url("/assets/img/yami-yugi-bg.png");
+    background-size: cover;
+    background-position: center;
+    position: fixed;
 }
 
 .navbar{
@@ -34,7 +47,8 @@ body {
     }
 
     h1 {
-        margin-top: 80px;;
+        /*margin-top: 80px;*/
+        font-size: clamp(1.6rem, 2vw, 2.2rem);
     }
 
     a{
@@ -51,24 +65,25 @@ body {
         color: rgb(255, 255, 255,0.75) !important;
     }
 
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   
+        0px 0px 10px rgba(165,55,240, 0.7),  
+        0px 0px 15px rgba(165,55,240, 0.6),  
+        0px 0px 20px rgba(165,55,240, 0.5); 
+    }
+
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    /*background: rgb(165,55,240);
-    color: #fff;
-    text-decoration: none;*/
-    border-radius: 5px;
-    transition: background 0.3s ease;
-}
 
-/*
 .btn:hover {
     color: rgb(255, 255, 255,0.75);
-    font-size: x-large;
-    transition: ease-in 0.3s;
-} */     
+}   
 
 td .btn {
     font-size: 1.8rem;
@@ -76,9 +91,9 @@ td .btn {
 
 .page-item a,
 .page-item button {
-    color: #fff;
-    background-color: #9132d1;
-    border-color: #524958;
+    color: #000000;
+    background-color:  rgb(255, 255, 255);
+    /*border-color: #524958; */
     transition: all .2s;
     cursor: pointer;
 }
@@ -88,47 +103,49 @@ td .btn {
 .page-item a:focus,
 .page-item button:focus {
     color: #fff;
-    background-color: #820bd0;
-    border-color: #820bd0;
+    background-color:  rgb(220, 220, 220);
+    border-color: rgb(255, 255, 255);
     transition: all .2s;
 }
 
 .pag-btn.active .page-link {
-    background-color: #820bd0;
-    border-color: #820bd0;
+    background-color: rgba(180, 180, 180);
+    border-color:  rgb(220, 220, 220,0.8);
     cursor: default;
 }
 
-.page-item.disabled .page-link {
+/*.page-item.disabled .page-link {
     color: #ccc;
     background-color: #9b58c7;
     border-color: #9b58c7;
-}
+}*/
 
 
 .edit-product-btn {
-    color: #781eb4;
+    color: rgb(235, 235, 0);
     transition: color .2s;
+    /*border: 1px solid black;*/
 }
 
 .edit-product-btn:hover {
-    color: #490f7d;    
+    color:  rgb(225, 225, 65);    
 }
 
 .delete-product-btn {
-    color: rgb(150, 30, 30);
+    color: rgb(180, 50, 50);
     transition: color .2s;
 }
 
 .delete-product-btn:hover {
-    color: rgb(114, 24, 24);
+    color: rgb(130, 30, 30);
 }
 
 #open-add-product-modal,
 #submit-product-btn,
 #update-product-btn {
-    background: #661a98;
-    border-color: #661a98;
+    background: rgb(55, 255, 0,0.8);
+    /*border-color:  rgb(255,255,0);*/
+    border: none;
     transition: all .2s;
 }
 
@@ -139,8 +156,8 @@ td .btn {
 #update-product-btn:hover,
 #update-product-btn:active
  {
-    background: #490f7d;
-    border-color: #490f7d;
+    background: rgb(55, 255, 0,0.8);
+    /*border-color:  rgb(255,255,0); */
 }
 
 .navigation {
@@ -355,4 +372,31 @@ td .btn {
 .modal-content {
     background-color: #222;
     color: white;
+}
+
+
+.container{
+    background-color: rgba(0, 0, 0, 0.1);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(30px);
+     -webkit-backdrop-filter: blur(30px);
+     box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.2);
+     padding-top: 15px;
+     padding-bottom: 15px;
+     
+}
+.container-log{
+    position: fixed;
+    top:10%;
+    left:5%;
+    width: 65%;
+}
+
+.pagination{
+    color: black;
+    ul{
+        color: black;
+    }
 }

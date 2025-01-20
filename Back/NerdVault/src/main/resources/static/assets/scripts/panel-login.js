@@ -47,10 +47,10 @@ async function verificaRuoloUtente() {
 
         // Mostra il form di login
         document.body.innerHTML = `
-            <div class="vh-100 d-flex align-items-center justify-content-center">
-                <div class="container">
+            <div class="vh-100 d-flex align-items-center justify-content-center" style="">
+                <div class="container container-log d-flex flex-column align-items-center align-content-center justify-content-center ">
                     <h1>Non hai i permessi per accedere a questa pagina! Effettua il login</h1>
-                    <form action="javascript:void(0);" method="POST" id="loginForm">
+                    <form class="w-50" action="javascript:void(0);" method="POST" id="loginForm">
                         <div class="mb-3">
                             <label for="inputEMail" class="col-form-label">E-mail</label>
                             <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" value="admin@email.com" required>
