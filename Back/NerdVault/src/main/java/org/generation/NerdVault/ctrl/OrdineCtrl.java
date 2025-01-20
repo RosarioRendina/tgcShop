@@ -113,6 +113,9 @@ public class OrdineCtrl {
 		try {
 			Utente trovato = utenteService.cercaPerId(utenteId);
 			ordine.setUtente(trovato);
+			if (ordine.getStatoOrdine() == null) {
+				ordine.setStatoOrdine(OrdineStato.IN_LAVORAZIONE);
+			}
 			OrdineDto dto = ordineService.aggiungi(ordine);
 			return ResponseEntity.ok(dto);
 			

@@ -20,34 +20,35 @@ impaginate -->
 <div class="image-left"></div>
 <div class="image-right"></div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-          <img class="logo" src="/assets/img/logo.png" alt="">
-          <a class="navbar-brand" href="/views/index.html" style="padding: 0!important;">Nerd Vault</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ms-auto">
-                  <li class="nav-item">
-                    <button id="btnLogin" type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
-                    <button id="btnLogout" type="button" class="btn nav-link" style="display: none;">Logout</button>
-                      <button type="button" class="btn nav-link" id ="CheckSession">CheckSession</button>
-                      <button id="btnShop" type="button" class="btn nav-link" onclick="window.location.href='/views/shop.html'">Shop</button>
-                      <button id="btnOrders" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/user.html'">I miei ordini</button>
-                      <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <img class="logo" src="/assets/img/logo.png" alt="">
+            <a class="navbar-brand" href="/views/index.html" style="padding: 0!important;">Nerd Vault</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+  
+                    <li class="nav-item">
+                      <button type="button" id="cart-btn" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
+                        <i class="fa-solid fa-coins"></i>
+                        <span class="visually-hidden">Mostra carrello</span>
+                      </button>
                   </li>
                   <li class="nav-item">
-                    <button type="button" id="cart-btn" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
-                      <i class="fa-solid fa-coins"></i>
-                      <span class="visually-hidden">Mostra carrello</span>
-                    </button>
+                    <!-- <button type="button" class="btn nav-link" id ="CheckSession">CheckSession</button> -->
+                    <button id="btnShop" type="button" class="btn nav-link" onclick="window.location.href='/views/shop.html'">Shop</button>
+                    <button id="btnOrders" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/user.html'">I miei ordini</button>
+                    <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
+                    <button id="btnLogin" type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
+                    <button id="btnLogout" type="button" class="btn nav-link" style="display: none;">Logout</button>
                 </li>
-              </ul>
-          </div>
-      </div>
-  </nav>
+                </ul>
+            </div>
+        </div>
+    </nav>
   <!-- MODALE LOGIN +++ VA CON LA NAVBAR -->
   <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -122,6 +123,17 @@ impaginate -->
             </div>
         </div>
     </div>
+
+    <footer>
+      <div class="container d-flex justify-content-evenly align-items-center" style="margin-top: 35px;">
+        <a class="navbar-brand" href="/views/index.html" style="padding: 0!important;">Nerd Vault</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="team"> Delivered by tcgZiopera&#169; team </div>
+      </div>
+    </footer>
+  
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/assets/scripts/product.js"></script>

@@ -49,7 +49,7 @@ function loadCart() {
             <div class="col-6 col-md-3 mt-3 mt-md-0">
                 <h6 class="mb-0 prodotto-nome">${prodotto.nome}</h6>
             </div>
-            <div class="col-6 col-md-3 d-flex mt-3 mt-md-0">
+            <div class="col-6 col-md-3 d-flex mt-3 mt-md-0 p-0">
                 <button class="btn btn-link px-2 minus" data-id="${prodotto.productId}">
                     <i class="fas fa-minus"></i>
                 </button>
