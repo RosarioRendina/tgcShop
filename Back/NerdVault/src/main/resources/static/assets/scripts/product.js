@@ -141,5 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log("carrello attuale: ", carrello);
       
           localStorage.setItem("carrello", JSON.stringify(carrello));
+
+          updateCartCount();
         });
 });

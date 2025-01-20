@@ -33,7 +33,12 @@ impaginate -->
   
                     <li class="nav-item">
                       <button type="button" id="cart-btn" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
-                        <i class="fa-solid fa-coins"></i>
+                        <i class="fa-solid fa-shopping-cart"></i>
+
+                        <span id="cart-item-count" class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger" style="display: none;">
+                          0
+                      </span>
+                      
                         <span class="visually-hidden">Mostra carrello</span>
                       </button>
                   </li>
