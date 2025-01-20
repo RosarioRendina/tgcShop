@@ -103,7 +103,7 @@ a:hover {
 .hero {
     position: relative;
     width: 100%;
-    height: 100vh; /* Altezza completa della finestra */
+    height: 70vh; /* Altezza completa della finestra */
     overflow: hidden;
   }
 
@@ -121,6 +121,7 @@ a:hover {
 
   /* Contenuto sopra al video */
   .hero-content {
+    height: max-content;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -130,14 +131,37 @@ a:hover {
   }
 /*! PROVA VIDEO HERO !*/
 
+.video-inpage{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 40vh;
+  z-index: -1;
+}
 
 
 /******** SLIDER *******/
 .hero-slider {
+   margin-top: 70px;
     position: relative;
-    width: 100%;
-    height: 70vh; 
+    left: 10%;
+    width: 80%;
+    height: 40vh; 
     overflow: hidden;
+    border-radius: 25px;
+
+    .content{
+      height: max-content;
+    }
+    .content h1{
+      font-size: 2rem;
+    }
+    .content p{
+      font-size: 1.5rem;
+    }
+    .content .btn{
+      font-size: 1.5;
+    }
 }
 
 .slide {
@@ -438,13 +462,13 @@ body.modal {
 /* video */
 .video-parallax {
     position: relative;
-    height: 100vh;
+    height: 70vh;
     overflow: hidden;
   }
   
   .background-video {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     min-width: 100%;
@@ -456,6 +480,7 @@ body.modal {
   
   .video-parallax .content {
     position: absolute;
+    height: max-content;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

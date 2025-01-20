@@ -107,11 +107,11 @@ document.addEventListener("DOMContentLoaded", () => {
       prodotti.forEach(prodotto => {
         // Creazione della card HTML per ogni prodotto
         const card = document.createElement("div");
-        card.classList.add("card", "m-2", "col-xs-12", "col-md-5", "col-xl-3");
+        card.classList.add("card", "col-xs-12", "col-md-5", "col-xl-3", "m-2");
   
         {
           card.innerHTML = `
-          <div class="imgBx">
+          <div class="imgBx" style="margin-bottom:25px">
             <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.imgUrl}" class="card-img-top" alt="${prodotto.nome}"></a>
           </div>
           <div class="content">
