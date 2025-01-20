@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${ordine.statoOrdine}</td>
              <td>
                 <button class="btn btn-primary details-order-btn">Dettagli</button>
-                <button class="btn btn-warning cancel-order-btn">Annulla</button>
+                <button class="btn btn-danger cancel-order-btn">Annulla</button>
             </td>
         `;
       } else {
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${ordine.statoOrdine}</td>
              <td>
                 <button class="btn btn-primary details-order-btn">Dettagli</button>
-                <button class="btn btn-warning cancel-order-btn d-none">Annulla</button>
+                <button class="btn btn-danger cancel-order-btn d-none">Annulla</button>
             </td>
         `;
       }

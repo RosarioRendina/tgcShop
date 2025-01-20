@@ -108,6 +108,7 @@ td .btn {
 #product-table-container{
     width: 80%;
     margin: auto;
+    padding-bottom: 70px;
 }
 
 .glass{
@@ -159,4 +160,28 @@ td .btn {
 .bg-cancellato {
     background-color: #d9534f; /* Rosso */
     color: white;
+}
+.page-item a,
+.page-item button {
+    color: #000000;
+    background-color:  rgb(255, 255, 255);
+    /*border-color: #524958; */
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.page-item a:hover,
+.page-item button:hover,
+.page-item a:focus,
+.page-item button:focus {
+    color: #fff;
+    background-color:  rgb(220, 220, 220);
+    border-color: rgb(255, 255, 255);
+    transition: all .2s;
+}
+
+.pag-btn.active .page-link {
+    background-color: rgba(180, 180, 180);
+    border-color:  rgb(220, 220, 220,0.8);
+    cursor: default;
 }
