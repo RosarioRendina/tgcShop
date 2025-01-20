@@ -161,8 +161,12 @@ async function checkSession() {
     } catch (error) {
         console.error("Errore nel verificare la sessione", error);
     }
-}
+};
 
+function openLoginModal() {
+  const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+  loginModal.show(); // Mostra il modale
+}
 
 console.log("pagina " + window.location.href);
 

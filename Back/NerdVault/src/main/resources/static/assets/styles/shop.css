@@ -37,7 +37,7 @@ h1.section-title {
         width: auto;
     }
     .navbar-brand{
-        font-family: "Pixelify Sans", sans-serif;
+        /*font-family: "Pixelify Sans", sans-serif; */
         font-size: xx-large;
         /* border-bottom: 2px white dotted; */
     }
@@ -46,7 +46,7 @@ h1.section-title {
     }
 
     a{
-        font-family: "Pixelify Sans", sans-serif;
+        /*font-family: "Pixelify Sans", sans-serif; */
         font-size: larger;
         color: rgb(165,55,240);
         text-shadow: 
@@ -253,7 +253,7 @@ footer{
         width: auto;
     }
     a{
-      font-family: "Pixelify Sans", sans-serif;
+      /*font-family: "Pixelify Sans", sans-serif; */
       font-size: larger;
       color: rgb(165,55,240);
       text-shadow: 
@@ -266,7 +266,7 @@ footer{
       color: rgb(255, 255, 255,0.75) !important;
   }
   .navbar-brand{
-    font-family: "Pixelify Sans", sans-serif;
+    /*font-family: "Pixelify Sans", sans-serif; */
     font-size: xx-large;
     /* border-bottom: 2px white dotted; */
   }

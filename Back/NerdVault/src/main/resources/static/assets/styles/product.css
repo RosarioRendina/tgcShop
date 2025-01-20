@@ -83,7 +83,7 @@ h1{
         width: auto;
     }
     .navbar-brand{
-        font-family: "Pixelify Sans", sans-serif;
+        /*font-family: "Pixelify Sans", sans-serif; */
         font-size: xx-large;
         /* border-bottom: 2px white dotted; */
     }

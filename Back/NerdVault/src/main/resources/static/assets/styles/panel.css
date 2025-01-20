@@ -38,7 +38,7 @@ body {
         width: auto;
     }
     .navbar-brand{
-        font-family: "Pixelify Sans", sans-serif;
+        /*font-family: "Pixelify Sans", sans-serif; */
         font-size: xx-large;
         /* border-bottom: 2px white dotted; */
     }
@@ -52,7 +52,7 @@ body {
     }
 
     a{
-        font-family: "Pixelify Sans", sans-serif;
+        /*font-family: "Pixelify Sans", sans-serif; */
         font-size: larger;
         color: rgb(165,55,240);
         text-shadow: 
