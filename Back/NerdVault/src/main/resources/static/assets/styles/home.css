@@ -513,13 +513,13 @@ body.modal {
     background-image: url('../img/parallax3.jpg');
   }
 
-/* Rimuove le frecce di default per gli input di tipo number */
+/* Rimuove le frecce di default per gli input di tipo number 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
     width: 50px;
-}
+}*/
 
   /* MEDIA QUERIES */
 @media (max-width: 768px) {

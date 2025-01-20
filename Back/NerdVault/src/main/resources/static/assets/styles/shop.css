@@ -65,8 +65,6 @@ body{
 
 .btn:hover {
     color: rgb(255, 255, 255,0.75);
-    font-size: x-large;
-    transition: ease-in 0.3s;
 }
 
 .navigation {
@@ -98,12 +96,14 @@ body{
     /*padding-left: 250px;*/
     /*overflow-y: auto;
     border: 2px solid #ddd;; */
+    color: #ffffff;
+    
 }
 
 #container-prodotti{
     margin: 0!important ;
     padding-top: 100px;
-    color: darkred;
+    color: rgb(255, 255, 255);
 }
 
 #filtri{
@@ -137,6 +137,7 @@ body{
 #available-container,
 #presale-container{
     justify-content: space-around;
+    margin-top: 35px;
 }
 
 
@@ -145,6 +146,7 @@ body{
      top: 100px;
     left:250px;*/
     z-index:100;
+    text-shadow: 0px 0px 5px rgba(165, 55, 240, 0.8), 0px 0px 10px rgba(165, 55, 240, 0.7), 0px 0px 15px rgba(165, 55, 240, 0.6), 0px 0px 20px rgba(165, 55, 240, 0.5);
 }
 
 #price-range{
@@ -172,6 +174,7 @@ body{
      max-width: 350px; /* Larghezza massima della card */
      height: 400px; /* Altezza fissa della card */
      margin: 0 auto; /* Centra le card in colonne più larghe */
+     margin-bottom: 30px !important;
      display: flex;
      flex-direction: column;
      justify-content: space-between;
@@ -256,8 +259,6 @@ footer{
   }
   .team:hover{
     color: rgb(255, 255, 255,0.75);
-    font-size: larger;
-    transition: ease-in 0.3s;
   }
 
 /* MEDIA QUERY SPACING SMALL - RIMUOVERE MARGIN LEFT PRODOTTI */

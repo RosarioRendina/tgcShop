@@ -123,8 +123,6 @@ h1{
 
 .btn:hover {
     color: rgb(255, 255, 255,0.75);
-    font-size: 1.3rem; 
-    transition: ease-in 0.3s;
 }
 
 .navigation {
