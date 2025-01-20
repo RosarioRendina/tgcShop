@@ -23,20 +23,32 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <button id="btnLogin" type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
-                <button id="btnLogout" type="button" class="btn nav-link" style="display: none;">Logout</button>
-                  <button type="button" class="btn nav-link" id ="CheckSession">CheckSession</button>
-                  <button id="btnShop" type="button" class="btn nav-link" onclick="window.location.href='/views/shop.html'">Shop</button>
-                  <button id="btnOrders" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/user.html'">I miei ordini</button>
-                  <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
-              </li>
-              <li class="nav-item">
-                <button type="button" id="cart-btn" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
-                  <i class="fa-solid fa-coins"></i>
-                  <span class="visually-hidden">Mostra carrello</span>
-                </button>
+
+            <li class="nav-item">
+              <button type="button" id="cart-btn" class="btn nav-link" data -bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
+                <i class="fa-solid fa-coins"></i>
+                <span class="visually-hidden">Mostra carrello</span>
+              </button>
             </li>
+            
+            <li class="nav-item">
+              
+              <!-- shop -->
+              <button id="btnShop" type="button" class="btn nav-link" onclick="window.location.href='/views/shop.html'">Shop</button>
+            
+              <!-- ordini -->
+              <button id="btnOrders" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/user.html'">I miei ordini</button>
+            
+              <!-- pannello -->
+              <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
+            
+              <!-- login -->
+              <button id="btnLogin" type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
+            
+              <!-- logout -->
+              <button id="btnLogout" type="button" class="btn nav-link" style="display: none;">Logout</button>
+            </li>
+
           </ul>
       </div>
   </div>
@@ -73,23 +85,23 @@
 <!-- MODALE CARRELLO -->
 <!-- Per eliminare effetto tema scuro, togliere data-bst-theme="dark" e classe text-white dal div 2 righe sotto -->
 <div class="modal fade" id="cartModal" data-bs-theme="dark" tabindex="-1" aria-labelledby="#exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable text-white me-md-3" data-bs-theme="dark">
-<div class="modal-content h-100" data-bs-theme="dark">
-  <div class="modal-header" data-bs-theme="dark">
-    <h1 class="modal-title fs-5" id=""></h1>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
-  </div>
-  <div class="modal-body" data-bs-theme="dark" id="cart-body">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable text-white me-md-3" data-bs-theme="dark">
+    <div class="modal-content h-100" data-bs-theme="dark">
 
-
-
-      <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" id="">Concludi ordine</button> <!-- AGGIUNGERE REINDIRIZZAMENTO A USER-->
+      <div class="modal-header" data-bs-theme="dark">
+        <h1 class="modal-title fs-5" id=""></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!-- da togliere -->
       </div>
+      
+      <div class="modal-body" data-bs-theme="dark" id="cart-body">
+        
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="">Concludi ordine</button>
+        </div>
+      </div>
+
+    </div>
   </div>
-  
-</div>
-</div>
 </div>
 <!-- FINE MODALE CARRELLO -->
 
