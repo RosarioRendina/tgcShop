@@ -54,14 +54,42 @@ document.addEventListener("DOMContentLoaded", () => {
       const pochiDisponibili = document.querySelector(".pochiDisponibili");
 
       productTitle.textContent = product.nome;
-      productPrice.textContent = `€${product.prezzo.toFixed(2)}`;
+      if (product.categoria === 'PREVENDITA') {
+
+        /* --------------------- crea prezzo originale sbarrato --------------------- */
+        let priceWrapper = document.querySelector('.price-wrapper');
+        
+        let ogPrice = document.createElement('h5');
+        ogPrice.classList.add('h6');
+        ogPrice.classList.add('text-end');
+        ogPrice.classList.add('me-3');
+        ogPrice.classList.add('mb-0');
+        ogPrice.classList.add('text-danger');
+        ogPrice.style.textDecoration = 'line-through';
+        ogPrice.textContent = `€${product.prezzo}`; 
+
+        productPrice.classList.add('mt-0');
+        productPrice.classList.remove('mt-3');
+
+      //  priceWrapper.classList.add('d-flex justify-content-between align-items-end');
+
+       priceWrapper.prepend(ogPrice);
+
+
+
+
+        let prezzo = product.prezzo * ( 1 - product.scontoPrevendita/100);
+        productPrice.textContent = `€${prezzo.toFixed(2)}`;
+      } else {
+        productPrice.textContent = `€${product.prezzo.toFixed(2)}`;
+      }
       productImg.src = product.imgUrl;
       productDesc.innerHTML = product.descrizione || "N/A";
 
       //settiamo i valori all'esterno della fetch per logica di cart
       productNome = product.nome;
       productUrl = product.imgUrl;
-      productPrezzo = product.prezzo.toFixed(2);
+      productPrezzo = (product.categoria === 'PREVENDITA') ? (product.prezzo * ( 1 - product.scontoPrevendita/100)).toFixed(2) : product.prezzo.toFixed(2);
 
       if (product.rimanenza == 0) {
         btnCarrello.classList.add("d-none");
