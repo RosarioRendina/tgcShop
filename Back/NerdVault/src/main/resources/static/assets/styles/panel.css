@@ -85,6 +85,11 @@ body {
     color: rgb(255, 255, 255,0.75);
 }   
 
+td{
+    text-align: center; /* Allinea il contenuto orizzontalmente */
+    vertical-align: middle; /* Allinea il contenuto verticalmente */
+}
+
 td .btn {
     font-size: 1.8rem;
 }
@@ -143,7 +148,7 @@ td .btn {
 #open-add-product-modal,
 #submit-product-btn,
 #update-product-btn {
-    background: rgb(55, 255, 0,0.8);
+    background: rgb(0, 158, 96);
     /*border-color:  rgb(255,255,0);*/
     border: none;
     transition: all .2s;
@@ -156,7 +161,7 @@ td .btn {
 #update-product-btn:hover,
 #update-product-btn:active
  {
-    background: rgb(55, 255, 0,0.8);
+    background: rgb(0, 158, 96);
     /*border-color:  rgb(255,255,0); */
 }
 
@@ -370,7 +375,8 @@ td .btn {
 
 /* Stile extra per la modale */
 .modal-content {
-    background-color: #222;
+    background-color: #909090;
+
     color: white;
 }
 
