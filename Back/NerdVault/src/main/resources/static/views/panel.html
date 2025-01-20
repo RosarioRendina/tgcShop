@@ -37,20 +37,21 @@ c. Logout -->
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                      <button id="btnLogin" type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
-                      <button id="btnLogout" type="button" class="btn nav-link" style="display: none;">Logout</button>
-                        <!--<button type="button" class="btn nav-link" id ="CheckSession">CheckSession</button>-->
-                        <button id="btnShop" type="button" class="btn nav-link" onclick="window.location.href='/views/shop.html'">Shop</button>
-                        <button id="btnOrders" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/user.html'">I miei ordini</button>
-                        <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
-                    </li>
+  
                     <li class="nav-item">
                       <button type="button" id="cart-btn" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#cartModal" data-bs-whatever="@mdo">
                         <i class="fa-solid fa-coins"></i>
                         <span class="visually-hidden">Mostra carrello</span>
                       </button>
                   </li>
+                  <li class="nav-item">
+                    <!-- <button type="button" class="btn nav-link" id ="CheckSession">CheckSession</button> -->
+                    <button id="btnShop" type="button" class="btn nav-link" onclick="window.location.href='/views/shop.html'">Shop</button>
+                    <button id="btnOrders" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/user.html'">I miei ordini</button>
+                    <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
+                    <button id="btnLogin" type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
+                    <button id="btnLogout" type="button" class="btn nav-link" style="display: none;">Logout</button>
+                </li>
                 </ul>
             </div>
         </div>

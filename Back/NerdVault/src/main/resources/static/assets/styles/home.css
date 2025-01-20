@@ -97,8 +97,6 @@ a:hover {
 }
 .team:hover{
   color: rgb(255, 255, 255,0.75);
-  font-size: larger;
-  transition: ease-in 0.3s;
 }
 
 /*! PROVA VIDEO HERO !*/
@@ -197,8 +195,6 @@ a:hover {
 
 .btn:hover {
     color: rgb(255, 255, 255,0.75);
-    font-size: x-large;
-    transition: ease-in 0.3s;
 }
 
 .navigation {
@@ -517,7 +513,13 @@ body.modal {
     background-image: url('../img/parallax3.jpg');
   }
 
-
+/* Rimuove le frecce di default per gli input di tipo number */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    width: 50px;
+}
 
   /* MEDIA QUERIES */
 @media (max-width: 768px) {
