@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
       prodotti.forEach(prodotto => {
         // Creazione della card HTML per ogni prodotto
         const card = document.createElement("div");
-        card.classList.add("card", "col-xs-12", "col-md-5", "col-xl-3", "m-2");
+        card.classList.add("card", "col-xs-12", "col-md-5", "col-xl-3", "ms-2","me-2", "mb-5");
   
         {
           card.innerHTML = `
