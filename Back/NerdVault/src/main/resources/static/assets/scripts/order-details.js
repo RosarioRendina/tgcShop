@@ -9,8 +9,7 @@ function loadOrderDetails() {
     const ordineId = getOrderId();
 
     if (!ordineId) {
-        alert('ID ordine mancante');
-        return;
+        window.location.href = './user.html'
     }
 
     // Fai una richiesta al server per ottenere i dettagli dell'ordine

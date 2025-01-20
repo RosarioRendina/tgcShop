@@ -99,70 +99,66 @@ dell’evento come parametro url -->
 </div>
 <!-- FINE MODALE CARRELLO -->
 
-        <div class="container-fluid row"  id="container-prodotti" >
-                
-            <!-- SEZIONE FILTRI -->
-            <div class="col-xs-12 col-sm-3 d-flex flex-column" id="filtri">
-                <div class="fixed">
-                  <h1>All </h1>
-                  <h3>Filters</h3>
-                  <!-- PRICE RANGE
-                  <label for="price-range" class="form-label" style="margin-top: 1rem;"> Price</label>
-                    <input type="range" class="form-range" id="price-range" min="0" max="1000" step="5">
-                    <div class="d-flex justify-content-center">
-                      <p id="price-value" style="color: black;"></p>
-                    </div> 
-                    PRINCE RANGE -->  
-                  <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="Check1">
-                      <label class="form-check-label" for="Check1">Games</label>
-                    </div>
+        <div class="container-fluid">
+          <div class="row"  id="container-prodotti" >
+          
+              <!-- SEZIONE FILTRI -->
+              <div class="col-xs-12 col-sm-3 d-flex flex-column" id="filtri">
+                  <div class="fixed">
+                    <h1>All </h1>
+                    <h3>Filters</h3>
+                    <!-- PRICE RANGE
+                    <label for="price-range" class="form-label" style="margin-top: 1rem;"> Price</label>
+                      <input type="range" class="form-range" id="price-range" min="0" max="1000" step="5">
+                      <div class="d-flex justify-content-center">
+                        <p id="price-value" style="color: black;"></p>
+                      </div>
+                      PRINCE RANGE -->
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="Check2">
-                      <label class="form-check-label" for="Check2">Merch</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="Check3">
-                      <label class="form-check-label" for="Check3">Acc.</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="Check4">
-                      <label class="form-check-label" for="Check4">Specials</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="Check5">
-                      <label class="form-check-label" for="Check5">Other</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="Check6">
-                      <label class="form-check-label" for="Check6">Hot</label>
-                    </div>
+                        <input class="form-check-input" type="checkbox" value="" id="Check1">
+                        <label class="form-check-label" for="Check1">Games</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="Check2">
+                        <label class="form-check-label" for="Check2">Merch</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="Check3">
+                        <label class="form-check-label" for="Check3">Acc.</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="Check4">
+                        <label class="form-check-label" for="Check4">Specials</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="Check5">
+                        <label class="form-check-label" for="Check5">Other</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="Check6">
+                        <label class="form-check-label" for="Check6">Hot</label>
+                      </div>
+                  </div>
+              </div>
+              <!-- FINE SEZIONE FILTRI -->
+              <!-- Sezione prodotti -->
+              <div class="col-xs-12 col-sm-9 flex-column align-items-center" id="prodotti">
+                <div class="title-container" style=" display: flex;
+                align-items: center;
+                justify-content: space-between;">
+                  <span id="valore-disponibili"></span>
+                  <h1 class="section-title">Available Products</h1>
                 </div>
-            </div>
-            <!-- FINE SEZIONE FILTRI -->
-
-            <!-- Sezione prodotti -->
-            <div class="col-xs-12 col-sm-9 flex-column align-items-center" id="prodotti">
-              <div class="title-container" style=" display: flex;
-              align-items: center;
-              justify-content: space-between;">
-                <span id="valore-disponibili" style="margin-right: auto; margin-left: 30px;text-shadow: 0px 0px 5px rgba(165, 55, 240, 0.8), 0px 0px 10px rgba(165, 55, 240, 0.7), 0px 0px 15px rgba(165, 55, 240, 0.6), 0px 0px 20px rgba(165, 55, 240, 0.5);"></span>
-                <h1 class="section-title" style=" margin: 0 auto; /* Centra l'h1 */
-                text-align: center;
-                flex-grow: 1;
-                text-shadow: 0px 0px 5px rgba(165, 55, 240, 0.8), 0px 0px 10px rgba(165, 55, 240, 0.7), 0px 0px 15px rgba(165, 55, 240, 0.6), 0px 0px 20px rgba(165, 55, 240, 0.5);">Available Products</h1>
-              </div>  
-                <div id="available-container" class="row">
-
-                </div>
-                <!-- SEZIONE PRODOTTI PRENOTABILI -->
-                <h1 class="section-title"> Presale products  </h1>
-                <div id="presale-container" class="row">
-
-                </div>
-            </div>
-            <!-- FINE Sezione prodotti -->
-
+          
+                  <div id="available-container" class="row"></div>
+                  <div id="pagination-container"></div>
+                  <!-- SEZIONE PRODOTTI PRENOTABILI -->
+                  <h1 class="section-title"> Presale products  </h1>
+                  <div id="presale-container" class="row">
+                  </div>
+              </div>
+              <!-- FINE Sezione prodotti -->
+          </div>
         </div>
 
         <footer>

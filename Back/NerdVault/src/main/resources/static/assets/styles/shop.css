@@ -4,8 +4,18 @@ body{
     box-sizing: border-box;
     background-image: url('/assets/img/colored-bg.jpg');
     background-size: cover;
-    background-position: center;
-    position: absolute;
+    background-position: center center;
+    position: relative;
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1.section-title {
+    margin: 0 auto;
+    text-align: center;
+    flex-grow: 1;
+    text-shadow: 0px 0px 5px rgba(165, 55, 240, 0.8), 0px 0px 10px rgba(165, 55, 240, 0.7), 0px 0px 15px rgba(165, 55, 240, 0.6), 0px 0px 20px rgba(165, 55, 240, 0.5);
 }
 
 .navbar{
@@ -18,7 +28,7 @@ body{
     top: 0;
     width: 100vw;
     height: 70px;
-    z-index: 100; 
+    z-index: 1000; 
     color: white;
 
     .logo{
@@ -142,11 +152,10 @@ body{
 
 
 #valore-disponibili{
-    /*position: fixed;
-     top: 100px;
-    left:250px;*/
-    z-index:100;
+    margin-right: auto;
+    margin-left: 30px;
     text-shadow: 0px 0px 5px rgba(165, 55, 240, 0.8), 0px 0px 10px rgba(165, 55, 240, 0.7), 0px 0px 15px rgba(165, 55, 240, 0.6), 0px 0px 20px rgba(165, 55, 240, 0.5);
+    z-index:100;
 }
 
 #price-range{
