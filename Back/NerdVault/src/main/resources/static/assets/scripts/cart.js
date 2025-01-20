@@ -71,6 +71,41 @@ function loadCart() {
     </div>
     `;
 
+
+
+
+    const ordineBtn = document.getElementById('ordineBtn');
+
+    ordineBtn.addEventListener('click', function () {
+    // Chiedi conferma all'utente se vuole confermare l'ordine
+    const confermaOrdine = confirm("Sei sicuro di voler confermare l'ordine?");
+
+    if (confermaOrdine) {
+        // L'utente ha confermato l'ordine, reindirizza alla pagina di pagamento
+        window.location.href = './payment.html'; // Reindirizza alla pagina di pagamento
+    } else {
+        // L'utente ha annullato l'ordine
+        console.log("Ordine non confermato.");
+    }
+});
+
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Gestione degli eventi di eliminazione prodotto
     cartBody.addEventListener('click', function (e) {
         e.preventDefault();

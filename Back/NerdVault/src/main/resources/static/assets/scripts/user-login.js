@@ -145,6 +145,7 @@ async function checkSession() {
         // Se siamo riusciti a fare il parsing, significa che l'utente è loggato
         console.log("Utente loggato:", data);
         // alert("Utente loggato: " + data.nome);
+        return data;
     }
 }
 
