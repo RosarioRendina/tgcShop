@@ -45,6 +45,24 @@ body{
     }
 }
 
+#cart-btn {
+    position: relative;
+}
+
+#cart-item-count {
+    position: absolute;
+    margin-top: 12px;
+    /* margin-right: 20px; */
+    margin-left: -10px;
+    height: 1rem;
+    width: 1rem;
+    padding: 0.2rem;
+    font-size: 0.7rem;
+    color: white;
+    background-color: red;
+    
+}
+
 .btn {
     display: inline-block;
     padding: 10px 20px;
