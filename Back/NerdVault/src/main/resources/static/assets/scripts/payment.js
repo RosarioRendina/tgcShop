@@ -1,27 +1,42 @@
 const confermaPagamento = document.getElementById('payment-btn');
 
 confermaPagamento.addEventListener('click', async function () {
-    const conferma = confirm("Sei sicuro di voler procedere con il pagamento?");
 
+    const utenteId = await getUtenteIdFromSession();
+    
+    if (!utenteId) {
+        alert("Devi essere loggato per completare l'ordine.");
+        return;
+    }
+
+    // Ottieni il valore dell'indirizzo dal campo
+    // const indirizzoSpedizione = document.getElementById('address').value;
+    const indirizzoSpedizione = document.querySelector('form').address.value;
+    console.log(indirizzoSpedizione);
+    
+    
+    if (!indirizzoSpedizione) {
+        alert("L'indirizzo di spedizione è obbligatorio.");
+        return;
+    }
+
+    const conferma = confirm("Sei sicuro di voler procedere con il pagamento?");
+    
     if (conferma) {
         const carrelloStorage = JSON.parse(localStorage.getItem('carrello')) || [];
 
-        const utenteId = await getUtenteIdFromSession();
+        
 
-        if (!utenteId) {
-            alert("Devi essere loggato per completare l'ordine.");
-            return;
-        }
 
         console.log("Corpo richiesta Ordine:", {
             utente: { utenteId: utenteId },
-            indirizzoSpedizione: 'Indirizzo di spedizione',
+            indirizzoSpedizione: indirizzoSpedizione,
             statoOrdine: 'IN_LAVORAZIONE'
         });
 
         try {
             // Creazione ordine
-            const ordine = await creaOrdine(utenteId);
+            const ordine = await creaOrdine(utenteId, indirizzoSpedizione);
 
             // Aggiungi i dettagli dell'ordine
             await aggiungiDettagliOrdine(ordine.ordineId, carrelloStorage);
@@ -39,14 +54,14 @@ confermaPagamento.addEventListener('click', async function () {
 });
 
 // Funzione per creare l'ordine
-async function creaOrdine(utenteId) {
+async function creaOrdine(utenteId, indirizzoSpedizione) {
     const response = await fetch(`http://localhost:8080/api/ordine/u/${utenteId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            indirizzoSpedizione: 'Indirizzo di spedizione'
+            indirizzoSpedizione: indirizzoSpedizione,
         })
     });
 
