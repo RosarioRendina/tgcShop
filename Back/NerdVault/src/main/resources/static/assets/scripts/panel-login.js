@@ -47,20 +47,24 @@ async function verificaRuoloUtente() {
 
         // Mostra il form di login
         document.body.innerHTML = `
-            <h1>Non hai i permessi per accedere a questa pagina! Effettua il login</h1>
-            <form action="javascript:void(0);" method="POST" id="loginForm">
-                <div class="mb-3">
-                    <label for="inputEMail" class="col-form-label">E-mail</label>
-                    <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" required>
+            <div class="vh-100 d-flex align-items-center justify-content-center">
+                <div class="container">
+                    <h1>Non hai i permessi per accedere a questa pagina! Effettua il login</h1>
+                    <form action="javascript:void(0);" method="POST" id="loginForm">
+                        <div class="mb-3">
+                            <label for="inputEMail" class="col-form-label">E-mail</label>
+                            <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" value="admin@email.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPassword" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" id="inputPassword" name="password" value="admin" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Invia</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="col-form-label">Password</label>
-                    <input type="password" class="form-control" id="inputPassword" name="password" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Invia</button>
-                </div>
-            </form>
+            </div>
         `;
 
         // Aggiungi il listener per il submit del form di login

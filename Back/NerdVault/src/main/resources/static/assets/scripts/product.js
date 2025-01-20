@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetch(apiUrl)
     .then((response) => {
-      if (response.status === 404) {
+      if (response.status === 404 || response.status === 400) {
         window.location.href = "./shop.html";
       }
       return response.json();
