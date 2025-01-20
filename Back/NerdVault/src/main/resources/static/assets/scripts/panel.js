@@ -337,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const nextPage = parseInt(e.target.getAttribute("data-id"));
         currentPage = nextPage;
 
-        if (currentPage > 3) {
+        if (currentPage > 5) {
             nextBtn.parentElement.classList.add('disabled');
         } else {
             prevBtn.parentElement.classList.remove('disabled');
