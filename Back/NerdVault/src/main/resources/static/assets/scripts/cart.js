@@ -12,6 +12,7 @@ console.log("sei sulla home? ", isIndex); //del
 // Selezione degli elementi principali
 const cartBody = document.getElementById("cart-body");
 const cartBtn = document.getElementById("cart-btn");
+const cartItemCount = document.getElementById("cart-item-count");
 
 // Aggiungi l'evento click al pulsante del carrello
 cartBtn.addEventListener("click", loadCart);
@@ -32,6 +33,7 @@ function loadCart() {
         Il tuo carrello è vuoto.
       </div>
     `;
+    
   } else {
     // Genera gli elementi del carrello
     carrelloStorage.forEach((prodotto) => {
@@ -95,6 +97,8 @@ function loadCart() {
         console.log("Ordine non confermato.");
       }
     });
+
+    
   }
 
   // Gestione degli eventi di eliminazione prodotto
@@ -131,6 +135,7 @@ function loadCart() {
           </div>
         `;
       }
+      updateCartCount();
     }
   });
 
@@ -156,6 +161,8 @@ function loadCart() {
       localStorage.setItem("carrello", JSON.stringify(carrelloStorage));
 
       console.log("Carrello aggiornato in LocalStorage: ", carrelloStorage);
+
+      updateCartCount();
     }
   });
 
@@ -198,6 +205,8 @@ function loadCart() {
       localStorage.setItem("carrello", JSON.stringify(carrelloStorage));
 
       console.log("Carrello aggiornato in LocalStorage: ", carrelloStorage);
+
+      updateCartCount();
     }
   });
 }
@@ -221,4 +230,31 @@ function addToCart(prodotto) {
 
   // Aggiorna il localStorage con il carrello modificato
   localStorage.setItem("carrello", JSON.stringify(carrelloStorage));
+
+  updateCartCount();
 }
+
+// Funzione per aggiornare il numero degli articoli nel carrello
+function updateCartCount() {
+  let carrelloStorage = JSON.parse(localStorage.getItem("carrello")) || [];
+
+  // Calcola il numero totale degli articoli
+  
+  const totalItems = carrelloStorage.length;
+
+  console.log(totalItems);
+  
+
+  // Se ci sono articoli, mostra il numero
+  if (totalItems > 0) {
+    cartItemCount.textContent = totalItems;
+    cartItemCount.style.display = "block"; // Mostra il numero
+  } else {
+    cartItemCount.style.display = "none"; // Nascondi il numero
+  }
+
+
+
+}
+
+updateCartCount();
