@@ -186,6 +186,10 @@ body{
     object-fit: contain;
 }
 
+.card a{
+    overflow: hidden;
+}
+
 .section-title{
     text-align: center;
 }

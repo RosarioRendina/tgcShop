@@ -31,7 +31,7 @@ dell’evento come parametro url -->
                 <li class="nav-item">
                   <button id="btnLogin" type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
                   <button id="btnLogout" type="button" class="btn nav-link" style="display: none;">Logout</button>
-                    <button type="button" class="btn nav-link" id ="CheckSession">CheckSession</button>
+                    <!--<button type="button" class="btn nav-link" id ="CheckSession">CheckSession</button>-->
                     <button id="btnShop" type="button" class="btn nav-link" onclick="window.location.href='/views/shop.html'">Shop</button>
                     <button id="btnOrders" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/user.html'">I miei ordini</button>
                     <button id="btnPanel" type="button" class="btn nav-link" style="display: none;" onclick="window.location.href='/views/panel.html'">Pannello di controllo</button>
@@ -101,7 +101,7 @@ dell’evento come parametro url -->
         <div class="container-fluid row"  id="container-prodotti" >
                 
             <!-- SEZIONE FILTRI -->
-            <div class="col-xs-12 col-sm-2 d-flex flex-column" id="filtri">
+            <div class="col-xs-12 col-sm-3 d-flex flex-column" id="filtri">
                 <div class="fixed">
                   <h1>All </h1>
                   <h3>Filters</h3>
@@ -120,7 +120,7 @@ dell’evento come parametro url -->
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="Check3">
-                      <label class="form-check-label" for="Check3">Accessories</label>
+                      <label class="form-check-label" for="Check3">Acc.</label>
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="Check4">
@@ -139,7 +139,7 @@ dell’evento come parametro url -->
             <!-- FINE SEZIONE FILTRI -->
 
             <!-- Sezione prodotti -->
-            <div class="col-xs-12 col-sm-10 flex-column align-items-center" id="prodotti">
+            <div class="col-xs-12 col-sm-9 flex-column align-items-center" id="prodotti">
                 <p id="valore-disponibili"> </p> <!--get dei prodotti per numero-->
                 <!-- SEZIONE PRODOTTI DISPONIBILI -->
                 <h1 class="section-title">  Available Products </h1>
