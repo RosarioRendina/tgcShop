@@ -182,6 +182,13 @@ function loadCart() {
       // Aggiorna il localStorage con la nuova quantità
       localStorage.setItem("carrello", JSON.stringify(carrelloStorage));
 
+        // Aggiorna il prezzo del singolo prodotto nel DOM
+      const prezzoProdotto = prodottoElement.querySelector('.col-md-2 h6');
+      const prodotto = carrelloStorage.find(p => p.nome === nomeProdotto);
+      if (prezzoProdotto && prodotto) {
+        prezzoProdotto.textContent = `€${(prodotto.prezzo * prodotto.quanti).toFixed(2)}`;
+      }
+
       console.log("Carrello aggiornato in LocalStorage: ", carrelloStorage);
 
       updateCartCount();
@@ -226,6 +233,13 @@ function loadCart() {
 
       // Aggiorna il localStorage con la nuova quantità
       localStorage.setItem("carrello", JSON.stringify(carrelloStorage));
+
+        // Aggiorna il prezzo del singolo prodotto nel DOM
+      const prezzoProdotto = prodottoElement.querySelector('.col-md-2 h6');
+      const prodotto = carrelloStorage.find(p => p.productId == productId);
+      if (prezzoProdotto && prodotto) {
+        prezzoProdotto.textContent = `€${(prodotto.prezzo * prodotto.quanti).toFixed(2)}`;
+      }
 
       console.log("Carrello aggiornato in LocalStorage: ", carrelloStorage);
 

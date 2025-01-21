@@ -44,7 +44,7 @@ function loadOrderDetails() {
                         <td>TOTALE ORDINE</td>
                         <td colspan="2"></td>
 
-                        <td>${totale.toFixed(2)}</td>
+                        <td>€${totale.toFixed(2)}</td>
                     `;
                     tableBody.appendChild(row);
             }
