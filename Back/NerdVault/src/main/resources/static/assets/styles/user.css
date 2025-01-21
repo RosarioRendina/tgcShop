@@ -185,3 +185,50 @@ td .btn {
     border-color:  rgb(220, 220, 220,0.8);
     cursor: default;
 }
+
+
+/* -------------------------------------------------------------------------- */
+/*                                TOAST E LOGIN                               */
+/* -------------------------------------------------------------------------- */
+
+.toast-container {
+    top: 8rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  
+    .toast {
+        background-color: #300e5040;
+        backdrop-filter: blur(4px);
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.6rem;
+        text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   
+        0px 0px 10px rgba(165,55,240, 0.7),  
+        0px 0px 15px rgba(165,55,240, 0.6),  
+        0px 0px 20px rgba(165,55,240, 0.5); 
+    }
+  }
+  
+  #loginModal .modal-content {
+    background-color: #300e5040;
+    backdrop-filter: blur(4px);
+    color: #fff;
+    text-shadow: 
+        0px 0px 5px rgba(165,55,240, 0.8),   
+        0px 0px 10px rgba(165,55,240, 0.7),  
+        0px 0px 15px rgba(165,55,240, 0.6),  
+        0px 0px 20px rgba(165,55,240, 0.5);
+  
+        input.form-control {
+          background-color: #10101060;
+          color: white;
+          backdrop-filter: blur(4px);
+        }
+  
+        input::placeholder {
+          color: #fff !important;
+          opacity: 0.6;
+        }
+  }

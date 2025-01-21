@@ -128,7 +128,7 @@
         
         <table class="table table-hover mt-4 glass">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th>Data Ordine</th>
                     <th>Data Consegna</th>
                     <th>Indirizzo Spedizione</th>
@@ -156,6 +156,19 @@
   </nav>
     </div> -->
     <!-- TABELLA -->
+
+        <!-- IT'S A TOAST -->
+        <div class="toast-container position-fixed p-3">
+          <div id="cartToast" class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="2000">
+            <div class="d-flex">
+              <div class="toast-body">
+                Prodotto aggiunto al carrello con successo!
+              </div>
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+          </div>
+        </div>
+        <!-- CHIUDI IL TOAST -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/assets/scripts/user.js"></script>

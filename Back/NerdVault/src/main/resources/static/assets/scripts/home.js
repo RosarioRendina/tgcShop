@@ -111,16 +111,18 @@ document.addEventListener("DOMContentLoaded", () => {
   
         {
           card.innerHTML = `
-          <div class="imgBx" style="margin-bottom:25px">
-            <a href="product.html?id=${prodotto.prodottoId}"><img src="${prodotto.imgUrl}" class="card-img-top" alt="${prodotto.nome}"></a>
-          </div>
-          <div class="content">
-            <div class="contentBx">
-              <h5>${prodotto.nome} <br>
-              <span class="discount mt-3"> €${prodotto.prezzo}</h5>
-              <span class="card-text discount"><strong></strong></span>
+          <a href="product.html?id=${prodotto.prodottoId}">
+            <div class="imgBx" style="margin-bottom:25px">
+              <img src="${prodotto.imgUrl}" class="card-img-top" alt="${prodotto.nome}">
             </div>
-          </div>
+            <div class="content">
+              <div class="contentBx">
+                <h5>${prodotto.nome} <br>
+                <span class="discount mt-3"> €${prodotto.prezzo}</h5>
+                <span class="card-text discount"><strong></strong></span>
+              </div>
+            </div>
+          </a>
         `;} 
         // Aggiungi la card al contenitore
         container.appendChild(card);

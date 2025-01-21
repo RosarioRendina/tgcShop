@@ -85,9 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${ordine.dataConsegna || "Non disponibile"}</td>
             <td>${ordine.indirizzoSpedizione}</td>
             <td>${ordine.statoOrdine}</td>
-             <td>
-                <button class="btn btn-primary details-order-btn">Dettagli</button>
-                <button class="btn btn-danger cancel-order-btn">Annulla</button>
+            <td class="text-start">
+              <button class="ms-md-2 ms-l-5 btn btn-primary details-order-btn">
+                <i class="fa-solid fa-newspaper"></i>
+              </button>
+
+              <button class="ms-md-2 ms-l-3 btn btn-danger cancel-order-btn">
+                <i class="fa-solid fa-ban"></i>
+              </button>
             </td>
         `;
       } else {
@@ -96,9 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${ordine.dataConsegna || `Non disponibile`}</td>
             <td>${ordine.indirizzoSpedizione}</td>
             <td>${ordine.statoOrdine}</td>
-             <td>
-                <button class="btn btn-primary details-order-btn">Dettagli</button>
-                <button class="btn btn-danger cancel-order-btn d-none">Annulla</button>
+             <td class="text-start">
+                <button class="ms-md-2 ms-l-5 btn btn-primary details-order-btn">
+                  <i class="fa-solid fa-newspaper"></i>
+                </button>
+                <button class="ms-md-2 ms-l-3 btn btn-danger cancel-order-btn d-none">
+                  <i class="fa-solid fa-ban"></i>
+                </button>
             </td>
         `;
       }

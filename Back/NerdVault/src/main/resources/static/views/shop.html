@@ -107,7 +107,8 @@ dell’evento come parametro url -->
           <div class="row"  id="container-prodotti" >
           
               <!-- SEZIONE FILTRI -->
-              <div class="col-xs-12 col-sm-3 d-flex flex-column" id="filtri">
+              <div class="col-xs-12 col-md-3 filtri-wrapper">
+                <div class="d-flex flex-column" id="filtri">
                   <div class="fixed">
                     <h1>All </h1>
                     <h3>Filters</h3>
@@ -142,7 +143,8 @@ dell’evento come parametro url -->
                         <input class="form-check-input" type="checkbox" value="" id="Check6">
                         <label class="form-check-label" for="Check6">Hot</label>
                       </div>
-                  </div>
+                    </div>
+                </div>
               </div>
               <!-- FINE SEZIONE FILTRI -->
               <!-- Sezione prodotti -->
@@ -164,6 +166,20 @@ dell’evento come parametro url -->
               <!-- FINE Sezione prodotti -->
           </div>
         </div>
+
+            <!-- IT'S A TOAST -->
+        <div class="toast-container position-fixed p-3">
+          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="logToast">
+            <div class="toast-body">
+              Sei sicuro di voler effettuare il logout?
+              <div class="mt-2 pt-2 border-top">
+                <button type="button" class="btn btn-danger btn-sm toast-logout">Take action</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- CHIUDI IL TOAST -->
 
         <footer>
           <div class="container d-flex justify-content-evenly align-items-center">

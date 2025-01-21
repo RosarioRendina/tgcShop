@@ -102,10 +102,26 @@ function handleLoginSubmit(event) {
 }
 
 document.getElementById("btnLogout").addEventListener("click", async function() {
-    if (confirm("sei sicuro di voler effettuare il logout?")) {
+    const toastContainer = document.querySelector('.toast-container');
+    toastContainer.innerHTML = `
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="logToast">
+        <div class="toast-body">
+          Sei sicuro di voler effettuare il logout?
+          <div class="mt-2 pt-2 border-top">
+            <button type="button" class="btn btn-danger btn-sm toast-logout">Logout</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Annulla</button>
+          </div>
+        </div>
+      </div>
+      `;
+    const toast = new bootstrap.Toast(toastContainer.firstElementChild);
+    toast.show();
+
+    document.querySelector('.toast-logout').addEventListener('click', async e => {
+        e.preventDefault();
         await logout();
         window.location.href = "./index.html";
-    }
+    });
 });
 
 async function logout() {
@@ -152,20 +168,24 @@ async function checkSession() {
 function showLogin() {
     // Mostra il form di login
     document.body.innerHTML = `
-            <h1>Non hai i permessi per accedere a questa pagina! Effettua il login</h1>
-            <form action="javascript:void(0);" method="POST" id="loginForm">
-                <div class="mb-3">
-                    <label for="inputEMail" class="col-form-label">E-mail</label>
-                    <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" required>
+            <div class="vh-100 d-flex align-items-center justify-content-center" style="">
+                <div class="container container-log d-flex flex-column align-items-center align-content-center justify-content-center ">
+                    <h1>Non hai i permessi per accedere a questa pagina! Effettua il login</h1>
+                    <form class="w-50" action="javascript:void(0);" method="POST" id="loginForm">
+                        <div class="mb-3">
+                            <label for="inputEMail" class="col-form-label">E-mail</label>
+                            <input type="email" class="form-control" id="inputEMail" name="email" placeholder="esempio@email.it" value="admin@email.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPassword" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" id="inputPassword" name="password" value="admin" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Invia</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="col-form-label">Password</label>
-                    <input type="password" class="form-control" id="inputPassword" name="password" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Invia</button>
-                </div>
-            </form>
+            </div>
         `;
     // Aggiungi il listener per il submit del form di login
     const loginForm = document.getElementById("loginForm");

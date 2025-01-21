@@ -99,25 +99,58 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         // Aggiorna l'interfaccia utente o esegui altre azioni necessarie dopo il login
         // Ad esempio, mostra un messaggio di benvenuto o aggiorna la navbar
-        alert("Login riuscito, benvenuto " + data.nome);
-        console.log("Ruolo:", data.ruolo);
+        // alert("Login riuscito, benvenuto " + data.nome);
         
         ruoloUtente = data.ruolo;
         aggiornaUI(ruoloUtente); // Aggiorna l'interfaccia in base al ruolo
-        location.reload();
+        // location.reload(); 
+
+        const toastElement = document.querySelector('.toast-container');
+        toastElement.innerHTML = `        
+        <div class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
+         <div class="toast-body">
+            Bentornato, ${data.nome}!
+         </div>
+      </div>
+        `;
+        const toast = new bootstrap.Toast(toastElement.firstElementChild); // Crea un'istanza del Toast
+        toast.show();
+        console.log("Ruolo:", data.ruolo);
 
     } else {
         console.log("Login fallito");
-        alert("Credenziali non valide");
+
+        let invalidFeedback = document.createElement('div');
+        invalidFeedback.classList.add('invalid-feedback');
+        invalidFeedback.textContent = 'Credenziali non valide.';
+
+        document.getElementById("inputPassword").parentElement.appendChild(invalidFeedback);
+
     }
 });
 
 document.getElementById("btnLogout").addEventListener("click", async function() {
-    
-    if (confirm("sei sicuro di voler effettuare il logout?")) {
+
+    const toastContainer = document.querySelector('.toast-container');
+    toastContainer.innerHTML = `
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="logToast">
+        <div class="toast-body">
+          Sei sicuro di voler effettuare il logout?
+          <div class="mt-2 pt-2 border-top">
+            <button type="button" class="btn btn-danger btn-sm toast-logout">Logout</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Annulla</button>
+          </div>
+        </div>
+      </div>
+      `;
+    const toast = new bootstrap.Toast(toastContainer.firstElementChild);
+    toast.show();
+
+    document.querySelector('.toast-logout').addEventListener('click', async e => {
+        e.preventDefault();
         await logout();
         window.location.href = "./index.html";
-    }
+    });
 });
 
 async function logout() {

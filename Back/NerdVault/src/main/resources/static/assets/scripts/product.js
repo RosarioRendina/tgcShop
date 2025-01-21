@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return parseInt(params.get("id"), 10);
   }
 
+  const addToCart = document.getElementById("btn-carrello");
+
   const productId = getProductId();
   let productNome;
   let productPrezzo;
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const productPrice = document.getElementById("product-price");
       const productImg = document.getElementById("product-img");
       const productDesc = document.getElementById("product-description");
-      const btnCarrello = document.getElementById("btn-carrello");
+      
       const nonDisponibile = document.querySelector(".nonDisponibile");
       const pochiDisponibili = document.querySelector(".pochiDisponibili");
 
@@ -92,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
       productPrezzo = (product.categoria === 'PREVENDITA') ? (product.prezzo * ( 1 - product.scontoPrevendita/100)).toFixed(2) : product.prezzo.toFixed(2);
 
       if (product.rimanenza == 0) {
-        btnCarrello.classList.add("d-none");
+        addToCart.classList.add("d-none");
         pochiDisponibili.classList.add("d-none");
         nonDisponibile.classList.remove("d-none");
         document.getElementById("product-quantity").classList.add("d-none");
@@ -109,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>`;
         });*/
 
-        const addToCart = document.getElementById("btn-carrello");
+
 
         addToCart.addEventListener("click", (e) => {
           e.preventDefault();
@@ -143,5 +145,18 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem("carrello", JSON.stringify(carrello));
 
           updateCartCount();
+          const toastContainer = document.querySelector('.toast-container');
+          toastContainer.innerHTML = `
+          <div id="cartToast" class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
+            <div class="d-flex">
+              <div class="toast-body">
+                Prodotto aggiunto al carrello con successo!
+              </div>
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+          </div>
+          `
+          const toast = new bootstrap.Toast(toastContainer.firstElementChild); // Crea un'istanza del Toast
+          toast.show();
         });
 });

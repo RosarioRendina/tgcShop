@@ -351,7 +351,7 @@ body.modal {
   transition: 0.5s;
   opacity: 0;
   transform: translateY(-20px);
-  transition-delay: 0.6s;
+  transition-delay: 0.45s;
 }
 .card:hover .content .contentBx h5 {
   opacity: 1;
@@ -578,4 +578,50 @@ input[type=number]::-webkit-outer-spin-button {
   .product-grid {
     grid-template-columns: 1fr; /* 1 colonna per schermi molto piccoli */
   }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                TOAST E LOGIN                               */
+/* -------------------------------------------------------------------------- */
+
+.toast-container {
+  top: 8rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  .toast {
+      background-color: #300e5040;
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.6rem;
+      text-shadow: 
+      0px 0px 5px rgba(165,55,240, 0.8),   
+      0px 0px 10px rgba(165,55,240, 0.7),  
+      0px 0px 15px rgba(165,55,240, 0.6),  
+      0px 0px 20px rgba(165,55,240, 0.5); 
+  }
+}
+
+#loginModal .modal-content {
+  background-color: #300e5040;
+  backdrop-filter: blur(4px);
+  color: #fff;
+  text-shadow: 
+      0px 0px 5px rgba(165,55,240, 0.8),   
+      0px 0px 10px rgba(165,55,240, 0.7),  
+      0px 0px 15px rgba(165,55,240, 0.6),  
+      0px 0px 20px rgba(165,55,240, 0.5);
+
+      input.form-control {
+        background-color: #10101060;
+        color: white;
+        backdrop-filter: blur(4px);
+      }
+
+      input::placeholder {
+        color: #fff !important;
+        opacity: 0.6;
+      }
 }
