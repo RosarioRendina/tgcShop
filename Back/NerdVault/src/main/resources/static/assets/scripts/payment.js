@@ -9,6 +9,16 @@ importoDaPagare.value = totaleOrdine;
 
 const confermaPagamento = document.getElementById('payment-btn');
 
+const tornaHome = document.getElementById('home-btn');
+
+tornaHome.addEventListener('click', () => {
+    const confirmRedirect = confirm("Sei sicuro di voler tornare alla home?");
+
+    if (confirmRedirect) {
+        window.location.href = './index.html';
+    }
+});
+
 confermaPagamento.addEventListener('click', async function () {
 
     const utenteId = await getUtenteIdFromSession();

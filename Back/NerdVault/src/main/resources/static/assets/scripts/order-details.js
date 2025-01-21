@@ -19,7 +19,7 @@ function loadOrderDetails() {
         .then(response => response.json())
         .then(data => {
             if (data.length === 0) {
-                document.getElementById('order-details-table').innerHTML = `<tr><td colspan="4">Nessun dettaglio disponibile per questo ordine.</td></tr>`;
+                document.getElementById('#order-details-table').innerHTML = `<tr><td colspan="4">Nessun dettaglio disponibile per questo ordine.</td></tr>`;
             } else {
                 // Genera dinamicamente le righe della tabella
                 const tableBody = document.querySelector('#order-details-table tbody');
@@ -30,21 +30,28 @@ function loadOrderDetails() {
                 data.forEach(detail => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${detail.prodotto.nome}</td>
-                        <td>${detail.quantita}</td>
-                        <td>€${detail.prodotto.prezzo}</td>
-                        <td>€${(detail.prezzo).toFixed(2)}</td>
+                        <td class="text-start">${detail.prodotto.nome}</td>
+                        <td class="text-start">${detail.quantita}</td>
+                        <td class="text-start">€${detail.prodotto.prezzo}</td>
+                        <td class="text-start">€${(detail.prezzo).toFixed(2)}</td>
                     `;
                     totale += parseFloat(detail.prezzo)
                     tableBody.appendChild(row);
                 });
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                        
-                        <td>TOTALE ORDINE</td>
-                        <td colspan="2"></td>
 
-                        <td>€${totale.toFixed(2)}</td>
+                        <tr>
+
+                            <td colspan="1"></td>
+                        
+                        </tr>
+                        
+                        <td></td>
+                        
+                        <td class="text-start">TOTALE ORDINE</td>
+
+                        <td colspan="3" class="text-start">€${totale.toFixed(2)}</td>
                     `;
                     tableBody.appendChild(row);
             }

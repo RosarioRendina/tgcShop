@@ -6,6 +6,18 @@ body {
   background-size: cover;
 }
 
+/* h2 {
+  font-family: 'Inter', sans-serif;
+} */
+
+/* h2 {
+  font-family: 'Press Start 2P', cursive;
+} */
+
+/* h2 {
+  font-family: 'Poppins', sans-serif;
+} */
+
 .navbar {
   height: 70px;
   box-shadow: 0 0 5px 0;
@@ -21,13 +33,15 @@ body {
   color: white;
 
   .logo {
-    height: 50px;
+    height: 70px;
     width: auto;
   }
+
   .navbar-brand {
     /*font-family: "Pixelify Sans", sans-serif;*/
-    font-size: xx-large;
+    /* font-size: xx-large; */
     /* border-bottom: 2px white dotted; */
+    
   }
   .navbar-brand:hover {
     color: rgb(255, 255, 255, 0.75);
