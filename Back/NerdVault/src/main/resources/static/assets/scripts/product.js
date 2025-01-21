@@ -144,7 +144,9 @@ document.addEventListener("DOMContentLoaded", () => {
       
           localStorage.setItem("carrello", JSON.stringify(carrello));
 
+          alert("Prodotto aggiunto al carrello")
           updateCartCount();
+          updateTotalPrice();
           const toastContainer = document.querySelector('.toast-container');
           toastContainer.innerHTML = `
           <div id="cartToast" class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">

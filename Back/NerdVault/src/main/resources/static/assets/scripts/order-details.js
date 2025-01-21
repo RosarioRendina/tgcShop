@@ -25,16 +25,28 @@ function loadOrderDetails() {
                 const tableBody = document.querySelector('#order-details-table tbody');
                 tableBody.innerHTML = ''; // Pulisce la tabella prima di aggiungere nuove righe
 
+                let totale = 0;
+
                 data.forEach(detail => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${detail.prodotto.nome}</td>
                         <td>${detail.quantita}</td>
-                        <td>€${detail.prezzo}</td>
-                        <td>€${(detail.prezzo * detail.quantita).toFixed(2)}</td>
+                        <td>€${detail.prodotto.prezzo}</td>
+                        <td>€${(detail.prezzo).toFixed(2)}</td>
                     `;
+                    totale += parseFloat(detail.prezzo)
                     tableBody.appendChild(row);
                 });
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                        
+                        <td>TOTALE ORDINE</td>
+                        <td colspan="2"></td>
+
+                        <td>€${totale.toFixed(2)}</td>
+                    `;
+                    tableBody.appendChild(row);
             }
         })
         .catch(error => {
