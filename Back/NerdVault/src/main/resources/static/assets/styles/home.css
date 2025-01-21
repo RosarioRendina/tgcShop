@@ -32,11 +32,6 @@ body {
   z-index: 100;
   color: white;
 
-  .logo {
-    height: 70px;
-    width: auto;
-  }
-
   .navbar-brand {
     /*font-family: "Pixelify Sans", sans-serif;*/
     /* font-size: xx-large; */
