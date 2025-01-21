@@ -142,6 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
       
           localStorage.setItem("carrello", JSON.stringify(carrello));
 
+          alert("Prodotto aggiunto al carrello")
           updateCartCount();
+          updateTotalPrice();
         });
 });

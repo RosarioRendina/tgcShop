@@ -1,3 +1,12 @@
+const totaleOrdine = parseFloat(localStorage.getItem("totaleCarrello")).toFixed(2);
+
+console.log(totaleOrdine);
+
+
+const importoDaPagare = document.getElementById('amount');
+
+importoDaPagare.value = totaleOrdine;
+
 const confermaPagamento = document.getElementById('payment-btn');
 
 confermaPagamento.addEventListener('click', async function () {
@@ -25,8 +34,7 @@ confermaPagamento.addEventListener('click', async function () {
     if (conferma) {
         const carrelloStorage = JSON.parse(localStorage.getItem('carrello')) || [];
 
-        
-
+        localStorage.removeItem('totaleCarrello');
 
         console.log("Corpo richiesta Ordine:", {
             utente: { utenteId: utenteId },
