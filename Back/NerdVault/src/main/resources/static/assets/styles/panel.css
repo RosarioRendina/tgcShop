@@ -33,6 +33,11 @@ body {
     z-index: 100; 
     color: white;
 
+    .container {
+        border: none;
+        box-shadow: none;
+    }
+
     .logo{
         height: 50px;
         width: auto;
@@ -76,6 +81,11 @@ body {
         0px 0px 10px rgba(165,55,240, 0.7),  
         0px 0px 15px rgba(165,55,240, 0.6),  
         0px 0px 20px rgba(165,55,240, 0.5); 
+    }
+
+    .nav-link:active,
+    .nav-link:focus {
+      color: rgb(255, 255, 255, 0.75) !important;
     }
 
 }
